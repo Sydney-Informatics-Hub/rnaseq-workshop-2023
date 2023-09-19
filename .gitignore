@@ -1,3 +1,4 @@
 data
-/docs/ # remove before rendering
+/docs/notebooks/
+/docs/*.html
 /.quarto/
