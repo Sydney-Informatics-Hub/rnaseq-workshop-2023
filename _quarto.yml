@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Sydney Informatics Hub Course name"
+  title: "Introduction to RNAseq workshop"
   navbar:
     background: primary
     left:
@@ -11,15 +11,36 @@ website:
         text: Home
       - href: setup.html
         text: "Setup"
-      - text: "Session 1"
+      - href: notebooks/1.0_casestudy.html
+        text: "Case study"
+      - text: "Day 1"
         menu:
-        - text: "Python from ipynb example"
-          href: notebooks/01a-fundamentals.html
-        - text: "R from qmd example"
-          href: notebooks/01b_exampleRcontent.html
-        - text: "Markdown from md example"
-          href: notebooks/01c_exampleMDcontent.html
-
+        - text: "Learning objectives"
+          href: notebooks/1.1_learningobjectives.html
+        - text: "RNAseq data processing"
+          href: notebooks/1.2_rnaseq.html
+        - text: "nf-core/rnaseq"
+          href: notebooks/1.3_nfcore.html
+        - text: "Raw data quality control"
+          href: notebooks/1.4_dataqc.html
+        - text: "Read alignment and quantification"
+          href: notebooks/1.5_alignquant.html
+        - text: "Output interpretation"
+          href: notebooks/1.6_outputs.html
+        - text: "Nextflow reports"
+          href: notebooks/1.7_reports.html
+      - text: "Day 2"
+        menu:
+        - text: "Learning objectives"
+          href: notebooks/2.0_learningobjectives.html
+        - text: "Exploratory analysis"
+          href: notebooks/2.1_exploratory.html
+        - text: "Differential expression"
+          href: notebooks/2.2_differentialex.html
+        - text: "Functional enrichment"
+          href: notebooks/2.3_enrichment.html
+      - text: "Tips & tricks"
+        href: tipstricks.qmd
   body-footer: "All materials copyright Sydney Informatics Hub, University of Sydney"
 
 format:
