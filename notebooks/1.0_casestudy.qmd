@@ -1,0 +1,72 @@
+---
+title: "**Intro to the case study**"
+output:
+  html_document:
+    toc: false
+    toc_float: false
+from: markdown+emoji
+---
+
+::: callout-important
+### Learning objectives{.unlisted}
+
+* Consider experimental design considerations for RNAseq differential expression analysis
+
+:::
+
+In this workshop, we are working with a real dataset from a knockout mouse model study by [Corley et al. (2016)](https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-016-2801-4). This study used the mouse model to study Williams-Beuren Syndrome (WBS), a rare genetic disease in people.
+
+![](../Figs/0.0_case-study.png)
+
+[Williams-Beuren Syndrome](https://www.omim.org/entry/194050) affects multiple body systems and has physical, cognitive, and behavioural traits. Previous studies of WBS patients with deletions of the 7q11.23 chromosomal region have led to the conclusion that a disruption of *Gtf2ird1* and *Gtf2i* genes explain the features of WBS, including:
+
+*  Delays in prenatal and postnatal growth
+* Short stature
+* Intellectual disabilities
+* Distinctive facial features
+
+Corley et al. (2016) used lip tissue from a *Gtf2ird1* knockout mouse model to capture phenotypic effects most present in the epidermal tissues. *Gtf2ird1* is located on chromosome 5 (5qG2) of the mouse genome. 
+
+## The study design
+
+* 6 mice
+    * 3 knockouts (missing exon 1 of *Gtf2ird1*)
+    * 3 wildtypes (not missing exon 1 of *Gtf2ird1*)
+* mRNA extracted from epidermal (lip) tissue
+* 101 bp paired-end reads sequenced on Illumina HiSeq2000
+
+::: callout-note
+### What is a knock out mouse model? {.unlisted}
+
+Creating a knockout (KO) mouse model involves genetically engineering a mouse strain in which researchers have selectively and specifically disrupted (knocked out) the function of a particular gene. These models are useful for understanding the role of specific genes in health and disease. 
+
+:::
+
+## Research questions 
+
+* Which genes (if any) are upregulated or downregulated in our knockout mice compared with normal mice?
+* How do these differentially expressed genes relate to the disease phenotype?​
+
+::: callout-tip
+### **Reflection exercise**{.unlisted}
+1. Which sorts of genes do you expect will be up/downregulated in KO compared with WT?
+2. Can you identify a potential limiting factor in the experimental design which might affect result interpretation?
+:::
+
+::: {.callout-caution collapse="true"}
+### Solution
+1. Compensatory mechanisms countering the effect of the KO. Downregulation of genes regulated by Gtf2ird1 
+2. Small sample size lacking statistical power. Lip epidermal tissue fails to represent changes in other tissue types (neuro). KO of single exon might retain partial functionality. 
+:::
+
+As you work through the materials presented here, you'll need to recall experimental design choices made by Corley et al. (2016) and research aims. We will revisit this page numerous times throughout this workshop.  
+
+::: callout-important
+### Key takeaways{.unlisted}
+
+* Corley et al. (2016) used a knockout mouse model to  model Williams-Beuren Syndrome (WBS), a rare genetic disease in people.  
+* Our research questions center on understanding gene regulation in knockout mice relative to normal mice and how these changes in gene expression might relate to the disease phenotype. 
+* Possible limitations in study design and sample collection may limit our ability to answer all research questions posed by this study. 
+
+:::
+

@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Sydney Informatics Hub Course name - Course title</title>
+<title>Introduction to RNAseq workshop - Introduction to RNAseq: reads to differential gene expression workshop series</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -57,7 +57,8 @@ ul.task-list li input[type="checkbox"] {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -73,46 +74,93 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Sydney Informatics Hub Course name</span>
+    <span class="navbar-title">Introduction to RNAseq workshop</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page">
+    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./setup.html">
+    <a class="nav-link" href="./setup.html" rel="" target="">
  <span class="menu-text">Setup</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./notebooks/1.0_casestudy.html" rel="" target="">
+ <span class="menu-text">Case study</span></a>
+  </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-session-1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Session 1</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-day-1" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Day 1</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-session-1">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-day-1">    
         <li>
-    <a class="dropdown-item" href="./notebooks/01a-fundamentals.html">
- <span class="dropdown-text">Python from ipynb example</span></a>
+    <a class="dropdown-item" href="./notebooks/1.1_learningobjectives.html" rel="" target="">
+ <span class="dropdown-text">Learning objectives</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./notebooks/01b_exampleRcontent.html">
- <span class="dropdown-text">R from qmd example</span></a>
+    <a class="dropdown-item" href="./notebooks/1.2_rnaseq.html" rel="" target="">
+ <span class="dropdown-text">RNAseq data processing</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./notebooks/01c_exampleMDcontent.html">
- <span class="dropdown-text">Markdown from md example</span></a>
+    <a class="dropdown-item" href="./notebooks/1.3_nfcore.html" rel="" target="">
+ <span class="dropdown-text">nf-core/rnaseq</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/1.4_dataqc.html" rel="" target="">
+ <span class="dropdown-text">Raw data quality control</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/1.5_alignquant.html" rel="" target="">
+ <span class="dropdown-text">Read alignment and quantification</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/1.6_outputs.html" rel="" target="">
+ <span class="dropdown-text">Output interpretation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/1.7_reports.html" rel="" target="">
+ <span class="dropdown-text">Nextflow reports</span></a>
   </li>  
     </ul>
   </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-day-2" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Day 2</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-day-2">    
+        <li>
+    <a class="dropdown-item" href="./notebooks/2.0_learningobjectives.html" rel="" target="">
+ <span class="dropdown-text">Learning objectives</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/2.1_exploratory.html" rel="" target="">
+ <span class="dropdown-text">Exploratory analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/2.2_differentialex.html" rel="" target="">
+ <span class="dropdown-text">Differential expression</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/2.3_enrichment.html" rel="" target="">
+ <span class="dropdown-text">Functional enrichment</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./tipstricks.html" rel="" target="">
+ <span class="menu-text">Tips &amp; tricks</span></a>
+  </li>  
 </ul>
-              <div class="quarto-toggle-container">
-                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-              </div>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools ms-auto">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -126,12 +174,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#trainers" id="toc-trainers" class="nav-link active" data-scroll-target="#trainers">Trainers</a></li>
-  <li><a href="#course-pre-requisites-and-setup-requirements" id="toc-course-pre-requisites-and-setup-requirements" class="nav-link" data-scroll-target="#course-pre-requisites-and-setup-requirements">Course pre-requisites and setup requirements</a></li>
-  <li><a href="#venue" id="toc-venue" class="nav-link" data-scroll-target="#venue">Venue</a></li>
-  <li><a href="#code-of-conduct" id="toc-code-of-conduct" class="nav-link" data-scroll-target="#code-of-conduct">Code of Conduct</a></li>
-  <li><a href="#schedule" id="toc-schedule" class="nav-link" data-scroll-target="#schedule">Schedule</a></li>
-  <li><a href="#setup-instructions" id="toc-setup-instructions" class="nav-link" data-scroll-target="#setup-instructions">Setup Instructions</a></li>
+  <li><a href="#target-audience" id="toc-target-audience" class="nav-link active" data-scroll-target="#target-audience">Target audience</a></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
+  <li><a href="#get-the-most-out-of-this-workshop" id="toc-get-the-most-out-of-this-workshop" class="nav-link" data-scroll-target="#get-the-most-out-of-this-workshop">Get the most out of this workshop</a></li>
+  <li><a href="#workshop-schedule" id="toc-workshop-schedule" class="nav-link" data-scroll-target="#workshop-schedule">Workshop schedule</a></li>
+  <li><a href="#course-survey" id="toc-course-survey" class="nav-link" data-scroll-target="#course-survey">Course survey!</a></li>
+  <li><a href="#credits-and-acknowledgements" id="toc-credits-and-acknowledgements" class="nav-link" data-scroll-target="#credits-and-acknowledgements">Credits and acknowledgements</a></li>
   </ul>
 </nav>
     </div>
@@ -140,7 +188,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Course title</h1>
+<h1 class="title"><strong>Introduction to RNAseq: reads to differential gene expression workshop series</strong></h1>
 </div>
 
 
@@ -155,86 +203,72 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This is a training course aimed at (your target audience) to learn (your course).</p>
-<section id="trainers" class="level2">
-<h2 class="anchored" data-anchor-id="trainers">Trainers</h2>
-<p>Have a list of the people delivering the course if it is needed. However, this is subject to change so might be a good idea to not specifiy.</p>
-<p>Here’s an example list. This is a good place to define what your preferred name is if you have one.</p>
+<p>This workshop series will introduce you to RNA sequencing data analysis for differential expression and functional enrichment on the command line. We will use the nf-core/rnaseq pipeline to process raw sequence reads to a gene count matrix and then perform differential expression and enrichment analyses with R/Rstudio.</p>
+<section id="target-audience" class="level2">
+<h2 class="anchored" data-anchor-id="target-audience">Target audience</h2>
+<p>This workshop series is suitable for people who are familiar with working at command line interface and may be new to RNAseq for differential expression analysis. The course is beginner friendly and intended for those interested in using the command line interface for their analysis. It is also suitable for those who want to learn about and use nf-co.re workflows.</p>
+</section>
+<section id="prerequisites" class="level2">
+<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
 <ul>
-<li>Nathaniel (Nate) Butterworth</li>
-<li>Darya Vanichkina</li>
-<li>Kristian Maras</li>
+<li>Familiarity with Unix/Linux command line</li>
+<li>Familiarity with R/RStudio</li>
+<li>Introduction to RNAseq webinar</li>
 </ul>
 </section>
-<section id="course-pre-requisites-and-setup-requirements" class="level2">
-<h2 class="anchored" data-anchor-id="course-pre-requisites-and-setup-requirements">Course pre-requisites and setup requirements</h2>
-<p>Provide some sort of general description of what you should know and who this course is for. For example:</p>
-<blockquote class="blockquote">
-<p>No previous programming experience is required, but <strong>Session 1 is a pre-requisite for the other sessions</strong>. Training will be delivered online, so you will need access to a modern computer with a stable internet connection and around 5GB of storage space for data downloaded prior to the course. Participants are encouraged to setup a Python environment on their local computer (as per the <a href="./setup.html">Setup Instructions</a> provided), but participation using other platforms/environments can be supported where necessary.</p>
-</blockquote>
-</section>
-<section id="venue" class="level2">
-<h2 class="anchored" data-anchor-id="venue">Venue</h2>
-<p>Specifiy where the training will be, whether it is in person, online, or hybrid.</p>
-<p>Include a reminder about the location and time zone in which this course will be running. In almost all cases, our courses are delivered from Sydney and times are reported in AEDT (GMT+11).</p>
-<section id="zoom-etiquette-and-how-we-interact" class="level4">
-<h4 class="anchored" data-anchor-id="zoom-etiquette-and-how-we-interact">Zoom etiquette and how we interact</h4>
-<p>Include some sort of descripter about what is expected from attendees in terms of participation, and what sort of interaction they should expect. This could also be moved to an about page.</p>
-<p>Here’s an example for a zoom only online course:</p>
-<blockquote class="blockquote">
-<p>Sessions will be recorded for attendees only, and it is set up to only record the host shared screen and host audio. We will try and get these uploaded to this site as soon as possible. Please interrupt whenever you want! Ideally, have your camera on and interact as much as possible. There will be someone monitoring the chat-window with any questions you would like to post there. Four hours is a long Zoom session so we have plenty of scheduled breaks combined with a mix of content to be delivered as demos, plus sections as independent exercises, but most of the course will be pretty-hands on with everyone writing their own code. We will use Zoom break-out rooms as needed with the Trainers and participants.</p>
-</blockquote>
-</section>
-</section>
-<section id="code-of-conduct" class="level2">
-<h2 class="anchored" data-anchor-id="code-of-conduct">Code of Conduct</h2>
-<p>As a University of Sydney course, we also want to make sure peopele are aware of our code of conduct. Feel free to move this to an about page as needed.</p>
-<p>Example standard Code of Conduct statement:</p>
-<p>We expect all attendees of our training to follow our code of conduct, including bullying, harassment and discrimination prevention policies.</p>
-<p>In order to foster a positive and professional learning environment we encourage the following kinds of behaviours at all our events and on our platforms:</p>
+<section id="get-the-most-out-of-this-workshop" class="level2">
+<h2 class="anchored" data-anchor-id="get-the-most-out-of-this-workshop">Get the most out of this workshop</h2>
+<p>This workshop series is presented across 2 days and will consist of code-along and breakout room sessions. You will get the most out of the workshop if you:</p>
 <ul>
-<li>Use welcoming and inclusive language</li>
-<li>Be respectful of different viewpoints and experiences</li>
-<li>Gracefully accept constructive criticism</li>
-<li>Focus on what is best for the community</li>
-<li>Show courtesy and respect towards other community members</li>
+<li>Brush up on your command line basics before Day 1</li>
+<li>Brush up on your R/Rstudio skills</li>
+<li>Watch our webinar introducing RNAseq experiments</li>
+<li>Set up your computer before Day 1</li>
+<li>Use the Slack channel to ask questions and engage in discussions during the workshop</li>
+<li>Do the provided exercises during the workshop</li>
 </ul>
-<p>Our full CoC, with incident reporting guidelines, is available [here]https://sydney-informatics-hub.github.io/codeofconduct/).</p>
 </section>
-<section id="schedule" class="level2">
-<h2 class="anchored" data-anchor-id="schedule">Schedule</h2>
-<p>If your training includes multiple components, it is always nice to have a table with the schedule. With quarto we can make tables using markdown formating, like below.</p>
+<section id="workshop-schedule" class="level2">
+<h2 class="anchored" data-anchor-id="workshop-schedule">Workshop schedule</h2>
 <table class="table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 89%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Lesson</th>
+<th>Overview</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td><strong>Day 1</strong></td>
-<td style="text-align: left;"></td>
+<td>Set up</td>
+<td>Follow these instructions to install a terminal application and web browser to be used in the workshop.</td>
 </tr>
 <tr class="even">
-<td>Morning</td>
-<td style="text-align: left;"><a href="./notebooks/01a-fundamentals.html">Fundamentals</a></td>
+<td>Day 1</td>
+<td>Participants will use nf-core’s rnaseq pipeline to transform raw sequencing data into analysis ready count data.</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td style="text-align: left;"><a href="./notebooks/01b_exampleRcontent.html">Example R Content</a></td>
-</tr>
-<tr class="even">
-<td><strong>Day 2</strong></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td>Morning</td>
-<td style="text-align: left;"><a href="./notebooks/01c_exampleMDcontent.html">Example MD Content</a></td>
+<td>Day 2</td>
+<td>Participants will use RStudio to perform differential expression and enrichment analysis on count matrix.</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="setup-instructions" class="level2">
-<h2 class="anchored" data-anchor-id="setup-instructions">Setup Instructions</h2>
-<p>Link to the setup instructions if there are any, for example:</p>
-<blockquote class="blockquote">
-<p>Please complete the <a href="./setup.html">Setup Instructions</a> <strong>before the course</strong>. If you have any trouble, please get in contact with us ASAP.</p>
-</blockquote>
+<section id="course-survey" class="level2">
+<h2 class="anchored" data-anchor-id="course-survey">Course survey!</h2>
+<p>Please fill out our course survey before you leave! Help us help you! 😁</p>
+</section>
+<section id="credits-and-acknowledgements" class="level2">
+<h2 class="anchored" data-anchor-id="credits-and-acknowledgements">Credits and acknowledgements</h2>
+<p>Lead trainers:</p>
+<ul>
+<li>Dr Nandan Deshpande</li>
+<li>Dr Georgie Samaha</li>
+</ul>
+<p>This training was developed under the Australian BioCommons ‘Bring Your Own Data’ - Command Line Interface (CLI) Platform Expansion Project by the Sydney Informatics Hub, in partnership with Pawsey Supercomputing Centre, Queensland Cyberinfrastructure Foundation (QCIF), and Australian Academic Research Network (AARNet). This project aims to create highly accessible, highly available, highly scalable analysis and data sharing capabilities for the benefit of life science researchers nationally.</p>
 
 
 </section>
@@ -382,9 +416,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -449,6 +497,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
