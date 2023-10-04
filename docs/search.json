@@ -16,49 +16,49 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Introduction to RNAseq: reads to differential gene expression workshop series",
+    "title": "Introduction to RNAseq workshop: reads to differential gene expression",
     "section": "",
     "text": "This workshop series will introduce you to RNA sequencing data analysis for differential expression and functional enrichment on the command line. We will use the nf-core/rnaseq pipeline to process raw sequence reads to a gene count matrix and then perform differential expression and enrichment analyses with R/Rstudio."
   },
   {
     "objectID": "index.html#target-audience",
     "href": "index.html#target-audience",
-    "title": "Introduction to RNAseq: reads to differential gene expression workshop series",
+    "title": "Introduction to RNAseq workshop: reads to differential gene expression",
     "section": "Target audience",
     "text": "Target audience\nThis workshop series is suitable for people who are familiar with working at command line interface and may be new to RNAseq for differential expression analysis. The course is beginner friendly and intended for those interested in using the command line interface for their analysis. It is also suitable for those who want to learn about and use nf-co.re workflows."
   },
   {
     "objectID": "index.html#prerequisites",
     "href": "index.html#prerequisites",
-    "title": "Introduction to RNAseq: reads to differential gene expression workshop series",
+    "title": "Introduction to RNAseq workshop: reads to differential gene expression",
     "section": "Prerequisites",
     "text": "Prerequisites\n\nFamiliarity with Unix/Linux command line\nFamiliarity with R/RStudio\nIntroduction to RNAseq webinar (slides)"
   },
   {
     "objectID": "index.html#get-the-most-out-of-this-workshop",
     "href": "index.html#get-the-most-out-of-this-workshop",
-    "title": "Introduction to RNAseq: reads to differential gene expression workshop series",
+    "title": "Introduction to RNAseq workshop: reads to differential gene expression",
     "section": "Get the most out of this workshop",
     "text": "Get the most out of this workshop\nThis workshop series is presented across 2 days and will consist of code-along and breakout room sessions. You will get the most out of the workshop if you:\n\nBrush up on your command line basics before Day 1\nBrush up on your R/Rstudio skills\nWatch our webinar introducing RNAseq experiments\nSet up your computer before Day 1\nUse the Slack channel to ask questions and engage in discussions during the workshop\nDo the provided exercises during the workshop"
   },
   {
     "objectID": "index.html#workshop-schedule",
     "href": "index.html#workshop-schedule",
-    "title": "Introduction to RNAseq: reads to differential gene expression workshop series",
+    "title": "Introduction to RNAseq workshop: reads to differential gene expression",
     "section": "Workshop schedule",
     "text": "Workshop schedule\n\n\n\n\n\n\n\nLesson\nOverview\n\n\n\n\nSet up\nFollow these instructions to install a terminal application and web browser to be used in the workshop.\n\n\nDay 1\nParticipants will use nf-core’s rnaseq pipeline to transform raw sequencing data into analysis ready count data.\n\n\nDay 2\nParticipants will use RStudio to perform differential expression and enrichment analysis on count matrix."
   },
   {
     "objectID": "index.html#course-survey",
     "href": "index.html#course-survey",
-    "title": "Introduction to RNAseq: reads to differential gene expression workshop series",
+    "title": "Introduction to RNAseq workshop: reads to differential gene expression",
     "section": "Course survey!",
-    "text": "Course survey!\nPlease fill out our course survey before you leave! Help us help you! 😁"
+    "text": "Course survey!\nPlease fill out our course survey before you leave! Help us help you! 😃"
   },
   {
     "objectID": "index.html#credits-and-acknowledgements",
     "href": "index.html#credits-and-acknowledgements",
-    "title": "Introduction to RNAseq: reads to differential gene expression workshop series",
+    "title": "Introduction to RNAseq workshop: reads to differential gene expression",
     "section": "Credits and acknowledgements",
     "text": "Credits and acknowledgements\nLead trainers:\n\nDr Nandan Deshpande\nDr Georgie Samaha\n\nThis training was developed under the Australian BioCommons ‘Bring Your Own Data’ - Command Line Interface (CLI) Platform Expansion Project by the Sydney Informatics Hub, in partnership with Pawsey Supercomputing Centre, Queensland Cyberinfrastructure Foundation (QCIF), and Australian Academic Research Network (AARNet). This project aims to create highly accessible, highly available, highly scalable analysis and data sharing capabilities for the benefit of life science researchers nationally."
   },
