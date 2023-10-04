@@ -2,9 +2,9 @@
   {
     "objectID": "tipstricks.html",
     "href": "tipstricks.html",
-    "title": "Introduction to RNAseq workshop",
+    "title": "Tips and tricks",
     "section": "",
-    "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
+    "text": "If you need to end your session, exit your browser and on Nimbus, run the following command:\nlsof -ti:8787 | xargs kill -9\n\n\n\nWhen running Sisngularity containers on Nimbus you may come across an error:\nFATAL:   container creation failed: mount /proc/self/fd/3-&gt;/usr/local/var/singularity/mnt/session/rootfs \nerror: while mounting image /proc/self/fd/3: failed to find loop device: could not attach image file to loop device: no loop devices available\nRun the following commands to resolve this issue:\nlsmod | grep loop\nsudo modprobe loop\nsudo losetup -f\n/dev/loop9"
   },
   {
     "objectID": "notebooks/1.7_nfreports.html",
@@ -74,7 +74,7 @@
     "href": "notebooks/1.0_casestudy.html",
     "title": "Intro to the case study",
     "section": "",
-    "text": "Learning objectives\n\n\n\n\nConsider experimental design considerations for RNAseq differential expression analysis\nIn this workshop, we are working with a real dataset from a knockout mouse model study by Corley et al. (2016). This study used the mouse model to study Williams-Beuren Syndrome (WBS), a rare genetic disease in people.\nWilliams-Beuren Syndrome affects multiple body systems and has physical, cognitive, and behavioural traits. Previous studies of WBS patients with deletions of the 7q11.23 chromosomal region have led to the conclusion that a disruption of Gtf2ird1 and Gtf2i genes explain the features of WBS, including:\nCorley et al. (2016) used lip tissue from a Gtf2ird1 knockout mouse model to capture phenotypic effects most present in the epidermal tissues. Gtf2ird1 is located on chromosome 5 (5qG2) of the mouse genome.\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+    "text": "Learning objectives\n\n\n\n\nConsider experimental design considerations for RNAseq differential expression analysis\nIn this workshop, we are working with a real dataset from a knockout mouse model study by Corley et al. (2016). This study used the mouse model to study Williams-Beuren Syndrome (WBS), a rare genetic disease in people.\nWilliams-Beuren Syndrome affects multiple body systems and has physical, cognitive, and behavioural traits. Previous studies of WBS patients with deletions of the 7q11.23 chromosomal region have led to the conclusion that a disruption of Gtf2ird1 and Gtf2i genes explain the features of WBS, including:\nCorley et al. (2016) used lip tissue from a Gtf2ird1 knockout mouse model to capture phenotypic effects most present in the epidermal tissues. Gtf2ird1 is located on chromosome 5 (5qG2) of the mouse genome."
   },
   {
     "objectID": "notebooks/1.3_nfcore.html",
@@ -102,7 +102,7 @@
     "href": "index.html",
     "title": "Introduction to RNAseq: reads to differential gene expression workshop series",
     "section": "",
-    "text": "This workshop series will introduce you to RNA sequencing data analysis for differential expression and functional enrichment on the command line. We will use the nf-core/rnaseq pipeline to process raw sequence reads to a gene count matrix and then perform differential expression and enrichment analyses with R/Rstudio.\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+    "text": "This workshop series will introduce you to RNA sequencing data analysis for differential expression and functional enrichment on the command line. We will use the nf-core/rnaseq pipeline to process raw sequence reads to a gene count matrix and then perform differential expression and enrichment analyses with R/Rstudio."
   },
   {
     "objectID": "index.html#trainers",
@@ -473,7 +473,7 @@
     "href": "notebooks/2.1_rstudio-downstream.html",
     "title": "Set up R/RStudio for downstream analyses",
     "section": "",
-    "text": "Learning objectives\n\n\n\n\nExecute an RStudio container using Singularity\nLearn how to import a multi-sample gene count matrix into RStudio using R code\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+    "text": "Learning objectives\n\n\n\n\nExecute an RStudio container using Singularity\nLearn how to import a multi-sample gene count matrix into RStudio using R code"
   },
   {
     "objectID": "notebooks/2.1_rstudio-downstream.html#what-is-r-and-rstudio",
@@ -754,5 +754,12 @@
     "title": "Introduction to RNAseq workshop",
     "section": "",
     "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
+  },
+  {
+    "objectID": "tipstricks.html#troubleshooting",
+    "href": "tipstricks.html#troubleshooting",
+    "title": "Tips and tricks",
+    "section": "",
+    "text": "If you need to end your session, exit your browser and on Nimbus, run the following command:\nlsof -ti:8787 | xargs kill -9\n\n\n\nWhen running Sisngularity containers on Nimbus you may come across an error:\nFATAL:   container creation failed: mount /proc/self/fd/3-&gt;/usr/local/var/singularity/mnt/session/rootfs \nerror: while mounting image /proc/self/fd/3: failed to find loop device: could not attach image file to loop device: no loop devices available\nRun the following commands to resolve this issue:\nlsmod | grep loop\nsudo modprobe loop\nsudo losetup -f\n/dev/loop9"
   }
 ]
