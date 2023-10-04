@@ -239,8 +239,8 @@ cookieconsent.run({
   <ul>
   <li><a href="#over-representation-analysis" id="toc-over-representation-analysis" class="nav-link active" data-scroll-target="#over-representation-analysis"><strong>2.4.1 Over-representation analysis</strong></a></li>
   <li><a href="#gene-ontologies" id="toc-gene-ontologies" class="nav-link" data-scroll-target="#gene-ontologies"><strong>2.4.2 Gene Ontologies</strong></a></li>
-  <li><a href="#using-clusterprofiler-to-visualise-functional-profiles-of-genes" id="toc-using-clusterprofiler-to-visualise-functional-profiles-of-genes" class="nav-link" data-scroll-target="#using-clusterprofiler-to-visualise-functional-profiles-of-genes"><strong>2.4.3 Using clusterProfiler to visualise functional profiles of genes</strong></a></li>
-  <li><a href="#prepare-the-de-gene-results-for-enrichment-analysis" id="toc-prepare-the-de-gene-results-for-enrichment-analysis" class="nav-link" data-scroll-target="#prepare-the-de-gene-results-for-enrichment-analysis"><strong>2.4.4 Prepare the DE gene results for enrichment analysis</strong></a></li>
+  <li><a href="#visualise-functional-profiles-of-genes" id="toc-visualise-functional-profiles-of-genes" class="nav-link" data-scroll-target="#visualise-functional-profiles-of-genes"><strong>2.4.3 Visualise functional profiles of genes</strong></a></li>
+  <li><a href="#prepare-de-genes-for-enrichment-analysis" id="toc-prepare-de-genes-for-enrichment-analysis" class="nav-link" data-scroll-target="#prepare-de-genes-for-enrichment-analysis"><strong>2.4.4 Prepare DE genes for enrichment analysis</strong></a></li>
   <li><a href="#go-enrichment-of-upregulated-genes" id="toc-go-enrichment-of-upregulated-genes" class="nav-link" data-scroll-target="#go-enrichment-of-upregulated-genes"><strong>2.4.5 GO enrichment of upregulated genes</strong></a></li>
   <li><a href="#other-functional-enrichment-tools" id="toc-other-functional-enrichment-tools" class="nav-link" data-scroll-target="#other-functional-enrichment-tools"><strong>2.4.6 Other functional enrichment tools</strong></a></li>
   <li><a href="#sessioninfo" id="toc-sessioninfo" class="nav-link" data-scroll-target="#sessioninfo"><strong>2.4.7 sessionInfo()</strong></a></li>
@@ -307,12 +307,12 @@ Learning objectives
 </ul>
 <p>GO enrichment analysis tools will determine GO terms that are enriched when you supply it will a list of DE genes.</p>
 </section>
-<section id="using-clusterprofiler-to-visualise-functional-profiles-of-genes" class="level2">
-<h2 class="anchored" data-anchor-id="using-clusterprofiler-to-visualise-functional-profiles-of-genes"><strong>2.4.3 Using clusterProfiler to visualise functional profiles of genes</strong></h2>
+<section id="visualise-functional-profiles-of-genes" class="level2">
+<h2 class="anchored" data-anchor-id="visualise-functional-profiles-of-genes"><strong>2.4.3 Visualise functional profiles of genes</strong></h2>
 <p>The clusterProfiler R package implements methods to analyze and visualise functional profiles of genes. The clusterProfiler R-library supports functional characteristics of both coding and non-coding genomics data for thousands of species with up-to-date gene annotation. It provides a tidy interface to access, manipulate, and visualize enrichment results to help users achieve efficient data interpretation.</p>
 </section>
-<section id="prepare-the-de-gene-results-for-enrichment-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="prepare-the-de-gene-results-for-enrichment-analysis"><strong>2.4.4 Prepare the DE gene results for enrichment analysis</strong></h2>
+<section id="prepare-de-genes-for-enrichment-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="prepare-de-genes-for-enrichment-analysis"><strong>2.4.4 Prepare DE genes for enrichment analysis</strong></h2>
 <p>We will use clusterProfiler to perform enrichment analysis for upregulated and downregulated significant DE genes separately. We can use the <code>resSig005_subset_lfc</code> dataframe created earlier and prepare the data for clusterProfiler.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We will use the resSig005_subset_lfc dataframe created earlier</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This has been filtered for padj &lt; 0.05 and |LFC| &gt; 1 DE genes</span></span>
