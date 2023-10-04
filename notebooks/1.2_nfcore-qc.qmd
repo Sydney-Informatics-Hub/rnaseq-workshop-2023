@@ -53,6 +53,13 @@ nf-core/rnaseq provides users the option to run FastQC and read trimming only. W
 3. Check quality of trimmed reads for each sample with FastQC
 4. Output a MultiQC report 
 
+::: callout-note
+
+### **The joys of open source software communities**
+
+nf-core/rnaseq developers have only recently added this QC-only functionality into their pipeline code. Up until June 2023, you had to run the pipeline in full before you could examine the raw sequence QC outputs. After a number of users petitioned the developers (see this [Github issue](https://github.com/nf-core/rnaseq/issues/1015) for our pleas), the developers added the `--skip_alignment` feature. 
+:::
+
 Run the following command to perform the QC steps above: 
 
 ```bash
@@ -83,7 +90,7 @@ CPU hours   : 0.1
 Succeeded   : 19
 ```
 
-## **1.2.1 Evaluate the data quality**
+## **1.2.2 Evaluate the data quality**
 
 Take a look at the output that is produced by your qc run: 
 
@@ -141,7 +148,7 @@ FastQC was designed for whole genome sequencing (WGS) and not RNAseq experiments
 
 :::
 
-## **1.2.2 Read trimming**
+## **1.2.3 Read trimming**
 
 Trimming is sometimes performed to improve the quality of the raw data and potentially improve its mapability when it is being aligned to a reference genome. There are several ways to perform trimming:
 

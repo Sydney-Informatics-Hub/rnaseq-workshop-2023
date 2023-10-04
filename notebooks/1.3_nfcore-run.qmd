@@ -47,9 +47,19 @@ cd /home/training/Day_1
 ```
 
 We are going to adjust our run command slightly from last time, note:
+
 * The `-resume` flag at the end of the command 
 * We will output our results in a different directory (`--outdir`)
 * We have added an extra flag to skip duplicate marking (`--skip_markduplicates`)
+
+::: callout-note
+
+### A note on duplicate marking in RNAseq data{.unlisted}
+
+By default, the nf-core/rnaseq pipeline uses picard to mark the duplicate reads identified amongst the alignments to allow you to guage the overall level of duplication in your samples. Unless you are using unique molecular identifiers (UMIs) it is not possible to establish whether your duplicate sequence reads are true biological duplication or PCR bias introduced during the library preparation. 
+
+Given our data hasn't been tagged with UMIs, we won't be able to accurately remove artifact duplicates from the alignments. Therefore we don't need to worry about tagging them. 
+::: 
 
 Execute the following:
 
