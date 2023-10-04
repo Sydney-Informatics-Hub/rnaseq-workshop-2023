@@ -1,5 +1,5 @@
 ---
-title: "**Introduction to RNAseq: reads to differential gene expression workshop series**"
+title: "**Introduction to RNAseq workshop: reads to differential gene expression**"
 output:
   html_document:
     toc: false
