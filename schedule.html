@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Introduction to RNAseq workshop - Timetable and objectives</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-TNWWV3HK57"></script>
+
+<script type="text/plain" cookie-consent="tracking">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-TNWWV3HK57', { 'anonymize_ip': true});
+</script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"express",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":"",
+"website_privacy_policy_url":"https://www.sydney.edu.au/privacy-statement.html"
+  });
+});
+</script> 
+  
+
+
+<link rel="stylesheet" href="styles.scss">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Introduction to RNAseq workshop</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./setup.html" rel="" target="">
+ <span class="menu-text">Setup</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./schedule.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./notebooks/1.0_casestudy.html" rel="" target="">
+ <span class="menu-text">Case study</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-day-1" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Day 1</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-day-1">    
+        <li>
+    <a class="dropdown-item" href="./notebooks/1.1_rnaseq-experiment.html" rel="" target="">
+ <span class="dropdown-text">1.1 RNAseq experimental workflow</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/1.2_nfcore-qc.html" rel="" target="">
+ <span class="dropdown-text">1.2 Data QC with nf-core/rnaseq</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/1.3_nfcore-run.html" rel="" target="">
+ <span class="dropdown-text">1.3 Data preprocessing with nf-core/rnaseq</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/1.4_alignquant.html" rel="" target="">
+ <span class="dropdown-text">1.4 Read alignment and quantification</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/1.5_outputs.html" rel="" target="">
+ <span class="dropdown-text">1.5 Workflow performance</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/1.6_wrapup.html" rel="" target="">
+ <span class="dropdown-text">1.6 Session 1 wrap up</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-day-2" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Day 2</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-day-2">    
+        <li>
+    <a class="dropdown-item" href="./notebooks/2.1_rstudio-downstream.html" rel="" target="">
+ <span class="dropdown-text">2.1 RStudio for downstream analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/2.2_exploratory.html" rel="" target="">
+ <span class="dropdown-text">2.2 Exploratory analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/2.3_differentialex.html" rel="" target="">
+ <span class="dropdown-text">2.3 Differential expression analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/2.4_enrichment.html" rel="" target="">
+ <span class="dropdown-text">2.4 Functional enrichment analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/2.5_wrapup.html" rel="" target="">
+ <span class="dropdown-text">2.5 Workshop wrap up</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./tipstricks.html" rel="" target="">
+ <span class="menu-text">Tips &amp; tricks</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content column-page" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><strong>Timetable and objectives</strong></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>In this workshop, we explore RNAseq data preprocessing and analyses for differential expression experiments. Our goal for this workshop is to provide you with foundational knowledge required to understand the basic RNAseq workflow and responsibly apply these methods to your own research.</p>
+<p>These sessions will provide you with an opportunity to develop your skills and get exposure to key concepts of RNAseq, practice running nf-core workflows, and performing downstream analyses in RStudio. We have outlined the timetable and learning objectives for each session below:</p>
+<section id="lesson-plan" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="lesson-plan">Lesson plan</h2>
+<table class="table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 21%">
+<col style="width: 61%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Session</th>
+<th>Lesson</th>
+<th>Outcomes</th>
+<th>Time (min)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td>Session 1 kick-off</td>
+<td>Discuss session 1 learning objectives, set up CLI environment on Nimbus VMs</td>
+<td>10 mins</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Introduction to the case study</td>
+<td>Explore case study design and objectives</td>
+<td>10 mins</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>nf-core/rnaseq explained</td>
+<td>Discuss RNAseq experimental workflow and nf-core/rnaseq features</td>
+<td>20 mins</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Break</td>
+<td><span class="emoji" data-emoji="coffee">☕</span></td>
+<td>10 mins</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Raw data QC</td>
+<td>Perform raw data quality control and explore outputs</td>
+<td>20 mins</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Execute the data preprocessing workflow</td>
+<td>Execute full RNAseq data preprocessing workflow and examine nf-core/rnaseq functionality</td>
+<td>30 mins</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Read alignment and quantification</td>
+<td>Explore outputs of alignment and quantification processes</td>
+<td>10 mins</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Break</td>
+<td><span class="emoji" data-emoji="coffee">☕</span></td>
+<td>20 mins</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Workflow performance</td>
+<td>Evaluate nf-core/rnaseq run technical performance using resource logs and data processing effectiveness using QC metrics</td>
+<td>15 mins</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Session 1 wrap-up</td>
+<td>Discuss outcomes of data pre-processing and session 2 objectives and activities</td>
+<td>15 mins</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td>Session 2 kick-off</td>
+<td>Discuss session 2 learning objectives, log in to Nimbus VMs</td>
+<td>15 mins</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Set up Rstudio on Nimbus</td>
+<td>Set up Rstudio on Nimbus instances and explore functionality</td>
+<td>15 mins</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Break</td>
+<td><span class="emoji" data-emoji="coffee">☕</span></td>
+<td>10 mins</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Exploratory analysis</td>
+<td>Perform RNAseq count matrix exploratory analysis and evaluate data quality</td>
+<td>40 mins</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Break</td>
+<td><span class="emoji" data-emoji="coffee">☕</span></td>
+<td>10 mins</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Differential expression analysis</td>
+<td>Identify and visualise differentially expressed genes</td>
+<td>20 mins</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Functional enrichment analysis</td>
+<td>Perform functional enrichment analysis using gene ontologies and pathways</td>
+<td>25 mins</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Summarising the experiment</td>
+<td>Discuss results of data processing and analysis and experimental outcomes</td>
+<td>15 mins</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Session 2 wrap-up</td>
+<td>Discuss workshop outcomes, Q&amp;A session</td>
+<td>25 mins</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

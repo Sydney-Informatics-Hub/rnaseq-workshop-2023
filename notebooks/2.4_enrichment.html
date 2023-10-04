@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Introduction to RNAseq workshop - Functional enrichment analysis in R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-TNWWV3HK57"></script>
+
+<script type="text/plain" cookie-consent="tracking">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-TNWWV3HK57', { 'anonymize_ip': true});
+</script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"express",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":"",
+"website_privacy_policy_url":"https://www.sydney.edu.au/privacy-statement.html"
+  });
+});
+</script> 
+  
+
+
+<link rel="stylesheet" href="styles.scss">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Introduction to RNAseq workshop</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html" rel="" target="">
+ <span class="menu-text">Setup</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html" rel="" target="">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../notebooks/1.0_casestudy.html" rel="" target="">
+ <span class="menu-text">Case study</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-day-1" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Day 1</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-day-1">    
+        <li>
+    <a class="dropdown-item" href="../notebooks/1.1_rnaseq-experiment.html" rel="" target="">
+ <span class="dropdown-text">1.1 RNAseq experimental workflow</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/1.2_nfcore-qc.html" rel="" target="">
+ <span class="dropdown-text">1.2 Data QC with nf-core/rnaseq</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/1.3_nfcore-run.html" rel="" target="">
+ <span class="dropdown-text">1.3 Data preprocessing with nf-core/rnaseq</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/1.4_alignquant.html" rel="" target="">
+ <span class="dropdown-text">1.4 Read alignment and quantification</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/1.5_outputs.html" rel="" target="">
+ <span class="dropdown-text">1.5 Workflow performance</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/1.6_wrapup.html" rel="" target="">
+ <span class="dropdown-text">1.6 Session 1 wrap up</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-day-2" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Day 2</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-day-2">    
+        <li>
+    <a class="dropdown-item" href="../notebooks/2.1_rstudio-downstream.html" rel="" target="">
+ <span class="dropdown-text">2.1 RStudio for downstream analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/2.2_exploratory.html" rel="" target="">
+ <span class="dropdown-text">2.2 Exploratory analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/2.3_differentialex.html" rel="" target="">
+ <span class="dropdown-text">2.3 Differential expression analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/2.4_enrichment.html" rel="" target="">
+ <span class="dropdown-text">2.4 Functional enrichment analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/2.5_wrapup.html" rel="" target="">
+ <span class="dropdown-text">2.5 Workshop wrap up</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../tipstricks.html" rel="" target="">
+ <span class="menu-text">Tips &amp; tricks</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#over-representation-analysis" id="toc-over-representation-analysis" class="nav-link active" data-scroll-target="#over-representation-analysis"><strong>2.4.1 Over-representation analysis</strong></a></li>
+  <li><a href="#gene-ontologies" id="toc-gene-ontologies" class="nav-link" data-scroll-target="#gene-ontologies"><strong>2.4.2 Gene Ontologies</strong></a></li>
+  <li><a href="#using-clusterprofiler-to-visualise-functional-profiles-of-genes" id="toc-using-clusterprofiler-to-visualise-functional-profiles-of-genes" class="nav-link" data-scroll-target="#using-clusterprofiler-to-visualise-functional-profiles-of-genes"><strong>2.4.3 Using clusterProfiler to visualise functional profiles of genes</strong></a></li>
+  <li><a href="#prepare-the-de-gene-results-for-enrichment-analysis" id="toc-prepare-the-de-gene-results-for-enrichment-analysis" class="nav-link" data-scroll-target="#prepare-the-de-gene-results-for-enrichment-analysis"><strong>2.4.4 Prepare the DE gene results for enrichment analysis</strong></a></li>
+  <li><a href="#go-enrichment-of-upregulated-genes" id="toc-go-enrichment-of-upregulated-genes" class="nav-link" data-scroll-target="#go-enrichment-of-upregulated-genes"><strong>2.4.5 GO enrichment of upregulated genes</strong></a>
+  <ul class="collapse">
+  <li><a href="#bar-plot-of-upregulated-enriched-go-terms" id="toc-bar-plot-of-upregulated-enriched-go-terms" class="nav-link" data-scroll-target="#bar-plot-of-upregulated-enriched-go-terms"><strong>Bar plot of upregulated enriched GO terms</strong></a></li>
+  <li><a href="#dot-plot-of-upregulated-enriched-go-terms" id="toc-dot-plot-of-upregulated-enriched-go-terms" class="nav-link" data-scroll-target="#dot-plot-of-upregulated-enriched-go-terms"><strong>Dot plot of upregulated enriched GO terms</strong></a></li>
+  <li><a href="#cnetplot-of-upregulated-enriched-go-terms" id="toc-cnetplot-of-upregulated-enriched-go-terms" class="nav-link" data-scroll-target="#cnetplot-of-upregulated-enriched-go-terms"><strong>cnetplot of upregulated enriched GO terms</strong></a></li>
+  <li><a href="#heatmap-like-functional-classification-of-upregulated-enriched-go-terms" id="toc-heatmap-like-functional-classification-of-upregulated-enriched-go-terms" class="nav-link" data-scroll-target="#heatmap-like-functional-classification-of-upregulated-enriched-go-terms"><strong>Heatmap-like functional classification of upregulated enriched GO terms</strong></a></li>
+  </ul></li>
+  <li><a href="#other-functional-enrichment-tools" id="toc-other-functional-enrichment-tools" class="nav-link" data-scroll-target="#other-functional-enrichment-tools"><strong>2.4.6 Other functional enrichment tools</strong></a></li>
+  <li><a href="#sessioninfo" id="toc-sessioninfo" class="nav-link" data-scroll-target="#sessioninfo"><strong>2.4.7 sessionInfo()</strong></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><strong>Functional enrichment analysis in R</strong></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Learning objectives
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Understand and apply functional enrichment analysis in the context of RNAseq DE experiments.</li>
+<li>Define gene ontologies.</li>
+</ul>
+</div>
+</div>
+<p>We now have a list of significant DE genes. To gain greater biological insights on the DE genes we can determine if there is enrichment of known biological functions, pathways or interactions.</p>
+<p>There are different methods for identifying functional enrichments, e.g.:</p>
+<ul>
+<li>Over representation analysis (ORA). These databases typically categorize genes into groups based on shared function, involvement in a biological pathway, presence in a specific cellular location, or other categorizations, e.g.&nbsp;functional pathways, etc.</li>
+<li>Functional class scoring (FCS) e.g.&nbsp;Gene set enrichment analysis (GSEA).</li>
+<li>Enrichment analysis can be done using some of the freely available web- and R-based tools. Today we will use a R-package “clusterprofile” to perform Over representation analysis. You can read more about the GSEA method at https://www.gsea-msigdb.org/gsea/index.jsp</li>
+</ul>
+<p>In this workshop, we will learn how to perform gene ontology enrichment analysis.</p>
+<section id="over-representation-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="over-representation-analysis"><strong>2.4.1 Over-representation analysis</strong></h2>
+<p>There are a range of functional enrichment tools that perform some type of “over-representation” analysis by querying databases containing information about gene function and interactions. These databases typically categorize genes into groups based on shared function, or involvement in a pathway, or presence in a specific cellular location, or other categorizations, e.g.&nbsp;functional pathways, etc. Essentially, known genes are binned into categories that have been consistently named based on how the gene has been annotated functionally. These categories are independent of any organism, however each organism has distinct categories available.</p>
+<p><img src="../Figs/2.4_overrepresentation_analysis.png" class="img-fluid"></p>
+<p>To determine whether any categories are over-represented, you can determine the probability of having the observed proportion of genes associated with a specific category in your gene list based on the proportion of genes associated with the same category in the background set (gene categorizations for the appropriate organism).</p>
+</section>
+<section id="gene-ontologies" class="level2">
+<h2 class="anchored" data-anchor-id="gene-ontologies"><strong>2.4.2 Gene Ontologies</strong></h2>
+<p>One of the most widely-used categorizations is Gene Ontology (GO) established by the Gene Ontology project. To describe the functional roles of genes and gene products, they are categorized into GO terms. GO terms are organized into three independent controlled vocabularies (ontologies) in a species-independent manner:</p>
+<ul>
+<li><strong>Biological process</strong>: Refers to the biological role involving the gene or gene product, and could include “transcription”, “signal transduction”, and “apoptosis”. A biological process generally involves a chemical or physical change of the starting material or input.</li>
+<li><strong>Molecular function</strong>: Represents the biochemical activity of the gene product, such activities could include “ligand”, “GTPase”, and “transporter”.</li>
+<li><strong>Cellular component</strong>: Refers to the location in the cell of the gene product. Cellular components could include “nucleus”, “lysosome”, and “plasma membrane”.</li>
+</ul>
+<p>GO enrichment analysis tools will determine GO terms that are enriched when you supply it will a list of DE genes.</p>
+</section>
+<section id="using-clusterprofiler-to-visualise-functional-profiles-of-genes" class="level2">
+<h2 class="anchored" data-anchor-id="using-clusterprofiler-to-visualise-functional-profiles-of-genes"><strong>2.4.3 Using clusterProfiler to visualise functional profiles of genes</strong></h2>
+<p>The clusterProfiler R package implements methods to analyze and visualise functional profiles of genes. The clusterProfiler R-library supports functional characteristics of both coding and non-coding genomics data for thousands of species with up-to-date gene annotation. It provides a tidy interface to access, manipulate, and visualize enrichment results to help users achieve efficient data interpretation.</p>
+</section>
+<section id="prepare-the-de-gene-results-for-enrichment-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="prepare-the-de-gene-results-for-enrichment-analysis"><strong>2.4.4 Prepare the DE gene results for enrichment analysis</strong></h2>
+<p>We will use clusterProfiler to perform enrichment analysis for upregulated and downregulated significant DE genes separately. We can use the <code>resSig005_subset_lfc</code> dataframe created earlier and prepare the data for clusterProfiler.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We will use the resSig005_subset_lfc dataframe created earlier</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This has been filtered for padj &lt; 0.05 and |LFC| &gt; 1 DE genes</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Upregulated genes</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for significant upregulated genes by log2 fold change &gt; 1. Remove NAs.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>sig.up <span class="ot">&lt;-</span> resSig005_subset_lfc[resSig005_subset_lfc<span class="sc">$</span>log2FoldChange <span class="sc">&gt;</span> <span class="dv">1</span>, ]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>sig.up <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(sig.up)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list by decreasing log fold change for upregulated genes</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>sig.up.LFC <span class="ot">&lt;-</span> sig.up<span class="sc">$</span>log2FoldChange</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sig.up.LFC) <span class="ot">&lt;-</span> <span class="fu">rownames</span>(sig.up)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by LFC, decreasing</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sig.up.LFC <span class="ot">&lt;-</span> <span class="fu">sort</span>(sig.up.LFC, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Downregulated genes - let's do the same thing</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>sig.dn <span class="ot">&lt;-</span> resSig005_subset_lfc[resSig005_subset_lfc<span class="sc">$</span>log2FoldChange <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">1</span>, ]</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for significant upregulated genes by log2 fold change &lt; -1. Remove NAs.</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>sig.dn <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(sig.dn)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list by decreasing log fold change for upregulated genes</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>sig.dn.LFC <span class="ot">&lt;-</span> sig.dn<span class="sc">$</span>log2FoldChange</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sig.dn.LFC) <span class="ot">&lt;-</span> <span class="fu">rownames</span>(sig.dn)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by LFC, decreasing</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>sig.dn.LFC <span class="ot">&lt;-</span> <span class="fu">sort</span>(sig.dn.LFC, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>You can check that you have correctly prepared the data by inspecting sig.up.LFC and sig.dn.LFC in the console. Use class() to check what type of R class we have stored the data in.</strong></p>
+</section>
+<section id="go-enrichment-of-upregulated-genes" class="level2">
+<h2 class="anchored" data-anchor-id="go-enrichment-of-upregulated-genes"><strong>2.4.5 GO enrichment of upregulated genes</strong></h2>
+<p>Clusterprofiler implements the function enrichGO() for gene ontology over-representation test. Let’s run the analysis for up-regulated genes. You can check what the different parameters in the function do by running the command <code>?enrichGO</code>. The command will take a few minutes to run.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ego.up <span class="ot">&lt;-</span> <span class="fu">enrichGO</span>(<span class="at">gene =</span> <span class="fu">names</span>(sig.up.LFC),</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">OrgDb =</span> org.Mm.eg.db, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">keyType =</span> <span class="st">'SYMBOL'</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">readable =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">ont =</span> <span class="st">"ALL"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">pAdjustMethod =</span> <span class="st">"BH"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>, </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">qvalueCutoff =</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="bar-plot-of-upregulated-enriched-go-terms" class="level3">
+<h3 class="anchored" data-anchor-id="bar-plot-of-upregulated-enriched-go-terms"><strong>Bar plot of upregulated enriched GO terms</strong></h3>
+<p>The bar plot is a commonly used method to visualize enriched terms. It depicts the enrichment scores (e.g.&nbsp;p-adj values) and gene count or ratio as bar height and colour.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ego.up, </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">showCategory =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="dot-plot-of-upregulated-enriched-go-terms" class="level3">
+<h3 class="anchored" data-anchor-id="dot-plot-of-upregulated-enriched-go-terms"><strong>Dot plot of upregulated enriched GO terms</strong></h3>
+<p>A dot plot is similar to a scatter plot and bar plot with the capability to encode another score as dot size. In R the dot plot displays the index (each category) in the vertical axis and the corresponding value in the horizontal axis, so you can see the value of each observation following a horizontal line from the label.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(ego.up, </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">showCategory =</span> <span class="dv">20</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">font.size =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="cnetplot-of-upregulated-enriched-go-terms" class="level3">
+<h3 class="anchored" data-anchor-id="cnetplot-of-upregulated-enriched-go-terms"><strong>cnetplot of upregulated enriched GO terms</strong></h3>
+<p>Both the barplot and dotplot only displayed most significant enriched terms, while users may want to know which genes are involved in these significant terms. The cnetplot depicts the linkages of genes and biological concepts (e.g.&nbsp;GO terms or KEGG pathways) as a network.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cnetplot</span>(ego.up, </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">categorySize =</span> <span class="st">"pvalue"</span>, </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">foldChange =</span> sig.up.LFC,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">cex_label_gene =</span> <span class="fl">0.7</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">showCategory =</span> <span class="dv">5</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">cex_label_category =</span> <span class="fl">1.2</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">shadowtext =</span> <span class="st">'category'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="heatmap-like-functional-classification-of-upregulated-enriched-go-terms" class="level3">
+<h3 class="anchored" data-anchor-id="heatmap-like-functional-classification-of-upregulated-enriched-go-terms"><strong>Heatmap-like functional classification of upregulated enriched GO terms</strong></h3>
+<p>The heatplot is similar to cnetplot, while displaying the relationships as a heatmap. The gene-concept network may become too complicated if user want to show a large number significant terms. The heatplot can simplify the result and more easy to identify expression patterns.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">heatplot</span>(ego.up,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">showCategory =</span> <span class="dv">20</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">foldChange =</span> sig.up.LFC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>Challenge exercise</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Try performing the above steps for downregulated genes. Please remember to rename the variable differently so as to not over-write them e.g.&nbsp;<code>ego.dn</code> in place of <code>ego.up</code></p>
+<p>This will be a good time to familiarise yourself with the various functions you have used. Remember, you can try and run ?Function_NAME e.g.&nbsp;?enrichGO to get the help manual pages for that function. You can play with pvalue and qvalue cutoffs, categories etc. Try and interpret the results. We will discuss them at the end of this session.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ego.dn <span class="ot">&lt;-</span> <span class="fu">enrichGO</span>(<span class="at">gene =</span> <span class="fu">names</span>(sig.dn.LFC),</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">OrgDb =</span> org.Mm.eg.db, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">keyType =</span> <span class="st">'SYMBOL'</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">readable =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">ont =</span> <span class="st">"ALL"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">pAdjustMethod =</span> <span class="st">"BH"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>, </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">qvalueCutoff =</span> <span class="fl">0.05</span>??q)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Bar plot of downregulated enriched GO terms</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ego.dn,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">showCategory =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Dot-plot of downregulated enriched GO terms</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(ego.dn, </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">showCategory =</span> <span class="dv">20</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">font.size =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>cnetplot of downregulated enriched GO terms</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cnetplot</span>(ego.dn,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">categorySize =</span> <span class="st">"pvalue"</span>, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">foldChange =</span> sig.dn.LFC,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">cex_label_gene =</span> <span class="fl">0.7</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">showCategory =</span> <span class="dv">5</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">cex_label_category =</span> <span class="fl">1.5</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">shadowtext =</span> <span class="st">'category'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Heatmap-like functional classification of downregulated enriched GO terms</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">heatplot</span>(ego.dn,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">showCategory =</span> <span class="dv">20</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">foldChange =</span> sig.dn.LFC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="other-functional-enrichment-tools" class="level2">
+<h2 class="anchored" data-anchor-id="other-functional-enrichment-tools"><strong>2.4.6 Other functional enrichment tools</strong></h2>
+<section id="other-enrich-functions-in-clusterprofiler" class="level3 unlisted">
+<h3 class="unlisted anchored" data-anchor-id="other-enrich-functions-in-clusterprofiler"><strong>Other enrich functions in clusterprofiler</strong></h3>
+<p>clustrprofiler has other functions</p>
+<ul>
+<li>enrichKEGG KEGG</li>
+<li>enrichWP WikiPathways</li>
+<li>enrichPathway Reactome</li>
+<li>enrichr Enrichr resource</li>
+</ul>
+</section>
+<section id="open-source-tools" class="level3 unlisted">
+<h3 class="unlisted anchored" data-anchor-id="open-source-tools"><strong>Open source tools</strong></h3>
+<ul>
+<li>Pantherdb http://pantherdb.org/</li>
+<li>Enrichr https://maayanlab.cloud/Enrichr/</li>
+<li>David https://david.ncifcrf.gov/</li>
+<li>gprofiler https://biit.cs.ut.ee/gprofiler/ And many more …</li>
+</ul>
+</section>
+<section id="commercial-tools" class="level3 unlisted">
+<h3 class="unlisted anchored" data-anchor-id="commercial-tools"><strong>Commercial tools</strong></h3>
+<ul>
+<li>Ingenuity Pathway Analysis (IPA) https://www.qiagen.com/us/</li>
+<li>Metacore https://portal.genego.com/</li>
+</ul>
+</section>
+</section>
+<section id="sessioninfo" class="level2">
+<h2 class="anchored" data-anchor-id="sessioninfo"><strong>2.4.7 sessionInfo()</strong></h2>
+<p>It is good practice to record the version of R and all tools you are using for reproducibility purposes (and for the methods section in your paper!). R’s sessionInfo() prints all of this information.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="key-points" class="level3 unlisted">
+<h3 class="unlisted anchored" data-anchor-id="key-points"><strong>Key points</strong></h3>
+<ul>
+<li>Functional enrichments can guide our intepretation of results in their biological context.</li>
+<li>Functional enrichments can include pathways and gene ontologies</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

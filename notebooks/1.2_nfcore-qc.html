@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Introduction to RNAseq workshop - Data quality control with nf-core/rnaseq</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-TNWWV3HK57"></script>
+
+<script type="text/plain" cookie-consent="tracking">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-TNWWV3HK57', { 'anonymize_ip': true});
+</script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"express",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":"",
+"website_privacy_policy_url":"https://www.sydney.edu.au/privacy-statement.html"
+  });
+});
+</script> 
+  
+
+
+<link rel="stylesheet" href="styles.scss">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Introduction to RNAseq workshop</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html" rel="" target="">
+ <span class="menu-text">Setup</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html" rel="" target="">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../notebooks/1.0_casestudy.html" rel="" target="">
+ <span class="menu-text">Case study</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-day-1" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Day 1</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-day-1">    
+        <li>
+    <a class="dropdown-item" href="../notebooks/1.1_rnaseq-experiment.html" rel="" target="">
+ <span class="dropdown-text">1.1 RNAseq experimental workflow</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/1.2_nfcore-qc.html" rel="" target="">
+ <span class="dropdown-text">1.2 Data QC with nf-core/rnaseq</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/1.3_nfcore-run.html" rel="" target="">
+ <span class="dropdown-text">1.3 Data preprocessing with nf-core/rnaseq</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/1.4_alignquant.html" rel="" target="">
+ <span class="dropdown-text">1.4 Read alignment and quantification</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/1.5_outputs.html" rel="" target="">
+ <span class="dropdown-text">1.5 Workflow performance</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/1.6_wrapup.html" rel="" target="">
+ <span class="dropdown-text">1.6 Session 1 wrap up</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-day-2" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Day 2</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-day-2">    
+        <li>
+    <a class="dropdown-item" href="../notebooks/2.1_rstudio-downstream.html" rel="" target="">
+ <span class="dropdown-text">2.1 RStudio for downstream analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/2.2_exploratory.html" rel="" target="">
+ <span class="dropdown-text">2.2 Exploratory analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/2.3_differentialex.html" rel="" target="">
+ <span class="dropdown-text">2.3 Differential expression analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/2.4_enrichment.html" rel="" target="">
+ <span class="dropdown-text">2.4 Functional enrichment analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/2.5_wrapup.html" rel="" target="">
+ <span class="dropdown-text">2.5 Workshop wrap up</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../tipstricks.html" rel="" target="">
+ <span class="menu-text">Tips &amp; tricks</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#run-the-qc-command" id="toc-run-the-qc-command" class="nav-link active" data-scroll-target="#run-the-qc-command"><strong>1.2.1 Run the qc command</strong></a></li>
+  <li><a href="#evaluate-the-data-quality" id="toc-evaluate-the-data-quality" class="nav-link" data-scroll-target="#evaluate-the-data-quality"><strong>1.2.1 Evaluate the data quality</strong></a></li>
+  <li><a href="#read-trimming" id="toc-read-trimming" class="nav-link" data-scroll-target="#read-trimming"><strong>1.2.2 Read trimming</strong></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><strong>Data quality control with nf-core/rnaseq</strong></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Learning objectives
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Understand how to apply parameters to an nf-core pipeline to cusomise its execution</li>
+<li>Understand the fastq file format</li>
+<li>Learn how to interpret a FastQC report for RNAseq data</li>
+<li>Learn about the benefits and drawbacks of read trimming for RNAseq-DE</li>
+</ul>
+</div>
+</div>
+<p>We’re starting at the first bioinformatics stage of the RNAseq workflow, specifically with raw data QC step (red box below). When your data is sequenced, it will be output in the fastq format by the sequencing machine.</p>
+<p><img src="../Figs/1.2_rnaseq-workflow-qc.png" class="img-fluid"></p>
+<p>The nf-core/rnaseq pipeline uses <a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a> to evaluate fastq files. FastQC provides a set of metrics which we can use to get a sense of whether our raw data has any problems that might impact our ability to analyse it downstream. This step corresponds to the first part (red box) of the nf-core/rnaseq pipeline.</p>
+<p><img src="../Figs/1.2_nfcore-rnaseq-qc.png" class="img-fluid"></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What is fastq format?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When your data is sequenced, it will be output in the fastq format by the sequencing machine. Fastq is a text-based format for storing both a biological sequence (usually nucleotide sequence) and it’s corresponding quality score. Each entry in a fastq file will consist of 4 lines:</p>
+<ul>
+<li>A sequence identifier (label)</li>
+<li>The nucleotide sequence</li>
+<li>A separator line, usually just a plus (+) sign</li>
+<li>The base call quality (phred) score per nucleotide.</li>
+</ul>
+<p>Phred quality scores are used to indicate the quality of a base call. The Phred score corresponds to the probability that the base was called correctly. Take a look at GATK’s explanation of Phred scores for more information.</p>
+</div>
+</div>
+<section id="run-the-qc-command" class="level2">
+<h2 class="anchored" data-anchor-id="run-the-qc-command"><strong>1.2.1 Run the qc command</strong></h2>
+<p>In any bioinformatics experiment, it is crucial that you perform quality control (QC) on your data before you process it. Why?</p>
+<ul>
+<li>Identify issues that may interfere with analysis and interpretation</li>
+<li>Detect biases which may have been introduced during library preparation or sequencing</li>
+</ul>
+<p>nf-core/rnaseq provides users the option to run FastQC and read trimming only. We will do this use the <code>--skip_alignment</code> flag/parameter. Using this flag will run 3 steps in the workflow:</p>
+<ol type="1">
+<li>Check quality of raw sequence reads for each sample with FastQC</li>
+<li>Perform raw read trimming with trim galore!</li>
+<li>Check quality of trimmed reads for each sample with FastQC</li>
+<li>Output a MultiQC report</li>
+</ol>
+<p>Run the following command to perform the QC steps above:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run nf-core-rnaseq_3.12.0/3_12_0/main.nf <span class="dt">\</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input</span> samplesheet.csv <span class="dt">\</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--outdir</span> WBS-mouse-QC <span class="dt">\</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--fasta</span> ~/Data/mm10_reference/mm10_chr18.fa <span class="dt">\</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">--gtf</span> ~/Data/mm10_reference/mm10_chr18.gtf <span class="dt">\</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">--star_index</span> ~/Data/mm10_reference/STAR <span class="dt">\</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">--salmon_index</span> ~/Data/mm10_reference/salmon-index <span class="dt">\</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">-profile</span> singularity <span class="dt">\</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">--skip_alignment</span> <span class="dt">\</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">--max_memory</span> <span class="st">'6.GB'</span> <span class="dt">\</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">--max_cpus</span> 2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Once the pipeline has been executed with the run command, you will see a message printed to the screen. This message contains a summary of the parameters you have used to execute the workflow.</p>
+<p><img src="../Figs/1.2_nfcore-rnaseq-qcout.png" class="img-fluid"></p>
+<p>In addition to this you will see a number of processes spawn out from the workflow. Your screen will progressively update as these tasks are completed. Once they have all finished, a completion message will be printed to your screen:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">-[nf-core/rnaseq]</span> Pipeline completed successfully <span class="at">-</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Completed</span> at: 29-Sep-2023 09:17:28</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Duration</span>    : 2m 31s</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">CPU</span> hours   : 0.1</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Succeeded</span>   : 19</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="evaluate-the-data-quality" class="level2">
+<h2 class="anchored" data-anchor-id="evaluate-the-data-quality"><strong>1.2.1 Evaluate the data quality</strong></h2>
+<p>Take a look at the output that is produced by your qc run:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lah</span> /data/Day_1/WBS-mouse-QC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">total</span> 24K</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span>  6 training training 4.0K Sep 29 09:38 .</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 10 training training 4.0K Sep 29 05:51 ..</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span>  2 training training 4.0K Sep 29 09:37 fastqc</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span>  4 training training 4.0K Sep 29 09:38 multiqc</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span>  2 training training 4.0K Sep 29 09:38 pipeline_info</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span>  3 training training 4.0K Sep 29 09:37 trimgalore</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We have 4 directories within our output directory. Using the File Explorer on VS code, open the <code>WBS-mouse-QC</code> directory and download the multiqc report <code>multiqc/multiqc_report.html</code> to your computer. This MultiQC report aggregates raw and trimmed data FastQC reports for each sample. Open this file in your web browser and answer the questions below.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>Reflection exercise</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Looking at the Fastqc (raw) section of the MultiQC report:</p>
+<ol type="1">
+<li>How many unique and duplicate reads are in <code>SRR3473989.fastq</code>?</li>
+<li>What might be a reason for the high proportion of duplicate reads in this dataset?</li>
+<li>Take a look at the Per Base Sequence Content plot for all samples. Which part of the reads tend to have worse per base sequence quality?</li>
+<li>Do you think this dataset is of ‘good’ quality? Why or why not?</li>
+<li>Do you have any suggestions to improve the quality of our raw reads?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>35,519 and 24,368</li>
+<li>RNAseq only captures transcripts, therefore the chances of observing duplicate reads is elevated.</li>
+<li>Reads which tend to have worse per base sequence quality are towards the right hand side (3’ end).</li>
+<li>The color coding separates out regions of good quality (Red PhredQ &gt; 28) from the rest. Overall yes, as most of the regions of the reads show quality values in red.</li>
+<li>We can trim the bases towards the 3’-end and hope to improve the overall read-quality. But trimming by quality for RNA-seq data has its pros and cons.</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>Challenge exercise</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>FastQC was designed for whole genome sequencing (WGS) and not RNAseq experiments. With this knowledge, can you identify why some categories might have been marked as “fail” or “warn” by looking at the HTML reports?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Per-base sequence content fails. Per sequence GC content, sequence duplication levels, and overrepresented sequences return warnings.<br>
+</li>
+<li>Per-base sequence content fails because we always see bias at the start of RNA-seq reads, which tells us the random priming is not ‘truly random’. See here for a nice explanation of this.<br>
+</li>
+<li>Per sequence GC content, sequence duplication levels, and overrepresented sequences return warnings are received for this same reason.<br>
+</li>
+<li>Given there is much less RNA sequence then DNA in our bodies, we don’t observe these biases in WGS.<br>
+</li>
+<li>By chance, RNA will be fragmented at the same spot and sequenced multiple times. For DNA, the purpose of these plots is to check for technical bias (optical duplicates - when the sequencer reads the same strand multiple times).</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="read-trimming" class="level2">
+<h2 class="anchored" data-anchor-id="read-trimming"><strong>1.2.2 Read trimming</strong></h2>
+<p>Trimming is sometimes performed to improve the quality of the raw data and potentially improve its mapability when it is being aligned to a reference genome. There are several ways to perform trimming:</p>
+<ul>
+<li>Removal of poor quality reads or bases (e.g.&nbsp;ends of reads)</li>
+<li>Removal of adapter sequences</li>
+<li>Removal of polyA tails</li>
+</ul>
+<p>The nf-core/rnaseq pipeline uses Trim Galore for read quality trimming. It is able to perform quality-based removal of low-quality bases and adapter trimming. Given trimming can result in some reads being significantly shortened (sometimes to 0bp!), Trim Galore will filter reads that are too short to be used in downstream processes like read alignment. We are still looking at the outputs from the first part of the nf-core/rnaseq workflow below (red box).</p>
+<p><img src="../Figs/1.2_nfcore-rnaseq-trim.png" class="img-fluid"></p>
+<section id="does-trimming-help" class="level3 unlisted">
+<h3 class="unlisted anchored" data-anchor-id="does-trimming-help"><strong>Does trimming help?</strong></h3>
+<p>Read trimming is not always a necessary step when processing next generation sequencing (NGS) data. These days, NGS data is of a very high quality and the tools we use to perform processes like read mapping are capable of handling poor quality reads and adapter sequences.</p>
+<p>While the trimming adapter sequences has been shown to increase the quality of RNA-seq data (Dozmorov et al., 2015), other studies have shown that trimming of poor quality reads can effect gene expression estimates (Williams at el., 2016).</p>
+<p>When making the decision to trim your reads for differential expression RNAseq studies, we suggest following the recommendations of the read alignment tool you’ll be using. We will explore trimming outcomes.</p>
+<p>Open your Nimbus terminal again to do the challenge exercise below. Navigate to the results directory <code>~/Day1/WBS-mouse-QC</code> either on the command line or using your VS Code File Explorer and answer the following questions:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Day1/WBS-mouse-QC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>Reflection exercise</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Which tool does nfcore-rnaseq use for read-trimming?</li>
+<li>Which tool did you use to generate quality reports before and after trimming?</li>
+<li>What effect did trimming have on SRR3473989.fastq?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Trim galore.</li>
+<li>FastQC generates <code>.html</code> reports.</li>
+<li>Total number of sequences have reduced after trimming. Read length is now 21 - 101. Per base sequence quality now mostly in the green.</li>
+</ol>
+<p>Open trimgalore report by running:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> WBS-mouse-QC/trimgalore/SRR3473984.fastq.gz_trimming_report.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key takeaways
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Quality control is fundamental in RNAseq experiments to identify any issues that might skew analysis and interpretation.</li>
+<li>The Fastq file format is the primary format used for raw sequencing data. Each entry in a Fastq file has a sequence identifier, the nucleotide sequence itself, a separator, and a base call quality score (Phred score) for each nucleotide.</li>
+<li>Read trimming is a process where certain portions of the raw sequence data are removed to enhance its quality and improve its mappability during alignment. The decision to trim reads in an RNAseq experiment should be based on the recommendations of the alignment tool used and the quality of your data.</li>
+</ul>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>
