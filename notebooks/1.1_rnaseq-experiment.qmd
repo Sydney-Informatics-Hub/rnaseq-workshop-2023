@@ -98,7 +98,26 @@ Keep in mind that each of the tools the [nf-core/rnaseq](https://nf-co.re/rnaseq
 
 ## **1.1.4 Familiarise yourself with your environment**
 
-Let's take a look at our home directory on the command-line on your Nimbus instance. Ensure you are in your home directory by running: 
+&#x27A4; Let's take a look at our home directory on the command-line on your Nimbus instance. 
+
+First, ensure you are logged into your instance. Follow [set up instructions](../setup.html) to log back into your instance in either VS Code or your terminal. 
+
+In VS Code: 
+
+1. Type `Ctrl` + `Shift` + `P` to open command palette and select `Remote-SSH: Connect to Host` and `nfcoreWorkshop`
+2. Type in your provided password (see the Slack channel for the password) and hit enter
+
+**OR** 
+
+In a terminal application:
+
+1. Type the following into your terminal, using your allocated instance’s IP address:
+```default
+ssh training@146.118.XXX.XX
+```
+2. Type in your provided password (see the Slack channel for the password) and hit enter
+
+Confirm you are in your home directory by running: 
 
 ```bash
 pwd
@@ -144,7 +163,6 @@ It contains the following:
 * The dowstream analysis R notebook to be used on Day 2 
 * The downstream analysis RStudio Singularity file to be used on Day 2 
 
-
 Now, move into the `Day_1` directory: 
 
 ```bash
@@ -153,7 +171,7 @@ cd /home/training/Day_1
 
 You will do all your work from here today.  
 
-Next, take a look at the contents of the `Day_1` directory: 
+&#x27A4; Next, take a look at the contents of the `Day_1` directory: 
 
 ```bash
 ls -lah 
@@ -168,7 +186,7 @@ We have predownloaded the code-base for the nf-core/rnaseq pipeline. For the sak
 
 ### **Get familiar with the nf-core/rnaseq run command**{.unlisted}
 
-You can see the recommended (typical) run command and all the parameters available for the [nf-core/rnaseq](https://nf-co.re/rnaseq/3.12.0) pipeline either at [their parameters page](https://nf-co.re/rnaseq/3.12.0/parameters/) or by running:
+&#x27A4; You can see the recommended (typical) run command and all the parameters available for the [nf-core/rnaseq](https://nf-co.re/rnaseq/3.12.0) pipeline either at [their parameters page](https://nf-co.re/rnaseq/3.12.0/parameters/) or by running:
 
 ```bash
 nextflow run nf-core-rnaseq_3.12.0/3_12_0/main.nf --help 
@@ -191,11 +209,18 @@ As you can see from the typical run command printed when you ran the help comman
 ### **Reflection exercise**{.unlisted}
 
 Take a look at the [nf-core/rnaseq instructions](https://nf-co.re/rnaseq/3.12.0/docs/usage#samplesheet-input) on building a samplesheet. Compare our samplesheet to the example provided in their documentation, what differences do you notice?
+
+View our prepared `samplesheet.csv` by running:
+```bash
+cat ~/Data/samplesheet.csv
+```
 :::
 
 ::: {.callout-caution collapse="true"}
 ### Solution
+Both sample sheets contain 6 samples. However, the example samplesheet consists of both single- and paired-end data for the control samples and TREATMENT_REP3 has been sequenced twice.
 
+Our sample sheet is a lot simpler, with only single-end reads. Note that the column for the reverse-reads is empty in our sample sheet.
 
 :::
 
@@ -213,5 +238,4 @@ The mouse genome is large and contains ~20,000 genes which would take hours to p
 * RNAseq for differential expression experiments can be used to gain insights into active biological processes in the studied tissue.
 * The standard RNAseq experimental workflow comprises multiple steps performed in the wet lab and bioinformatically or computationally. 
 * The nf-core/rnaseq pipeline is a powerful tool to process RNAseq data, as it offers a standardised and automated approach to handle computationally challenging tasks.
-
 :::
