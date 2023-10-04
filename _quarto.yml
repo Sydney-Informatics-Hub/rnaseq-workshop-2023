@@ -41,6 +41,8 @@ website:
           href: notebooks/2.4_enrichment.html
         - text: "2.5 Workshop wrap up"
           href: notebooks/2.5_wrapup.html
+      - text: "Tips & tricks"
+        href: tipstricks.qmd
 body-footer: "<div style='font-size: 14px;'>All materials copyright Sydney Informatics Hub, University of Sydney</div>"
 
 format:
@@ -49,7 +51,6 @@ format:
       light: flatly
     css: styles.scss
     toc: true
-    code-overflow: scroll
     highlight-style: github
     page-layout: full
 
