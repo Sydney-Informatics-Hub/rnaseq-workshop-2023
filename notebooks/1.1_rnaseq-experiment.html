@@ -400,20 +400,36 @@ Why are we running a pipeline?
 </section>
 <section id="familiarise-yourself-with-your-environment" class="level2">
 <h2 class="anchored" data-anchor-id="familiarise-yourself-with-your-environment"><strong>1.1.4 Familiarise yourself with your environment</strong></h2>
-<p>Let’s take a look at our home directory on the command-line on your Nimbus instance. Ensure you are in your home directory by running:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/training</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>➤ Let’s take a look at our home directory on the command-line on your Nimbus instance.</p>
+<p>First, ensure you are logged into your instance. Follow <a href="../setup.html">set up instructions</a> to log back into your instance in either VS Code or your terminal.</p>
+<p>In VS Code:</p>
+<ol type="1">
+<li>Type <code>Ctrl</code> + <code>Shift</code> + <code>P</code> to open command palette and select <code>Remote-SSH: Connect to Host</code> and <code>nfcoreWorkshop</code></li>
+<li>Type in your provided password (see the Slack channel for the password) and hit enter</li>
+</ol>
+<p><strong>OR</strong></p>
+<p>In a terminal application:</p>
+<ol type="1">
+<li>Type the following into your terminal, using your allocated instance’s IP address:</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ssh training@146.118.XXX.XX</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Type in your provided password (see the Slack channel for the password) and hit enter</li>
+</ol>
+<p>Confirm you are in your home directory by running:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/training</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If you are not in <code>/home/training</code>, move there by running:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>From your home directory, run the following command:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lah</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 5 training training 4.0K Sep 29 03:15 .</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 6 training training 4.0K Sep 19 03:27 ..</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 2 training training 4.0K Sep 29 02:14 Data</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 2 training training 4.0K Sep 29 02:14 Day_1</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 3 training training 4.0K Sep 29 03:15 Day_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lah</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 5 training training 4.0K Sep 29 03:15 .</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 6 training training 4.0K Sep 19 03:27 ..</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 2 training training 4.0K Sep 29 02:14 Data</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 2 training training 4.0K Sep 29 02:14 Day_1</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 3 training training 4.0K Sep 29 03:15 Day_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>All the files necessary to run today’s exercises have already been prepared for you and saved to the <code>Data</code> directory. Take a look at its contents by running:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lah</span> Data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lah</span> Data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>It contains the following:</p>
 <ul>
 <li><code>samplesheet.csv</code></li>
@@ -426,18 +442,18 @@ Why are we running a pipeline?
 <li>The downstream analysis RStudio Singularity file to be used on Day 2</li>
 </ul>
 <p>Now, move into the <code>Day_1</code> directory:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/training/Day_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/training/Day_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You will do all your work from here today.</p>
-<p>Next, take a look at the contents of the <code>Day_1</code> directory:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lah</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 5 training training 4.0K Sep 29 03:15 .</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 6 training training 4.0K Sep 19 03:27 ..</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 3 training training 4.0K Sep 29 03:15 nf-core-rnaseq_3.12.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>➤ Next, take a look at the contents of the <code>Day_1</code> directory:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lah</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 5 training training 4.0K Sep 29 03:15 .</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 6 training training 4.0K Sep 19 03:27 ..</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 3 training training 4.0K Sep 29 03:15 nf-core-rnaseq_3.12.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We have predownloaded the code-base for the nf-core/rnaseq pipeline. For the sake of responsible research and reproducibility, we recommend always downloading a copy of the code base when working with nf-core pipelines.</p>
 <section id="get-familiar-with-the-nf-corernaseq-run-command" class="level3 unlisted">
 <h3 class="unlisted anchored" data-anchor-id="get-familiar-with-the-nf-corernaseq-run-command"><strong>Get familiar with the nf-core/rnaseq run command</strong></h3>
-<p>You can see the recommended (typical) run command and all the parameters available for the <a href="https://nf-co.re/rnaseq/3.12.0">nf-core/rnaseq</a> pipeline either at <a href="https://nf-co.re/rnaseq/3.12.0/parameters/">their parameters page</a> or by running:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run nf-core-rnaseq_3.12.0/3_12_0/main.nf <span class="at">--help</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>➤ You can see the recommended (typical) run command and all the parameters available for the <a href="https://nf-co.re/rnaseq/3.12.0">nf-core/rnaseq</a> pipeline either at <a href="https://nf-co.re/rnaseq/3.12.0/parameters/">their parameters page</a> or by running:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run nf-core-rnaseq_3.12.0/3_12_0/main.nf <span class="at">--help</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You will see a message displayed on your screen with the name of the nf-core/rnaseq pipeline, a recommended run command, and a big list of parameters.</p>
 <p><img src="../Figs/1.1_nfcore-help.png" class="img-fluid"></p>
 <p>Look at all the different parameters! We won’t be using most of these today as we’ll be running the default workflow. nf-core has extensive documentation that you should always use to determine whether it is suitable for your applications, construct a run command, and understand its outputs.</p>
@@ -459,6 +475,8 @@ Why are we running a pipeline?
 </div>
 <div class="callout-body-container callout-body">
 <p>Take a look at the <a href="https://nf-co.re/rnaseq/3.12.0/docs/usage#samplesheet-input">nf-core/rnaseq instructions</a> on building a samplesheet. Compare our samplesheet to the example provided in their documentation, what differences do you notice?</p>
+<p>View our prepared <code>samplesheet.csv</code> by running:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ~/Data/samplesheet.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
@@ -473,7 +491,8 @@ Solution
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-
+<p>Both sample sheets contain 6 samples. However, the example samplesheet consists of both single- and paired-end data for the control samples and TREATMENT_REP3 has been sequenced twice.</p>
+<p>Our sample sheet is a lot simpler, with only single-end reads. Note that the column for the reverse-reads is empty in our sample sheet.</p>
 </div>
 </div>
 </div>
