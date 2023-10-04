@@ -1,0 +1,39 @@
+---
+title: "**Tips and tricks**"
+output:
+  html_document:
+    toc: false
+    toc_float: false
+from: markdown+emoji
+---
+
+## Troubleshooting 
+
+### RStudio not loading in browser
+
+If you need to end your session, exit your browser and on Nimbus, run the following command:
+
+```bash
+lsof -ti:8787 | xargs kill -9
+```
+
+### Loop device error on Nimbus
+
+When running Sisngularity containers on Nimbus you may come across an error:
+```default
+FATAL:   container creation failed: mount /proc/self/fd/3->/usr/local/var/singularity/mnt/session/rootfs 
+error: while mounting image /proc/self/fd/3: failed to find loop device: could not attach image file to loop device: no loop devices available
+```
+Run the following commands to resolve this issue: 
+```bash
+lsmod | grep loop
+```
+```bash
+sudo modprobe loop
+```
+```bash
+sudo losetup -f
+```
+```bash
+/dev/loop9
+```
