@@ -244,8 +244,29 @@ DESeq2::plotMA(res, ylim = c(-12, 12))
 
 There are a few things we notice:
 
+* Genes that are differentially expressed will appear as points deviating significantly from the centerline, with those above the line indicating upregulated genes and those below indicating downregulated genes.
 * Genes with a lower mean expression have higher variable log fold changes (heteroskedatic - as we expected)
-* That gene expression is symmetrical around log fold change 0
+* Gene expression is symmetrical around log fold change 0
+
+#### **Histogram of P-values**
+
+Remember that for every gene, we perform a statistical test to determine whether gene expression is significantly different in the knockout samples, compared to the wildtype. This results in thousands (~20,000 genes in the mouse genome) of p-values. We can look at the histogram of p-values to see how our well our statistical test behaves before we apply correction for multiple testing. 
+
+
+```r
+# Bin frequency of p-value counts by 0.05 incremets (i.e plot 20 columns from p-value of 0 to 1)
+hist(res$pvalue, 
+     breaks = 20, 
+     col = "grey")
+```
+
+A nice histogram of p-values will have a peak at the 0.05 end, and a uniform frequency at all other p-value bins. Think back to your null and alternate hypothesis. Under the null hypothesis, there is a 5% chance of genes will fall under p-value 0.05, 10 % for p-value under 0.1, etc. The high peak at the first bin (p-value 0 - 0.5) represents genes that reject the null hypothesis (in addition to all the false discoveries - hence our need to adjust for multiple testing!).
+
+A histogram of p-values that looks anything other than what is described above means that something weird has happened and you may need to contact your local statistician/bioinformatician. 
+
+This [blog post](http://varianceexplained.org/statistics/interpreting-pvalue-histogram/) has a nice explanation of each scenario if you want to explore this further.
+
+### **Additional plots**
 
 #### **Dispersion estimates**
 
@@ -270,25 +291,6 @@ There are a few things to note:
 * The gene-wise dispersion estimate (black dots) need to be shrunken towards the red line. This helps to reduce false positive results in our differential expression analysis
 
 There is **a lot** happening here, but the main point is that our dispersion plot looks as expected and plots should generally appear like this. Check this [website](https://hbctraining.github.io/DGE_workshop/lessons/04_DGE_DESeq2_analysis.html) for a deeper explanation of this concept, and for examples of what bad dispersion plots look like.
-
-#### **Histogram of P-values**
-
-Remember that for every gene, we perform a statistical test to determine whether gene expression is significantly different in the knockout samples, compared to the wildtype. This results in thousands (~20,000 genes in the mouse genome) of p-values. We can look at the histogram of p-values to see how our well our statistical test behaves before we apply correction for multiple testing. 
-
-
-```r
-# Bin frequency of p-value counts by 0.05 incremets (i.e plot 20 columns from p-value of 0 to 1)
-hist(res$pvalue, 
-     breaks = 20, 
-     col = "grey")
-```
-
-A nice histogram of p-values will have a peak at the 0.05 end, and a uniform frequency at all other p-value bins. Think back to your null and alternate hypothesis. Under the null hypothesis, there is a 5% chance of genes will fall under p-value 0.05, 10 % for p-value under 0.1, etc. The high peak at the first bin (p-value 0 - 0.5) represents genes that reject the null hypothesis (in addition to all the false discoveries - hence our need to adjust for multiple testing!).
-
-A histogram of p-values that looks anything other than what is described above means that something weird has happened and you may need to contact your local statistician/bioinformatician. 
-
-This [blog post](http://varianceexplained.org/statistics/interpreting-pvalue-histogram/) has a nice explanation of each scenario if you want to explore this further.
- 
 
 ::: callout-important
 ### Key takeaways{.unlisted}

@@ -17,11 +17,11 @@ We now have a list of significant DE genes. To gain greater biological insights 
 
 There are different methods for identifying functional enrichments, e.g.:
 
-* Over representation analysis (ORA). These databases typically categorize genes into groups based on shared function, involvement in a biological pathway, presence in a specific cellular location, or other categorizations, e.g. functional pathways, etc.
-*  Functional class scoring (FCS) e.g. Gene set enrichment analysis (GSEA). 
-* Enrichment analysis can be done using some of the freely available web- and R-based tools. Today we will use a R-package "clusterprofile" to perform Over representation analysis. You can read more about the GSEA method at https://www.gsea-msigdb.org/gsea/index.jsp
+* **Over representation analysis (ORA)**: These methods typically categorize genes into groups based on shared function, involvement in a biological pathway, presence in a specific cellular location, or other categorizations, e.g. functional pathways, etc.
+* **Functional class scoring (FCS)** e.g. Gene set enrichment analysis (GSEA). 
+* Enrichment analysis can be done using some of the freely available web- and R-based tools. Today we will use a R-package "clusterprofiler" to perform Over representation analysis. You can read more about the GSEA method at https://www.gsea-msigdb.org/gsea/index.jsp
 
-In this workshop, we will learn how to perform gene ontology enrichment analysis.
+In this workshop, we will learn how to perform "Over representation analysis (ORA)" using gene ontology databases.
 
 ## **2.4.1 Over-representation analysis**
 

@@ -27,7 +27,7 @@ We've created a Singularity container that houses R/Rstudio with all the librari
 
 While you may be familiar with RStudio as a desktop application, it also available as a remote server on Nimbus. Launching an RStudio server from Nimbus allows us to run RStudio from a web browser and it means we don't have to download the desktop application to our own computers. 
 
-To run RStudio in a web browser, we first need to return to our Nimbus instances and run the RStudio server command. [Log into Nimbus](https://sydney-informatics-hub.github.io/rna-seq-pt1-quarto/setup.html), same as you did for Day 1. 
+To run RStudio in a web browser, we first need to return to our Nimbus instances and run the RStudio server command. [Log into Nimbus](https://sydney-informatics-hub.github.io/rnaseq-workshop-2023/setup.html), same as you did for Day 1. 
 
 Pawsey have created a 'bio image' specifically for Nimbus that caters to bioinformatics users who prefer to have their instances set up with popular bioinformatic tools. You can learn more about it [here](https://support.pawsey.org.au/documentation/display/US/Nimbus+for+Bioinformatics). We've been using this bio image for the workshop, as it has Nextflow and Singularity pre-installed for us :blush:. 
 
@@ -49,8 +49,8 @@ To start the Rserver, run:
 PASSWORD='abc' singularity exec \
     -B /tmp/rstudio-server:/var/lib/rstudio-server \
     -B /tmp/rstudio-server:/var/run/rstudio-server \
-    -B /home/training/base_directory/working_directory:/home/training/R \
-    /cvmfs/containers.biocommons.aarnet.edu.au/r/n/rnaseq_rstudio.sif \
+    -B /home/ubuntu/working_directory/Day-2:/home \
+    rstudio_4.1.0.wCP.sif \
     rserver --auth-none=0 --auth-pam-helper-path=pam-helper --server-user ubuntu
 ```
 
@@ -64,7 +64,7 @@ Once you paste the above command in the terminal and press `Enter`, the terminal
 You can also run the above command using the `screen` utility, as we did yesterday.  
 :::
 
-#### **2. Open RStudio in a web browser**{.unlisted}
+#### **Open RStudio in a web browser**{.unlisted}
 
 Open up a web browser on your local machine. Remember, you will need to **use Chrome or Safari** for this. Participants using Firefox may experience technical issues. 
 
@@ -86,7 +86,7 @@ lsof -ti:8787 | xargs kill -9
 
 ### **Open the analysis file**{.unlisted} 
 
-In RStudio, go to **File > Open File … > base_directory > working_directory > rnaseq_DE_analysis_Day2.Rmd**.
+In RStudio, go to **File > Open File … > Day_2 > rnaseq_DE_analysis_Day2.Rmd**.
 
 You should have something similar to what’s in the image below. We will be running our analysis from this file.
 
@@ -162,13 +162,13 @@ counttable_original<-read.delim("FULL_count_matrix.txt",
 # The loaded count matrix is not in the exact format as required by the functions used later in the analysis
 # So we perform the following steps
 
-# (A) Put gene symbol in the first column
+# Put gene symbol in the first column
 counttable <- counttable_original[,c("Symbol","WT1","WT2","WT3","KO1","KO2","KO3")]
 
-# (B) We don't need the ensembl IDs - get rid of the rownames
+# We don't need the ensembl IDs - get rid of the rownames
 row.names(counttable) <- NULL
 
-# (C) Make the gene symbol column rownames instead
+# Make the gene symbol column rownames instead
 rownames(counttable) <- counttable$Symbol
 counttable <- counttable[,c("WT1","WT2","WT3","KO1","KO2","KO3")]
 
