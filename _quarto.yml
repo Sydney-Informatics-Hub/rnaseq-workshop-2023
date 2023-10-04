@@ -43,6 +43,13 @@ website:
           href: notebooks/2.5_wrapup.html
       - text: "Tips & tricks"
         href: tipstricks.qmd
+  cookie-consent: 
+    type: express
+    style: simple
+    palette: light
+    policy-url: https://www.sydney.edu.au/privacy-statement.html
+  google-analytics: "G-TNWWV3HK57"
+
 body-footer: "<div style='font-size: 14px;'>All materials copyright Sydney Informatics Hub, University of Sydney</div>"
 
 format:
