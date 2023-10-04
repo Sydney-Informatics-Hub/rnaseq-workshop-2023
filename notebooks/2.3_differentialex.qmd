@@ -228,7 +228,6 @@ plotCounts(dds,
 Choose a significant gene that is downregulated in the knockout mice. Enter the plotCounts code in the grey box below to plot the normalized counts for each sample for the gene you have chosen. 
 :::
 
-# NANDAN TO CHECK WHAT NEEDS TO BE RETAINED!
 ### **Diagnostic plots** 
 
 Before we get too excited about our results, we need to confirm that DESeq2’s assumptions were met and that statistical analysis was performed appropriately. We will explore a few plots and concepts to better understand what is happening under the hood.
