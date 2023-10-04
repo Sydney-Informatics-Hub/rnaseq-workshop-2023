@@ -17,7 +17,7 @@ This workshop series is suitable for people who are familiar with working at com
 
 * Familiarity with Unix/Linux command line
 * Familiarity with R/RStudio
-* Introduction to RNAseq webinar
+* [Introduction to RNAseq webinar](https://www.youtube.com/watch?v=tITR3WR_jWI) ([slides](https://doi.org/10.5281/zenodo.8323207))
 
 ## Get the most out of this workshop{.unlisted}
 
