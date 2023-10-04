@@ -8,17 +8,17 @@ output:
 
 This workshop series will introduce you to RNA sequencing data analysis for differential expression and functional enrichment on the command line. We will use the nf-core/rnaseq pipeline to process raw sequence reads to a gene count matrix and then perform differential expression and enrichment analyses with R/Rstudio.
 
-## Target audience
+## Target audience{.unlisted}
 
 This workshop series is suitable for people who are familiar with working at command line interface and may be new to RNAseq for differential expression analysis. The course is beginner friendly and intended for those interested in using the command line interface for their analysis. It is also suitable for those who want to learn about and use nf-co.re workflows.
 
-## Prerequisites
+## Prerequisites{.unlisted}
 
 * Familiarity with Unix/Linux command line
 * Familiarity with R/RStudio
 * Introduction to RNAseq webinar
 
-## Get the most out of this workshop
+## Get the most out of this workshop{.unlisted}
 
 This workshop series is presented across 2 days and will consist of code-along and breakout room sessions. You will get the most out of the workshop if you:
 
@@ -29,7 +29,7 @@ This workshop series is presented across 2 days and will consist of code-along a
 * Use the Slack channel to ask questions and engage in discussions during the workshop
 * Do the provided exercises during the workshop
 
-## Workshop schedule
+## Workshop schedule{.unlisted}
 
 |Lesson               |Overview                                                                                                                                                                                    |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -38,11 +38,11 @@ This workshop series is presented across 2 days and will consist of code-along a
 |Day 2                | Participants will use RStudio to perform differential expression and enrichment analysis on count matrix.|
 
 
-## Course survey!
+## Course survey!{.unlisted}
 
 Please fill out our course survey before you leave! Help us help you! 😁
 
-## Credits and acknowledgements
+## Credits and acknowledgements{.unlisted}
 
 Lead trainers: 
 
@@ -50,3 +50,5 @@ Lead trainers:
 * Dr Georgie Samaha 
 
 This training was developed under the Australian BioCommons ‘Bring Your Own Data’ - Command Line Interface (CLI) Platform Expansion Project by the Sydney Informatics Hub, in partnership with Pawsey Supercomputing Centre, Queensland Cyberinfrastructure Foundation (QCIF), and Australian Academic Research Network (AARNet). This project aims to create highly accessible, highly available, highly scalable analysis and data sharing capabilities for the benefit of life science researchers nationally.
+
+![](./Figs/0.0_logos.png)
