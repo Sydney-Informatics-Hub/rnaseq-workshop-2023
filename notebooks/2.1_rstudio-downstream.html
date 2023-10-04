@@ -293,7 +293,7 @@ Learning objectives
 <section id="run-the-rstudio-container-on-nimbus" class="level2">
 <h2 class="anchored" data-anchor-id="run-the-rstudio-container-on-nimbus"><strong>2.1.2 Run the RStudio container on Nimbus</strong></h2>
 <p>While you may be familiar with RStudio as a desktop application, it also available as a remote server on Nimbus. Launching an RStudio server from Nimbus allows us to run RStudio from a web browser and it means we don’t have to download the desktop application to our own computers.</p>
-<p>To run RStudio in a web browser, we first need to return to our Nimbus instances and run the RStudio server command. <a href="https://sydney-informatics-hub.github.io/rna-seq-pt1-quarto/setup.html">Log into Nimbus</a>, same as you did for Day 1.</p>
+<p>To run RStudio in a web browser, we first need to return to our Nimbus instances and run the RStudio server command. <a href="https://sydney-informatics-hub.github.io/rnaseq-workshop-2023/setup.html">Log into Nimbus</a>, same as you did for Day 1.</p>
 <p>Pawsey have created a ‘bio image’ specifically for Nimbus that caters to bioinformatics users who prefer to have their instances set up with popular bioinformatic tools. You can learn more about it <a href="https://support.pawsey.org.au/documentation/display/US/Nimbus+for+Bioinformatics">here</a>. We’ve been using this bio image for the workshop, as it has Nextflow and Singularity pre-installed for us <span class="emoji" data-emoji="blush">😊</span>.</p>
 <p>On your Nimbus instance, create a temporary RStudio server directory by running:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> /tmp/rstudio-server</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -307,8 +307,8 @@ Learning objectives
 <div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>PASSWORD='abc' singularity exec \</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    -B /tmp/rstudio-server:/var/lib/rstudio-server \</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    -B /tmp/rstudio-server:/var/run/rstudio-server \</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    -B /home/training/base_directory/working_directory:/home/training/R \</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    /cvmfs/containers.biocommons.aarnet.edu.au/r/n/rnaseq_rstudio.sif \</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    -B /home/ubuntu/working_directory/Day-2:/home \</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    rstudio_4.1.0.wCP.sif \</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    rserver --auth-none=0 --auth-pam-helper-path=pam-helper --server-user ubuntu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -337,7 +337,7 @@ For experienced CLI users
 </div>
 </div>
 <section id="open-rstudio-in-a-web-browser" class="level4 unlisted">
-<h4 class="unlisted anchored" data-anchor-id="open-rstudio-in-a-web-browser"><strong>2. Open RStudio in a web browser</strong></h4>
+<h4 class="unlisted anchored" data-anchor-id="open-rstudio-in-a-web-browser"><strong>Open RStudio in a web browser</strong></h4>
 <p>Open up a web browser on your local machine. Remember, you will need to <strong>use Chrome or Safari</strong> for this. Participants using Firefox may experience technical issues.</p>
 <p>Type <code>146.118.XX.XX:8787</code> in your browser where the XX.XX will be replaced by your IP specific digits:</p>
 <p><img src="../Figs/2.1_Rstudio_chrome.png" class="img-fluid"></p>
@@ -351,7 +351,7 @@ For experienced CLI users
 <h2 class="anchored" data-anchor-id="working-in-rstudio"><strong>2.1.3 Working in RStudio</strong></h2>
 <section id="open-the-analysis-file" class="level3 unlisted">
 <h3 class="unlisted anchored" data-anchor-id="open-the-analysis-file"><strong>Open the analysis file</strong></h3>
-<p>In RStudio, go to <strong>File &gt; Open File … &gt; base_directory &gt; working_directory &gt; rnaseq_DE_analysis_Day2.Rmd</strong>.</p>
+<p>In RStudio, go to <strong>File &gt; Open File … &gt; Day_2 &gt; rnaseq_DE_analysis_Day2.Rmd</strong>.</p>
 <p>You should have something similar to what’s in the image below. We will be running our analysis from this file.</p>
 <p><img src="../Figs/2.1_Rstudio_chrome_rmd.png" class="img-fluid"></p>
 </section>
@@ -428,13 +428,13 @@ We are only working from the .Rmd!!
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># The loaded count matrix is not in the exact format as required by the functions used later in the analysis</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># So we perform the following steps</span></span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># (A) Put gene symbol in the first column</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Put gene symbol in the first column</span></span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>counttable <span class="ot">&lt;-</span> counttable_original[,<span class="fu">c</span>(<span class="st">"Symbol"</span>,<span class="st">"WT1"</span>,<span class="st">"WT2"</span>,<span class="st">"WT3"</span>,<span class="st">"KO1"</span>,<span class="st">"KO2"</span>,<span class="st">"KO3"</span>)]</span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># (B) We don't need the ensembl IDs - get rid of the rownames</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># We don't need the ensembl IDs - get rid of the rownames</span></span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(counttable) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># (C) Make the gene symbol column rownames instead</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the gene symbol column rownames instead</span></span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(counttable) <span class="ot">&lt;-</span> counttable<span class="sc">$</span>Symbol</span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>counttable <span class="ot">&lt;-</span> counttable[,<span class="fu">c</span>(<span class="st">"WT1"</span>,<span class="st">"WT2"</span>,<span class="st">"WT3"</span>,<span class="st">"KO1"</span>,<span class="st">"KO2"</span>,<span class="st">"KO3"</span>)]</span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>

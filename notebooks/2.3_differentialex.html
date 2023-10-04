@@ -252,6 +252,7 @@ cookieconsent.run({
   <li><a href="#nandan-to-check-what-needs-to-be-retained" id="toc-nandan-to-check-what-needs-to-be-retained" class="nav-link" data-scroll-target="#nandan-to-check-what-needs-to-be-retained">NANDAN TO CHECK WHAT NEEDS TO BE RETAINED!</a>
   <ul class="collapse">
   <li><a href="#diagnostic-plots" id="toc-diagnostic-plots" class="nav-link" data-scroll-target="#diagnostic-plots"><strong>Diagnostic plots</strong></a></li>
+  <li><a href="#additional-plots" id="toc-additional-plots" class="nav-link" data-scroll-target="#additional-plots"><strong>Additional plots</strong></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -495,17 +496,32 @@ Markdown vs R code writing
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>DESeq2<span class="sc">::</span><span class="fu">plotMA</span>(res, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">12</span>, <span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>There are a few things we notice:</p>
 <ul>
+<li>Genes that are differentially expressed will appear as points deviating significantly from the centerline, with those above the line indicating upregulated genes and those below indicating downregulated genes.</li>
 <li>Genes with a lower mean expression have higher variable log fold changes (heteroskedatic - as we expected)</li>
-<li>That gene expression is symmetrical around log fold change 0</li>
+<li>Gene expression is symmetrical around log fold change 0</li>
 </ul>
 </section>
+<section id="histogram-of-p-values" class="level4">
+<h4 class="anchored" data-anchor-id="histogram-of-p-values"><strong>Histogram of P-values</strong></h4>
+<p>Remember that for every gene, we perform a statistical test to determine whether gene expression is significantly different in the knockout samples, compared to the wildtype. This results in thousands (~20,000 genes in the mouse genome) of p-values. We can look at the histogram of p-values to see how our well our statistical test behaves before we apply correction for multiple testing.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bin frequency of p-value counts by 0.05 incremets (i.e plot 20 columns from p-value of 0 to 1)</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(res<span class="sc">$</span>pvalue, </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">20</span>, </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"grey"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A nice histogram of p-values will have a peak at the 0.05 end, and a uniform frequency at all other p-value bins. Think back to your null and alternate hypothesis. Under the null hypothesis, there is a 5% chance of genes will fall under p-value 0.05, 10 % for p-value under 0.1, etc. The high peak at the first bin (p-value 0 - 0.5) represents genes that reject the null hypothesis (in addition to all the false discoveries - hence our need to adjust for multiple testing!).</p>
+<p>A histogram of p-values that looks anything other than what is described above means that something weird has happened and you may need to contact your local statistician/bioinformatician.</p>
+<p>This <a href="http://varianceexplained.org/statistics/interpreting-pvalue-histogram/">blog post</a> has a nice explanation of each scenario if you want to explore this further.</p>
+</section>
+</section>
+<section id="additional-plots" class="level3">
+<h3 class="anchored" data-anchor-id="additional-plots"><strong>Additional plots</strong></h3>
 <section id="dispersion-estimates" class="level4">
 <h4 class="anchored" data-anchor-id="dispersion-estimates"><strong>Dispersion estimates</strong></h4>
 <p>The dispersion plot is useful to examine whether your data is meeting DESeq2’s assumptions around heteroskedasticity and that the data fits DESeq2’s model well. Dispersion is how DESeq2 quantifies variability in the data. It considers variance and mean expression within each experimental group.</p>
 <p>Let’s use plotDispEsts() to generate the dispersion plot and discuss what this means.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot dispersion estimates using dds</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note - we have set our experimental design to ~ condition and it is using this to estimate dispersion</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDispEsts</span>( dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot dispersion estimates using dds</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note - we have set our experimental design to ~ condition and it is using this to estimate dispersion</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDispEsts</span>( dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>There are a few things to note:</p>
 <ul>
 <li>Dispersion is higher for genes with small mean of normalized counts, and lower for genes with high mean of normalized counts.
@@ -521,17 +537,6 @@ Markdown vs R code writing
 <li>The gene-wise dispersion estimate (black dots) need to be shrunken towards the red line. This helps to reduce false positive results in our differential expression analysis</li>
 </ul>
 <p>There is <strong>a lot</strong> happening here, but the main point is that our dispersion plot looks as expected and plots should generally appear like this. Check this <a href="https://hbctraining.github.io/DGE_workshop/lessons/04_DGE_DESeq2_analysis.html">website</a> for a deeper explanation of this concept, and for examples of what bad dispersion plots look like.</p>
-</section>
-<section id="histogram-of-p-values" class="level4">
-<h4 class="anchored" data-anchor-id="histogram-of-p-values"><strong>Histogram of P-values</strong></h4>
-<p>Remember that for every gene, we perform a statistical test to determine whether gene expression is significantly different in the knockout samples, compared to the wildtype. This results in thousands (~20,000 genes in the mouse genome) of p-values. We can look at the histogram of p-values to see how our well our statistical test behaves before we apply correction for multiple testing.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bin frequency of p-value counts by 0.05 incremets (i.e plot 20 columns from p-value of 0 to 1)</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(res<span class="sc">$</span>pvalue, </span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">20</span>, </span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"grey"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>A nice histogram of p-values will have a peak at the 0.05 end, and a uniform frequency at all other p-value bins. Think back to your null and alternate hypothesis. Under the null hypothesis, there is a 5% chance of genes will fall under p-value 0.05, 10 % for p-value under 0.1, etc. The high peak at the first bin (p-value 0 - 0.5) represents genes that reject the null hypothesis (in addition to all the false discoveries - hence our need to adjust for multiple testing!).</p>
-<p>A histogram of p-values that looks anything other than what is described above means that something weird has happened and you may need to contact your local statistician/bioinformatician.</p>
-<p>This <a href="http://varianceexplained.org/statistics/interpreting-pvalue-histogram/">blog post</a> has a nice explanation of each scenario if you want to explore this further.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

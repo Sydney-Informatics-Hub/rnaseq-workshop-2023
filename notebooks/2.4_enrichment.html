@@ -292,11 +292,11 @@ Learning objectives
 <p>We now have a list of significant DE genes. To gain greater biological insights on the DE genes we can determine if there is enrichment of known biological functions, pathways or interactions.</p>
 <p>There are different methods for identifying functional enrichments, e.g.:</p>
 <ul>
-<li>Over representation analysis (ORA). These databases typically categorize genes into groups based on shared function, involvement in a biological pathway, presence in a specific cellular location, or other categorizations, e.g.&nbsp;functional pathways, etc.</li>
-<li>Functional class scoring (FCS) e.g.&nbsp;Gene set enrichment analysis (GSEA).</li>
-<li>Enrichment analysis can be done using some of the freely available web- and R-based tools. Today we will use a R-package “clusterprofile” to perform Over representation analysis. You can read more about the GSEA method at https://www.gsea-msigdb.org/gsea/index.jsp</li>
+<li><strong>Over representation analysis (ORA)</strong>: These methods typically categorize genes into groups based on shared function, involvement in a biological pathway, presence in a specific cellular location, or other categorizations, e.g.&nbsp;functional pathways, etc.</li>
+<li><strong>Functional class scoring (FCS)</strong> e.g.&nbsp;Gene set enrichment analysis (GSEA).</li>
+<li>Enrichment analysis can be done using some of the freely available web- and R-based tools. Today we will use a R-package “clusterprofiler” to perform Over representation analysis. You can read more about the GSEA method at https://www.gsea-msigdb.org/gsea/index.jsp</li>
 </ul>
-<p>In this workshop, we will learn how to perform gene ontology enrichment analysis.</p>
+<p>In this workshop, we will learn how to perform “Over representation analysis (ORA)” using gene ontology databases.</p>
 <section id="over-representation-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="over-representation-analysis"><strong>2.4.1 Over-representation analysis</strong></h2>
 <p>There are a range of functional enrichment tools that perform some type of “over-representation” analysis by querying databases containing information about gene function and interactions. These databases typically categorize genes into groups based on shared function, or involvement in a pathway, or presence in a specific cellular location, or other categorizations, e.g.&nbsp;functional pathways, etc. Essentially, known genes are binned into categories that have been consistently named based on how the gene has been annotated functionally. These categories are independent of any organism, however each organism has distinct categories available.</p>
