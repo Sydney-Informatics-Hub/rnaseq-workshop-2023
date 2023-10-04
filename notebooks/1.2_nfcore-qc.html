@@ -238,8 +238,8 @@ cookieconsent.run({
    
   <ul>
   <li><a href="#run-the-qc-command" id="toc-run-the-qc-command" class="nav-link active" data-scroll-target="#run-the-qc-command"><strong>1.2.1 Run the qc command</strong></a></li>
-  <li><a href="#evaluate-the-data-quality" id="toc-evaluate-the-data-quality" class="nav-link" data-scroll-target="#evaluate-the-data-quality"><strong>1.2.1 Evaluate the data quality</strong></a></li>
-  <li><a href="#read-trimming" id="toc-read-trimming" class="nav-link" data-scroll-target="#read-trimming"><strong>1.2.2 Read trimming</strong></a></li>
+  <li><a href="#evaluate-the-data-quality" id="toc-evaluate-the-data-quality" class="nav-link" data-scroll-target="#evaluate-the-data-quality"><strong>1.2.2 Evaluate the data quality</strong></a></li>
+  <li><a href="#read-trimming" id="toc-read-trimming" class="nav-link" data-scroll-target="#read-trimming"><strong>1.2.3 Read trimming</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -319,6 +319,19 @@ What is fastq format?
 <li>Check quality of trimmed reads for each sample with FastQC</li>
 <li>Output a MultiQC report</li>
 </ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>The joys of open source software communities</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>nf-core/rnaseq developers have only recently added this QC-only functionality into their pipeline code. Up until June 2023, you had to run the pipeline in full before you could examine the raw sequence QC outputs. After a number of users petitioned the developers (see this <a href="https://github.com/nf-core/rnaseq/issues/1015">Github issue</a> for our pleas), the developers added the <code>--skip_alignment</code> feature.</p>
+</div>
+</div>
 <p>Run the following command to perform the QC steps above:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run nf-core-rnaseq_3.12.0/3_12_0/main.nf <span class="dt">\</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input</span> samplesheet.csv <span class="dt">\</span></span>
@@ -341,7 +354,7 @@ What is fastq format?
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Succeeded</span>   : 19</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="evaluate-the-data-quality" class="level2">
-<h2 class="anchored" data-anchor-id="evaluate-the-data-quality"><strong>1.2.1 Evaluate the data quality</strong></h2>
+<h2 class="anchored" data-anchor-id="evaluate-the-data-quality"><strong>1.2.2 Evaluate the data quality</strong></h2>
 <p>Take a look at the output that is produced by your qc run:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lah</span> /data/Day_1/WBS-mouse-QC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">total</span> 24K</span>
@@ -373,7 +386,7 @@ What is fastq format?
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -382,7 +395,7 @@ Solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>35,519 and 24,368</li>
@@ -408,7 +421,7 @@ Solution
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -417,7 +430,7 @@ Solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>Per-base sequence content fails. Per sequence GC content, sequence duplication levels, and overrepresented sequences return warnings.<br>
@@ -435,7 +448,7 @@ Solution
 </div>
 </section>
 <section id="read-trimming" class="level2">
-<h2 class="anchored" data-anchor-id="read-trimming"><strong>1.2.2 Read trimming</strong></h2>
+<h2 class="anchored" data-anchor-id="read-trimming"><strong>1.2.3 Read trimming</strong></h2>
 <p>Trimming is sometimes performed to improve the quality of the raw data and potentially improve its mapability when it is being aligned to a reference genome. There are several ways to perform trimming:</p>
 <ul>
 <li>Removal of poor quality reads or bases (e.g.&nbsp;ends of reads)</li>
@@ -469,7 +482,7 @@ Solution
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -478,7 +491,7 @@ Solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>Trim galore.</li>

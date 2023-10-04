@@ -302,7 +302,26 @@ Nextflow resume function explained
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/training/Day_1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If you are not in the <code>Day_1</code> directory, move into it by running:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/training/Day_1 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>We are going to adjust our run command slightly from last time, note: * The <code>-resume</code> flag at the end of the command * We will output our results in a different directory (<code>--outdir</code>) * We have added an extra flag to skip duplicate marking (<code>--skip_markduplicates</code>)</p>
+<p>We are going to adjust our run command slightly from last time, note:</p>
+<ul>
+<li>The <code>-resume</code> flag at the end of the command</li>
+<li>We will output our results in a different directory (<code>--outdir</code>)</li>
+<li>We have added an extra flag to skip duplicate marking (<code>--skip_markduplicates</code>)</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A note on duplicate marking in RNAseq data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>By default, the nf-core/rnaseq pipeline uses picard to mark the duplicate reads identified amongst the alignments to allow you to guage the overall level of duplication in your samples. Unless you are using unique molecular identifiers (UMIs) it is not possible to establish whether your duplicate sequence reads are true biological duplication or PCR bias introduced during the library preparation.</p>
+<p>Given our data hasn’t been tagged with UMIs, we won’t be able to accurately remove artifact duplicates from the alignments. Therefore we don’t need to worry about tagging them.</p>
+</div>
+</div>
 <p>Execute the following:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run nf-core-rnaseq_3.12.0/3_12_0/main.nf <span class="dt">\</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input</span> samplesheet.csv <span class="dt">\</span></span>
@@ -346,7 +365,7 @@ A note on reference genome indexing
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-profile</span> singularity       <span class="co"># For pre-installed software</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Most of us will need to customise the command a little more than this though, depending on the resources available on our system, our dataset, and our analytical needs. Take a look at the nf-core/rnaseq <a href="https://nf-co.re/rnaseq/3.12.0/docs/usage">usage instructions</a> to determine what is right for you.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -355,7 +374,7 @@ Hints for running nf-core on your infrastructure
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Nextflow allows us to set our configuration needs within a custom configuration file and apply it to our execution command using the <code>-c</code> flag.</p>
 <p>If you’re lucky, someone may have already built and shared a configuration file specifically for your infrastructure, like <a href="https://nf-co.re/configs/pawsey_nimbus">this config we built for Pawsey’s Nimbus instances</a>. These pre-built, infrastructure specific configs are called Institutional configs and they can be applied to all nf-core pipelines.</p>
