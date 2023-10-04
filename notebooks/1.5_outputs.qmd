@@ -27,7 +27,7 @@ As we process any bioinformatics datasets using a workflow or pipeline, it is im
 
 The nf-core/rnaseq pipeline generates comprehensive QC stats for all steps. These metrics are all aggregated into a single report using MultiQC. MultiQC is a popular tool for aggregating quality control metrics output by a number of popular bioinformatics tools. It generates interactive reports and outputs them as `.html` files that can be viewed with a web browser. 
 
-We have previously looked through MultiQC report in this session, but lets take a closer look in this lesson. Open the MultiQC report created at the end of our post-QC pipeline execution. 
+&#x27A4; We have previously looked through MultiQC report in this session, but lets take a closer look in this lesson. Open the MultiQC report created at the end of our post-QC pipeline execution. 
 
 ```bash
 /home/training/Day-1/WBS-mouse-results/multiqc/star_salmon/multiqc_report.html
@@ -53,7 +53,7 @@ Looking at the table at the top under General Stats, we can see a comparison of 
 
 Nextflow has some inbuilt reporting features that are used by the nf-core/rnaseq pipeline. The nf-core/rnaseq pipeline outputs these reports to the directory we ran the pipeline from (`/home/training/Day-1/WBS-mouse-results/pipeline_info`). The information presented in these reports helps to get an estimate of the required resources for independent processes and assign them for future runs.
 
-nf-core pipelines generate pipeline summary reports by default. View all the outputs in the `pipeline_info` directory: 
+&#x27A4; nf-core pipelines generate pipeline summary reports by default. View all the outputs in the `pipeline_info` directory: 
 
 ```bash
 ls -lah 

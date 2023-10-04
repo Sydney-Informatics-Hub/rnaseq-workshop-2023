@@ -60,7 +60,7 @@ nf-core/rnaseq provides users the option to run FastQC and read trimming only. W
 nf-core/rnaseq developers have only recently added this QC-only functionality into their pipeline code. Up until June 2023, you had to run the pipeline in full before you could examine the raw sequence QC outputs. After a number of users petitioned the developers (see this [Github issue](https://github.com/nf-core/rnaseq/issues/1015) for our pleas), the developers added the `--skip_alignment` feature. 
 :::
 
-Run the following command to perform the QC steps above: 
+&#x27A4; Run the following command to perform the QC steps above: 
 
 ```bash
 nextflow run nf-core-rnaseq_3.12.0/3_12_0/main.nf \
@@ -92,7 +92,7 @@ Succeeded   : 19
 
 ## **1.2.2 Evaluate the data quality**
 
-Take a look at the output that is produced by your qc run: 
+&#x27A4; Take a look at the output that is produced by your qc run: 
 
 ```bash
 ls -lah /data/Day_1/WBS-mouse-QC
@@ -168,7 +168,7 @@ While the trimming adapter sequences has been shown to increase the quality of R
 
 When making the decision to trim your reads for differential expression RNAseq studies, we suggest following the recommendations of the read alignment tool you’ll be using. We will explore trimming outcomes. 
 
-Open your Nimbus terminal again to do the challenge exercise below. Navigate to the results directory `~/Day1/WBS-mouse-QC` either on the command line or using your VS Code File Explorer and answer the following questions:
+&#x27A4; Open your Nimbus terminal again to do the challenge exercise below. Navigate to the results directory `~/Day1/WBS-mouse-QC` either on the command line or using your VS Code File Explorer and answer the following questions:
 
 ```bash
 cd ~/Day1/WBS-mouse-QC
