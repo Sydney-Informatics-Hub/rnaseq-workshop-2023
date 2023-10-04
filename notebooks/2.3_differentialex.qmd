@@ -184,7 +184,7 @@ write.table(normalised_counts, "normalised_all_samples_DeSeq2_FUllMatrix.tab", s
 
 ## **2.3.8 Visualise the results**
 
-### **Volcano plot** 
+### **Volcano plot**{.unlisted}
 
 The volcano plot is a scatterplot that shows magnitude of change (fold change, x axis) against statistical significance (p-value, y axis). It provides an overall visual snapshot of the number of up and downregulated genes that are statistically significant. 
 
@@ -209,7 +209,7 @@ p2 <- p + geom_vline(xintercept = c(-1, 1), col = "red") +
 p2
 ```
 
-### **Visualise some DE genes**
+### **Visualise some DE genes**{.unlisted}
 
 We have applied low read-count filtering followed by appropriate statistical tests using the DESeq2 package for identification of the differentially expressed geens across our conditions of interest.
 
@@ -223,9 +223,21 @@ plotCounts(dds,
 ```
 
 ::: callout-tip
-### **Challenge**{.unlisted}
+### **Challenge exercise**{.unlisted}
 
 Choose a significant gene that is downregulated in the knockout mice. Enter the plotCounts code in the grey box below to plot the normalized counts for each sample for the gene you have chosen. 
+:::
+
+::: callout-tip
+### **Reflection exercise**{.unlisted}
+
+Why should we observe the expressions of DE genes before shortlisting them for experimental validation? 
+:::
+::: {.callout-caution collapse="true"}
+### Solution
+1. Big fold changes (and high significance - indicated by low Padj) can be of importance 
+2. Borderline significance can be due to high variance b/w replicates
+3. Sometime one of the samples in a small cohort can be an outlier 
 :::
 
 ### **Diagnostic plots**{.unlisted}

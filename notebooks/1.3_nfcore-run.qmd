@@ -31,7 +31,7 @@ One of Nextflow's key features is the ability to resume a workflow from the poin
 The reason it can do this is because Nextflow uses a caching system to track the results of each task or process in a workflow. This cache will include both the input files and output files created. If your workflow execution is interrupted for any reason, some tasks may have completed while others have not. Using `-resume` tells Nextflow to check the cache to see which tasks have already finishe. Notice the appearance of a `work` directory when you run your Nextflow pipelines. For tasks that were not completed or quit with an error, it will attempt to rerun them. 
 :::
 
-In your terminal, check where you are by running: 
+&#x27A4; In your terminal, check where you are by running: 
 
 ```bash
 pwd
@@ -61,7 +61,7 @@ By default, the nf-core/rnaseq pipeline uses picard to mark the duplicate reads 
 Given our data hasn't been tagged with UMIs, we won't be able to accurately remove artifact duplicates from the alignments. Therefore we don't need to worry about tagging them. 
 ::: 
 
-Execute the following:
+&#x27A4; Execute the following:
 
 ```bash
 nextflow run nf-core-rnaseq_3.12.0/3_12_0/main.nf \
@@ -130,7 +130,7 @@ Succeeded   : 153
 Cached      : 17
 ```
 
-We will explore the outputs in depth in the next lessons. For now, list out the contents of your output directory: 
+&#x27A4; We will explore the outputs in depth in the next lessons. For now, list out the contents of your output directory: 
 
 ```bash
 ls -lah WBS-mouse-results

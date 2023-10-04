@@ -31,7 +31,7 @@ To run RStudio in a web browser, we first need to return to our Nimbus instances
 
 Pawsey have created a 'bio image' specifically for Nimbus that caters to bioinformatics users who prefer to have their instances set up with popular bioinformatic tools. You can learn more about it [here](https://support.pawsey.org.au/documentation/display/US/Nimbus+for+Bioinformatics). We've been using this bio image for the workshop, as it has Nextflow and Singularity pre-installed for us :blush:. 
 
-On your Nimbus instance, create a temporary RStudio server directory by running: 
+&#x27A4; On your Nimbus instance, create a temporary RStudio server directory by running: 
 
 ```bash
 mkdir -p /tmp/rstudio-server
@@ -43,7 +43,7 @@ We're then going to run a Singularity command to execute the prepared RStudio co
 * We are **using Singularity to execute** (`singularity exec`) the prepared RStudio container (`/cvmfs/containers.biocommons.aarnet.edu.au/r/n/rnaseq_rstudio.sif`) 
 * **Containers are closed environments**, so we have to explicitly bind (`-B`) or expose directories that we want it to access on our machine. 
 
-To start the Rserver, run: 
+&#x27A4; To start the Rserver, run: 
 
 ```default
 PASSWORD='abc' singularity exec \
@@ -66,7 +66,7 @@ You can also run the above command using the `screen` utility, as we did yesterd
 
 #### **Open RStudio in a web browser**{.unlisted}
 
-Open up a web browser on your local machine. Remember, you will need to **use Chrome or Safari** for this. Participants using Firefox may experience technical issues. 
+&#x27A4; Open up a web browser on your local machine. Remember, you will need to **use Chrome or Safari** for this. Participants using Firefox may experience technical issues. 
 
 Type `146.118.XX.XX:8787` in your browser where the XX.XX will be replaced by your IP specific digits:  
 
@@ -86,7 +86,7 @@ lsof -ti:8787 | xargs kill -9
 
 ### **Open the analysis file**{.unlisted} 
 
-In RStudio, go to **File > Open File … > Day_2 > rnaseq_DE_analysis_Day2.Rmd**.
+&#x27A4; In RStudio, go to **File > Open File … > Day_2 > rnaseq_DE_analysis_Day2.Rmd**.
 
 You should have something similar to what’s in the image below. We will be running our analysis from this file.
 
@@ -118,7 +118,7 @@ Before we begin, we need to load our libraries and set our working directory to 
 
 ### **Load libraries**{.unlisted}
 
-Click the green arrow in the top right of the R grey code box to run the code chunk. This will load libraries required for this analysis. 
+&#x27A4; Click the green arrow in the top right of the R grey code box to run the code chunk. This will load libraries required for this analysis. 
 
 ```r
 suppressMessages({
@@ -149,11 +149,10 @@ library("ggnewscale")
 
 The count matrix file contains raw (un-normalized) counts for every gene (rows) in mm10 and every sample (columns). The value in the i-th row and the j-th column of the matrix tells how many raw reads were assigned to gene i in sample j.
 
-We created a count matrix file with subsetted data in Part 1 of this workshop (salmon.merged.gene_counts.tsv). In Part 2, we will use a count matrix file produced from the full dataset, in order to have enough data to generate differential pathways.
+We created a count matrix file with subset data in Part 1 of this workshop (salmon.merged.gene_counts.tsv). In Part 2, we will use a count matrix file produced from the full dataset, in order to have enough data to generate differential pathways.
 
 ```r
 # Read in the full count matrix file
-# This file was included in the data we downloaded for Part 1
 counttable_original<-read.delim("FULL_count_matrix.txt", 
                                 header=T, 
                                 row.names=1)
@@ -177,7 +176,6 @@ View(counttable)
 ```
 
 We now have our count matrix file (genes - rows, samples - columns) ready for analysis.
-
 
 ## **2.1.5 Experimental design metadata**
 
