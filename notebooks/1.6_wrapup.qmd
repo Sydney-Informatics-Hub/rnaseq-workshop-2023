@@ -13,4 +13,4 @@ In this session, we performed the necessary data pre-processing steps required f
 
 The main takeaways from the first session of this workshop are: 
 
-* 
+1. 

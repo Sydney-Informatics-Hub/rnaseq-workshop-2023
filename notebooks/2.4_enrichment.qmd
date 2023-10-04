@@ -41,11 +41,11 @@ One of the most widely-used categorizations is Gene Ontology (GO) established by
 
 GO enrichment analysis tools will determine GO terms that are enriched when you supply it will a list of DE genes.
 
-## **2.4.3 Using clusterProfiler to visualise functional profiles of genes**
+## **2.4.3 Visualise functional profiles of genes**
 
 The clusterProfiler R package implements methods to analyze and visualise functional profiles of genes. The clusterProfiler R-library supports functional characteristics of both coding and non-coding genomics data for thousands of species with up-to-date gene annotation. It provides a tidy interface to access, manipulate, and visualize enrichment results to help users achieve efficient data interpretation.
 
-## **2.4.4 Prepare the DE gene results for enrichment analysis**
+## **2.4.4 Prepare DE genes for enrichment analysis**
 
 We will use clusterProfiler to perform enrichment analysis for upregulated and downregulated significant DE genes separately. We can use the `resSig005_subset_lfc` dataframe created earlier and prepare the data for clusterProfiler.
 
