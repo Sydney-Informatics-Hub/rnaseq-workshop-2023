@@ -295,7 +295,7 @@ Learning objectives
 <p>While you may be familiar with RStudio as a desktop application, it also available as a remote server on Nimbus. Launching an RStudio server from Nimbus allows us to run RStudio from a web browser and it means we don’t have to download the desktop application to our own computers.</p>
 <p>To run RStudio in a web browser, we first need to return to our Nimbus instances and run the RStudio server command. <a href="https://sydney-informatics-hub.github.io/rnaseq-workshop-2023/setup.html">Log into Nimbus</a>, same as you did for Day 1.</p>
 <p>Pawsey have created a ‘bio image’ specifically for Nimbus that caters to bioinformatics users who prefer to have their instances set up with popular bioinformatic tools. You can learn more about it <a href="https://support.pawsey.org.au/documentation/display/US/Nimbus+for+Bioinformatics">here</a>. We’ve been using this bio image for the workshop, as it has Nextflow and Singularity pre-installed for us <span class="emoji" data-emoji="blush">😊</span>.</p>
-<p>On your Nimbus instance, create a temporary RStudio server directory by running:</p>
+<p>➤ On your Nimbus instance, create a temporary RStudio server directory by running:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> /tmp/rstudio-server</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We’re then going to run a Singularity command to execute the prepared RStudio container containing all the libraries. This command looks a bit intimidating, but all you really need to know to get it working is:</p>
 <ul>
@@ -303,7 +303,7 @@ Learning objectives
 <li>We are <strong>using Singularity to execute</strong> (<code>singularity exec</code>) the prepared RStudio container (<code>/cvmfs/containers.biocommons.aarnet.edu.au/r/n/rnaseq_rstudio.sif</code>)</li>
 <li><strong>Containers are closed environments</strong>, so we have to explicitly bind (<code>-B</code>) or expose directories that we want it to access on our machine.</li>
 </ul>
-<p>To start the Rserver, run:</p>
+<p>➤ To start the Rserver, run:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>PASSWORD='abc' singularity exec \</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    -B /tmp/rstudio-server:/var/lib/rstudio-server \</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    -B /tmp/rstudio-server:/var/run/rstudio-server \</span>
@@ -338,7 +338,7 @@ For experienced CLI users
 </div>
 <section id="open-rstudio-in-a-web-browser" class="level4 unlisted">
 <h4 class="unlisted anchored" data-anchor-id="open-rstudio-in-a-web-browser"><strong>Open RStudio in a web browser</strong></h4>
-<p>Open up a web browser on your local machine. Remember, you will need to <strong>use Chrome or Safari</strong> for this. Participants using Firefox may experience technical issues.</p>
+<p>➤ Open up a web browser on your local machine. Remember, you will need to <strong>use Chrome or Safari</strong> for this. Participants using Firefox may experience technical issues.</p>
 <p>Type <code>146.118.XX.XX:8787</code> in your browser where the XX.XX will be replaced by your IP specific digits:</p>
 <p><img src="../Figs/2.1_Rstudio_chrome.png" class="img-fluid"></p>
 <p>When the RServer interface launches, sign in to RStudio. Enter <strong>‘training’</strong> in the username text box and <strong>‘abc’</strong> in the password text box:</p>
@@ -351,7 +351,7 @@ For experienced CLI users
 <h2 class="anchored" data-anchor-id="working-in-rstudio"><strong>2.1.3 Working in RStudio</strong></h2>
 <section id="open-the-analysis-file" class="level3 unlisted">
 <h3 class="unlisted anchored" data-anchor-id="open-the-analysis-file"><strong>Open the analysis file</strong></h3>
-<p>In RStudio, go to <strong>File &gt; Open File … &gt; Day_2 &gt; rnaseq_DE_analysis_Day2.Rmd</strong>.</p>
+<p>➤ In RStudio, go to <strong>File &gt; Open File … &gt; Day_2 &gt; rnaseq_DE_analysis_Day2.Rmd</strong>.</p>
 <p>You should have something similar to what’s in the image below. We will be running our analysis from this file.</p>
 <p><img src="../Figs/2.1_Rstudio_chrome_rmd.png" class="img-fluid"></p>
 </section>
@@ -391,7 +391,7 @@ We are only working from the .Rmd!!
 <p>Before we begin, we need to load our libraries and set our working directory to make sure all the files we need are in the right place.</p>
 <section id="load-libraries" class="level3 unlisted">
 <h3 class="unlisted anchored" data-anchor-id="load-libraries"><strong>Load libraries</strong></h3>
-<p>Click the green arrow in the top right of the R grey code box to run the code chunk. This will load libraries required for this analysis.</p>
+<p>➤ Click the green arrow in the top right of the R grey code box to run the code chunk. This will load libraries required for this analysis.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>({</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"DESeq2"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"edgeR"</span>)</span>
@@ -417,29 +417,28 @@ We are only working from the .Rmd!!
 <section id="import-the-count-matrix-file" class="level3 unlisted">
 <h3 class="unlisted anchored" data-anchor-id="import-the-count-matrix-file"><strong>Import the count matrix file</strong></h3>
 <p>The count matrix file contains raw (un-normalized) counts for every gene (rows) in mm10 and every sample (columns). The value in the i-th row and the j-th column of the matrix tells how many raw reads were assigned to gene i in sample j.</p>
-<p>We created a count matrix file with subsetted data in Part 1 of this workshop (salmon.merged.gene_counts.tsv). In Part 2, we will use a count matrix file produced from the full dataset, in order to have enough data to generate differential pathways.</p>
+<p>We created a count matrix file with subset data in Part 1 of this workshop (salmon.merged.gene_counts.tsv). In Part 2, we will use a count matrix file produced from the full dataset, in order to have enough data to generate differential pathways.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the full count matrix file</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This file was included in the data we downloaded for Part 1</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>counttable_original<span class="ot">&lt;-</span><span class="fu">read.delim</span>(<span class="st">"FULL_count_matrix.txt"</span>, </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">header=</span>T, </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                                <span class="at">row.names=</span><span class="dv">1</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Data format is very important to ensure that functions read and analyse data correctly!</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># The loaded count matrix is not in the exact format as required by the functions used later in the analysis</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># So we perform the following steps</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Put gene symbol in the first column</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>counttable <span class="ot">&lt;-</span> counttable_original[,<span class="fu">c</span>(<span class="st">"Symbol"</span>,<span class="st">"WT1"</span>,<span class="st">"WT2"</span>,<span class="st">"WT3"</span>,<span class="st">"KO1"</span>,<span class="st">"KO2"</span>,<span class="st">"KO3"</span>)]</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># We don't need the ensembl IDs - get rid of the rownames</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(counttable) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the gene symbol column rownames instead</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(counttable) <span class="ot">&lt;-</span> counttable<span class="sc">$</span>Symbol</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>counttable <span class="ot">&lt;-</span> counttable[,<span class="fu">c</span>(<span class="st">"WT1"</span>,<span class="st">"WT2"</span>,<span class="st">"WT3"</span>,<span class="st">"KO1"</span>,<span class="st">"KO2"</span>,<span class="st">"KO3"</span>)]</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#  View the count table with the code below</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(counttable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>counttable_original<span class="ot">&lt;-</span><span class="fu">read.delim</span>(<span class="st">"FULL_count_matrix.txt"</span>, </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">header=</span>T, </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">row.names=</span><span class="dv">1</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Data format is very important to ensure that functions read and analyse data correctly!</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># The loaded count matrix is not in the exact format as required by the functions used later in the analysis</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># So we perform the following steps</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Put gene symbol in the first column</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>counttable <span class="ot">&lt;-</span> counttable_original[,<span class="fu">c</span>(<span class="st">"Symbol"</span>,<span class="st">"WT1"</span>,<span class="st">"WT2"</span>,<span class="st">"WT3"</span>,<span class="st">"KO1"</span>,<span class="st">"KO2"</span>,<span class="st">"KO3"</span>)]</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># We don't need the ensembl IDs - get rid of the rownames</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(counttable) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the gene symbol column rownames instead</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(counttable) <span class="ot">&lt;-</span> counttable<span class="sc">$</span>Symbol</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>counttable <span class="ot">&lt;-</span> counttable[,<span class="fu">c</span>(<span class="st">"WT1"</span>,<span class="st">"WT2"</span>,<span class="st">"WT3"</span>,<span class="st">"KO1"</span>,<span class="st">"KO2"</span>,<span class="st">"KO3"</span>)]</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#  View the count table with the code below</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(counttable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We now have our count matrix file (genes - rows, samples - columns) ready for analysis.</p>
 </section>
 </section>

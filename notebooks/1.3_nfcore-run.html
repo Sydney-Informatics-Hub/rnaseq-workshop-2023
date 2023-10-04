@@ -297,7 +297,7 @@ Nextflow resume function explained
 <p>The reason it can do this is because Nextflow uses a caching system to track the results of each task or process in a workflow. This cache will include both the input files and output files created. If your workflow execution is interrupted for any reason, some tasks may have completed while others have not. Using <code>-resume</code> tells Nextflow to check the cache to see which tasks have already finishe. Notice the appearance of a <code>work</code> directory when you run your Nextflow pipelines. For tasks that were not completed or quit with an error, it will attempt to rerun them.</p>
 </div>
 </div>
-<p>In your terminal, check where you are by running:</p>
+<p>➤ In your terminal, check where you are by running:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/training/Day_1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If you are not in the <code>Day_1</code> directory, move into it by running:</p>
@@ -322,7 +322,7 @@ A note on duplicate marking in RNAseq data
 <p>Given our data hasn’t been tagged with UMIs, we won’t be able to accurately remove artifact duplicates from the alignments. Therefore we don’t need to worry about tagging them.</p>
 </div>
 </div>
-<p>Execute the following:</p>
+<p>➤ Execute the following:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run nf-core-rnaseq_3.12.0/3_12_0/main.nf <span class="dt">\</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input</span> samplesheet.csv <span class="dt">\</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--outdir</span> WBS-mouse-results <span class="dt">\</span></span>
@@ -389,7 +389,7 @@ Hints for running nf-core on your infrastructure
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">CPU</span> hours   : 0.4 <span class="er">(</span><span class="ex">14.5%</span> cached<span class="kw">)</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Succeeded</span>   : 153</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Cached</span>      : 17</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>We will explore the outputs in depth in the next lessons. For now, list out the contents of your output directory:</p>
+<p>➤ We will explore the outputs in depth in the next lessons. For now, list out the contents of your output directory:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lah</span> WBS-mouse-results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">total</span> 28K</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span>  7 training training 4.0K Sep 29 03:55 .</span>

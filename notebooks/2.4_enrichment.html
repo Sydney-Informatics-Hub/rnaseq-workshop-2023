@@ -241,13 +241,7 @@ cookieconsent.run({
   <li><a href="#gene-ontologies" id="toc-gene-ontologies" class="nav-link" data-scroll-target="#gene-ontologies"><strong>2.4.2 Gene Ontologies</strong></a></li>
   <li><a href="#using-clusterprofiler-to-visualise-functional-profiles-of-genes" id="toc-using-clusterprofiler-to-visualise-functional-profiles-of-genes" class="nav-link" data-scroll-target="#using-clusterprofiler-to-visualise-functional-profiles-of-genes"><strong>2.4.3 Using clusterProfiler to visualise functional profiles of genes</strong></a></li>
   <li><a href="#prepare-the-de-gene-results-for-enrichment-analysis" id="toc-prepare-the-de-gene-results-for-enrichment-analysis" class="nav-link" data-scroll-target="#prepare-the-de-gene-results-for-enrichment-analysis"><strong>2.4.4 Prepare the DE gene results for enrichment analysis</strong></a></li>
-  <li><a href="#go-enrichment-of-upregulated-genes" id="toc-go-enrichment-of-upregulated-genes" class="nav-link" data-scroll-target="#go-enrichment-of-upregulated-genes"><strong>2.4.5 GO enrichment of upregulated genes</strong></a>
-  <ul class="collapse">
-  <li><a href="#bar-plot-of-upregulated-enriched-go-terms" id="toc-bar-plot-of-upregulated-enriched-go-terms" class="nav-link" data-scroll-target="#bar-plot-of-upregulated-enriched-go-terms"><strong>Bar plot of upregulated enriched GO terms</strong></a></li>
-  <li><a href="#dot-plot-of-upregulated-enriched-go-terms" id="toc-dot-plot-of-upregulated-enriched-go-terms" class="nav-link" data-scroll-target="#dot-plot-of-upregulated-enriched-go-terms"><strong>Dot plot of upregulated enriched GO terms</strong></a></li>
-  <li><a href="#cnetplot-of-upregulated-enriched-go-terms" id="toc-cnetplot-of-upregulated-enriched-go-terms" class="nav-link" data-scroll-target="#cnetplot-of-upregulated-enriched-go-terms"><strong>cnetplot of upregulated enriched GO terms</strong></a></li>
-  <li><a href="#heatmap-like-functional-classification-of-upregulated-enriched-go-terms" id="toc-heatmap-like-functional-classification-of-upregulated-enriched-go-terms" class="nav-link" data-scroll-target="#heatmap-like-functional-classification-of-upregulated-enriched-go-terms"><strong>Heatmap-like functional classification of upregulated enriched GO terms</strong></a></li>
-  </ul></li>
+  <li><a href="#go-enrichment-of-upregulated-genes" id="toc-go-enrichment-of-upregulated-genes" class="nav-link" data-scroll-target="#go-enrichment-of-upregulated-genes"><strong>2.4.5 GO enrichment of upregulated genes</strong></a></li>
   <li><a href="#other-functional-enrichment-tools" id="toc-other-functional-enrichment-tools" class="nav-link" data-scroll-target="#other-functional-enrichment-tools"><strong>2.4.6 Other functional enrichment tools</strong></a></li>
   <li><a href="#sessioninfo" id="toc-sessioninfo" class="nav-link" data-scroll-target="#sessioninfo"><strong>2.4.7 sessionInfo()</strong></a></li>
   </ul>
@@ -342,7 +336,7 @@ Learning objectives
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sig.dn.LFC) <span class="ot">&lt;-</span> <span class="fu">rownames</span>(sig.dn)</span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by LFC, decreasing</span></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>sig.dn.LFC <span class="ot">&lt;-</span> <span class="fu">sort</span>(sig.dn.LFC, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>You can check that you have correctly prepared the data by inspecting sig.up.LFC and sig.dn.LFC in the console. Use class() to check what type of R class we have stored the data in.</strong></p>
+<p><strong>You can check that you have correctly prepared the data by inspecting sig.up.LFC and sig.dn.LFC in the console. Use <code>class()</code> to check what type of R class we have stored the data in.</strong></p>
 </section>
 <section id="go-enrichment-of-upregulated-genes" class="level2">
 <h2 class="anchored" data-anchor-id="go-enrichment-of-upregulated-genes"><strong>2.4.5 GO enrichment of upregulated genes</strong></h2>
@@ -355,21 +349,21 @@ Learning objectives
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">pAdjustMethod =</span> <span class="st">"BH"</span>,</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>, </span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">qvalueCutoff =</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="bar-plot-of-upregulated-enriched-go-terms" class="level3">
-<h3 class="anchored" data-anchor-id="bar-plot-of-upregulated-enriched-go-terms"><strong>Bar plot of upregulated enriched GO terms</strong></h3>
+<section id="bar-plot-of-upregulated-enriched-go-terms" class="level3 unlisted">
+<h3 class="unlisted anchored" data-anchor-id="bar-plot-of-upregulated-enriched-go-terms"><strong>Bar plot of upregulated enriched GO terms</strong></h3>
 <p>The bar plot is a commonly used method to visualize enriched terms. It depicts the enrichment scores (e.g.&nbsp;p-adj values) and gene count or ratio as bar height and colour.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ego.up, </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">showCategory =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="dot-plot-of-upregulated-enriched-go-terms" class="level3">
-<h3 class="anchored" data-anchor-id="dot-plot-of-upregulated-enriched-go-terms"><strong>Dot plot of upregulated enriched GO terms</strong></h3>
+<section id="dot-plot-of-upregulated-enriched-go-terms" class="level3 unlisted">
+<h3 class="unlisted anchored" data-anchor-id="dot-plot-of-upregulated-enriched-go-terms"><strong>Dot plot of upregulated enriched GO terms</strong></h3>
 <p>A dot plot is similar to a scatter plot and bar plot with the capability to encode another score as dot size. In R the dot plot displays the index (each category) in the vertical axis and the corresponding value in the horizontal axis, so you can see the value of each observation following a horizontal line from the label.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(ego.up, </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">showCategory =</span> <span class="dv">20</span>,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">font.size =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="cnetplot-of-upregulated-enriched-go-terms" class="level3">
-<h3 class="anchored" data-anchor-id="cnetplot-of-upregulated-enriched-go-terms"><strong>cnetplot of upregulated enriched GO terms</strong></h3>
+<section id="cnetplot-of-upregulated-enriched-go-terms" class="level3 unlisted">
+<h3 class="unlisted anchored" data-anchor-id="cnetplot-of-upregulated-enriched-go-terms"><strong>cnetplot of upregulated enriched GO terms</strong></h3>
 <p>Both the barplot and dotplot only displayed most significant enriched terms, while users may want to know which genes are involved in these significant terms. The cnetplot depicts the linkages of genes and biological concepts (e.g.&nbsp;GO terms or KEGG pathways) as a network.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cnetplot</span>(ego.up, </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">categorySize =</span> <span class="st">"pvalue"</span>, </span>
@@ -379,8 +373,8 @@ Learning objectives
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">cex_label_category =</span> <span class="fl">1.2</span>,</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">shadowtext =</span> <span class="st">'category'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="heatmap-like-functional-classification-of-upregulated-enriched-go-terms" class="level3">
-<h3 class="anchored" data-anchor-id="heatmap-like-functional-classification-of-upregulated-enriched-go-terms"><strong>Heatmap-like functional classification of upregulated enriched GO terms</strong></h3>
+<section id="heatmap-like-functional-classification-of-upregulated-enriched-go-terms" class="level3 unlisted">
+<h3 class="unlisted anchored" data-anchor-id="heatmap-like-functional-classification-of-upregulated-enriched-go-terms"><strong>Heatmap-like functional classification of upregulated enriched GO terms</strong></h3>
 <p>The heatplot is similar to cnetplot, while displaying the relationships as a heatmap. The gene-concept network may become too complicated if user want to show a large number significant terms. The heatplot can simplify the result and more easy to identify expression patterns.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">heatplot</span>(ego.up,</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">showCategory =</span> <span class="dv">20</span>,</span>

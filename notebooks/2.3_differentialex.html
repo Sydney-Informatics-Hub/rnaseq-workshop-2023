@@ -244,11 +244,7 @@ cookieconsent.run({
   <li><a href="#inspect-the-results" id="toc-inspect-the-results" class="nav-link" data-scroll-target="#inspect-the-results"><strong>2.3.5 Inspect the results</strong></a></li>
   <li><a href="#define-a-significance-threshold" id="toc-define-a-significance-threshold" class="nav-link" data-scroll-target="#define-a-significance-threshold"><strong>2.3.6 Define a significance threshold</strong></a></li>
   <li><a href="#subset-the-data-and-write-out-results" id="toc-subset-the-data-and-write-out-results" class="nav-link" data-scroll-target="#subset-the-data-and-write-out-results"><strong>2.3.7 Subset the data and write out results</strong></a></li>
-  <li><a href="#visualise-the-results" id="toc-visualise-the-results" class="nav-link" data-scroll-target="#visualise-the-results"><strong>2.3.8 Visualise the results</strong></a>
-  <ul class="collapse">
-  <li><a href="#volcano-plot" id="toc-volcano-plot" class="nav-link" data-scroll-target="#volcano-plot"><strong>Volcano plot</strong></a></li>
-  <li><a href="#visualise-some-de-genes" id="toc-visualise-some-de-genes" class="nav-link" data-scroll-target="#visualise-some-de-genes"><strong>Visualise some DE genes</strong></a></li>
-  </ul></li>
+  <li><a href="#visualise-the-results" id="toc-visualise-the-results" class="nav-link" data-scroll-target="#visualise-the-results"><strong>2.3.8 Visualise the results</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -434,8 +430,8 @@ Markdown vs R code writing
 </section>
 <section id="visualise-the-results" class="level2">
 <h2 class="anchored" data-anchor-id="visualise-the-results"><strong>2.3.8 Visualise the results</strong></h2>
-<section id="volcano-plot" class="level3">
-<h3 class="anchored" data-anchor-id="volcano-plot"><strong>Volcano plot</strong></h3>
+<section id="volcano-plot" class="level3 unlisted">
+<h3 class="unlisted anchored" data-anchor-id="volcano-plot"><strong>Volcano plot</strong></h3>
 <p>The volcano plot is a scatterplot that shows magnitude of change (fold change, x axis) against statistical significance (p-value, y axis). It provides an overall visual snapshot of the number of up and downregulated genes that are statistically significant.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a basic volcano plot (scatter plot) with x axis = LogFC, y axis = -log10(pvalue)</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>resdata <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(res)</span>
@@ -456,8 +452,8 @@ Markdown vs R code writing
 <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the plot</span></span>
 <span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="visualise-some-de-genes" class="level3">
-<h3 class="anchored" data-anchor-id="visualise-some-de-genes"><strong>Visualise some DE genes</strong></h3>
+<section id="visualise-some-de-genes" class="level3 unlisted">
+<h3 class="unlisted anchored" data-anchor-id="visualise-some-de-genes"><strong>Visualise some DE genes</strong></h3>
 <p>We have applied low read-count filtering followed by appropriate statistical tests using the DESeq2 package for identification of the differentially expressed geens across our conditions of interest.</p>
 <p>However we recommend that you visualise a few genes (of specific interest or otherwise) to check if the identification of these genes is supported by sufficient read-counts.</p>
 <p>Use plotCounts function to plot normalized counts for a single gene of interest. Here we plot</p>
@@ -470,11 +466,44 @@ Markdown vs R code writing
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<strong>Challenge</strong>
+<strong>Challenge exercise</strong>
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Choose a significant gene that is downregulated in the knockout mice. Enter the plotCounts code in the grey box below to plot the normalized counts for each sample for the gene you have chosen.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>Reflection exercise</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Why should we observe the expressions of DE genes before shortlisting them for experimental validation?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Big fold changes (and high significance - indicated by low Padj) can be of importance</li>
+<li>Borderline significance can be due to high variance b/w replicates</li>
+<li>Sometime one of the samples in a small cohort can be an outlier</li>
+</ol>
+</div>
 </div>
 </div>
 </section>
