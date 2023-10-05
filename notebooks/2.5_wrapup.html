@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction to RNAseq workshop – wrapup</title>
+<title>Introduction to RNAseq workshop - ** Day 2 wrap up**</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -198,16 +198,97 @@ cookieconsent.run({
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#takeaways" id="toc-takeaways" class="nav-link active" data-scroll-target="#takeaways"><strong>Takeaways</strong></a>
+  <ul class="collapse">
+  <li><a href="#exploratory-analysis-of-the-count-data-for-quality-control." id="toc-exploratory-analysis-of-the-count-data-for-quality-control." class="nav-link" data-scroll-target="#exploratory-analysis-of-the-count-data-for-quality-control.">**2.5.1 Exploratory analysis of the count data for quality control.</a></li>
+  <li><a href="#analyse-count-data-to-identify-differentially-expressed-genes." id="toc-analyse-count-data-to-identify-differentially-expressed-genes." class="nav-link" data-scroll-target="#analyse-count-data-to-identify-differentially-expressed-genes.">**2.5.2 Analyse count data to identify differentially expressed genes.</a></li>
+  <li><a href="#identify-functional-enrichments-from-differentially-expressed-genes." id="toc-identify-functional-enrichments-from-differentially-expressed-genes." class="nav-link" data-scroll-target="#identify-functional-enrichments-from-differentially-expressed-genes.">**2.5.3 Identify functional enrichments from differentially expressed genes.</a></li>
+  <li><a href="#experimental-considerations-limitations." id="toc-experimental-considerations-limitations." class="nav-link" data-scroll-target="#experimental-considerations-limitations.">**2.5.4 Experimental considerations / limitations.</a></li>
+  <li><a href="#reproducible-analysis-using-rstudio-with-rmarkdown." id="toc-reproducible-analysis-using-rstudio-with-rmarkdown." class="nav-link" data-scroll-target="#reproducible-analysis-using-rstudio-with-rmarkdown.">**2.5.5 Reproducible analysis using Rstudio with Rmarkdown.</a></li>
+  </ul></li>
+  <li><a href="#rna-seq-reads-to-differential-gene-expression-workshop-series" id="toc-rna-seq-reads-to-differential-gene-expression-workshop-series" class="nav-link" data-scroll-target="#rna-seq-reads-to-differential-gene-expression-workshop-series">RNA-seq: reads to differential gene expression workshop series</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">** Day 2 wrap up**</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>In this session, we used the count matrix from the nextflow pipleine to identify differentially expressed genes and functional enrichments</p>
+<section id="takeaways" class="level2">
+<h2 class="anchored" data-anchor-id="takeaways"><strong>Takeaways</strong></h2>
+<section id="exploratory-analysis-of-the-count-data-for-quality-control." class="level3">
+<h3 class="anchored" data-anchor-id="exploratory-analysis-of-the-count-data-for-quality-control.">**2.5.1 Exploratory analysis of the count data for quality control.</h3>
+<p>The principle component analysis shows a good separation of the sample across conditions <img src="(../Figs/2.5_PCA.png)" style="width: 70%;"></p>
+</section>
+<section id="analyse-count-data-to-identify-differentially-expressed-genes." class="level3">
+<h3 class="anchored" data-anchor-id="analyse-count-data-to-identify-differentially-expressed-genes.">**2.5.2 Analyse count data to identify differentially expressed genes.</h3>
+<p>Gtf2ird1 KO showed dysregulation of many genes and many functionally enriched gene ontologies (GO).<br>
+<strong>Total 19,859 genes in mouse genome</strong>.<br>
+- LFC &gt; 0 (up): 1,353 DE genes (6.8%).<br>
+- LFC &lt; 0 (down): 984 DE genes (5%).</p>
+</section>
+<section id="identify-functional-enrichments-from-differentially-expressed-genes." class="level3">
+<h3 class="anchored" data-anchor-id="identify-functional-enrichments-from-differentially-expressed-genes.">**2.5.3 Identify functional enrichments from differentially expressed genes.</h3>
+<p><strong>Total GO enrichments identified from DE genes</strong>.<br>
+- Categories form Up-regulated genes : 823.<br>
+- Categories form Down-regulated genes : 255.<br>
+<img src="../Figs/Volcano_plot.png" style="width: 75%;"></p>
+<p><img src="../Figs/GO_enrichment.png" class="img-fluid"></p>
+<p><strong>Digging deeper:</strong> Which ontologies in the list are relevant to your experiment The most significantly enriched GO terms captured high-level biological functions that weren’t all related to our phenotypes of interest. We will go back to the biology to make sense of all these results. <strong>Craniofacial development</strong>.<br>
+Disorders relate to the bones of the skull (cranio) and face. Lead to distinctive facial features​<br>
+<strong>GO:</strong> Wnt pathway<br>
+Involved in.<br>
+- cytoskeletal dynamics and cell adhesion<br>
+- promote the differentiation of skin epithelial cells and the development of hair follicles.<br>
+<strong>GO:</strong> skin development, epidermis development</p>
+<p><strong>Cardiovascular abnormalities</strong>.<br>
+<strong>GO:</strong> striated muscle tissue development.<br>
+<strong>GO:</strong> muscle system process, muscle cell development, muscle cell differentiation.<br>
+<strong>GO:</strong> sarcomere organisation.</p>
+</section>
+<section id="experimental-considerations-limitations." class="level3">
+<h3 class="anchored" data-anchor-id="experimental-considerations-limitations.">**2.5.4 Experimental considerations / limitations.</h3>
+<ul>
+<li>Experimental design: choosing the right tissue for the research question.</li>
+<li>Number of replicates to improve statistical power; also overcome any problems due to outliers.</li>
+<li>Interpreting the results realistically.</li>
+</ul>
+</section>
+<section id="reproducible-analysis-using-rstudio-with-rmarkdown." class="level3">
+<h3 class="anchored" data-anchor-id="reproducible-analysis-using-rstudio-with-rmarkdown.">**2.5.5 Reproducible analysis using Rstudio with Rmarkdown.</h3>
+<ul>
+<li>We used Singularity containers for portable and reproducible analysis.</li>
+</ul>
+</section>
+</section>
+<section id="rna-seq-reads-to-differential-gene-expression-workshop-series" class="level2">
+<h2 class="anchored" data-anchor-id="rna-seq-reads-to-differential-gene-expression-workshop-series">RNA-seq: reads to differential gene expression workshop series</h2>
+<p><img src="../Figs/2.5_workshop_summary.png" class="img-fluid"></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

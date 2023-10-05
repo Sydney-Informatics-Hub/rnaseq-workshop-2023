@@ -357,6 +357,27 @@
     "text": "Takeaways\nThe main takeaways from the first session of this workshop are:"
   },
   {
+    "objectID": "notebooks/2.5_wrapup.html",
+    "href": "notebooks/2.5_wrapup.html",
+    "title": "** Day 2 wrap up**",
+    "section": "",
+    "text": "In this session, we used the count matrix from the nextflow pipleine to identify differentially expressed genes and functional enrichments"
+  },
+  {
+    "objectID": "notebooks/2.5_wrapup.html#takeaways",
+    "href": "notebooks/2.5_wrapup.html#takeaways",
+    "title": "** Day 2 wrap up**",
+    "section": "Takeaways",
+    "text": "Takeaways\n\n**2.5.1 Exploratory analysis of the count data for quality control.\nThe principle component analysis shows a good separation of the sample across conditions \n\n\n**2.5.2 Analyse count data to identify differentially expressed genes.\nGtf2ird1 KO showed dysregulation of many genes and many functionally enriched gene ontologies (GO).\nTotal 19,859 genes in mouse genome.\n- LFC &gt; 0 (up): 1,353 DE genes (6.8%).\n- LFC &lt; 0 (down): 984 DE genes (5%).\n\n\n**2.5.3 Identify functional enrichments from differentially expressed genes.\nTotal GO enrichments identified from DE genes.\n- Categories form Up-regulated genes : 823.\n- Categories form Down-regulated genes : 255.\n\n\nDigging deeper: Which ontologies in the list are relevant to your experiment The most significantly enriched GO terms captured high-level biological functions that weren’t all related to our phenotypes of interest. We will go back to the biology to make sense of all these results. Craniofacial development.\nDisorders relate to the bones of the skull (cranio) and face. Lead to distinctive facial features​\nGO: Wnt pathway\nInvolved in.\n- cytoskeletal dynamics and cell adhesion\n- promote the differentiation of skin epithelial cells and the development of hair follicles.\nGO: skin development, epidermis development\nCardiovascular abnormalities.\nGO: striated muscle tissue development.\nGO: muscle system process, muscle cell development, muscle cell differentiation.\nGO: sarcomere organisation.\n\n\n**2.5.4 Experimental considerations / limitations.\n\nExperimental design: choosing the right tissue for the research question.\nNumber of replicates to improve statistical power; also overcome any problems due to outliers.\nInterpreting the results realistically.\n\n\n\n**2.5.5 Reproducible analysis using Rstudio with Rmarkdown.\n\nWe used Singularity containers for portable and reproducible analysis."
+  },
+  {
+    "objectID": "notebooks/2.5_wrapup.html#rna-seq-reads-to-differential-gene-expression-workshop-series",
+    "href": "notebooks/2.5_wrapup.html#rna-seq-reads-to-differential-gene-expression-workshop-series",
+    "title": "** Day 2 wrap up**",
+    "section": "RNA-seq: reads to differential gene expression workshop series",
+    "text": "RNA-seq: reads to differential gene expression workshop series"
+  },
+  {
     "objectID": "notebooks/2.3_differentialex.html",
     "href": "notebooks/2.3_differentialex.html",
     "title": "Differential expression analysis in R",
