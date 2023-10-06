@@ -39,8 +39,10 @@ website:
           href: notebooks/2.3_differentialex.html
         - text: "2.4 Functional enrichment analysis"
           href: notebooks/2.4_enrichment.html
-        - text: "2.5 Workshop wrap up"
+        - text: "2.5 Session 2 wrap up"
           href: notebooks/2.5_wrapup.html
+        - text: "2.6 Workshop summary"
+          href: notebooks/2.6_workshop_summary.html
       - text: "Tips & tricks"
         href: tipstricks.qmd
   cookie-consent: 

@@ -1,5 +1,5 @@
 ---
-title: "**Day 2 summary**"
+title: "**Day 2 wrap up**"
 output:
   html_document:
     toc: false
