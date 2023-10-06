@@ -11,6 +11,13 @@ In this session, we performed the necessary data pre-processing steps required f
 
 ## **Takeaways**
 
+
 The main takeaways from the first session of this workshop are: 
 
 1. 
+
+
+
+
+
+![](../Figs/2.5_Day1_Day2.png)

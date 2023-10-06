@@ -7,13 +7,10 @@ output:
 from: markdown+emoji
 ---
 
-**RNA-seq: reads to differential gene expression**
-![](../Figs/2.5_Day1_Day2.png)
-
-
 **Day 1: Raw sequence to gene counts**
 
-![](../Figs/1.1_nfcore-rnaseq.png)
+<img src="../Figs/1.1_nfcore-rnaseq.png" alt="Your Alt Text" style="width: 70%;">
+
 
 - RNA sequencing and its main applications
 - Steps in a typical RNA-Seq workflow to process raw RNA-seq data into raw counts.
@@ -28,7 +25,7 @@ from: markdown+emoji
 
 **Day 2: Counts to genes and functional enrichments**
 
-![](../Figs/2.1_Rstudio_chrome_rmd.png)
+<img src="../Figs/2.1_Rstudio_chrome_rmd.png" alt="Your Alt Text" style="width: 70%;">
 
 - Exploratory analysis of the count data for quality control.
 - Analyse count data to identify differentially expressed genes.
