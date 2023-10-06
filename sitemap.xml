@@ -2,66 +2,74 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/index.html</loc>
-    <lastmod>2023-10-05T01:54:38.807Z</lastmod>
+    <lastmod>2023-10-06T04:56:50.466Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/schedule.html</loc>
-    <lastmod>2023-10-05T01:54:38.055Z</lastmod>
+    <lastmod>2023-10-06T04:56:49.662Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/2.2_exploratory.html</loc>
-    <lastmod>2023-10-05T01:54:36.963Z</lastmod>
+    <lastmod>2023-10-06T04:56:48.498Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/2.4_enrichment.html</loc>
-    <lastmod>2023-10-05T01:54:35.435Z</lastmod>
+    <lastmod>2023-10-06T04:56:46.934Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/1.3_nfcore-run.html</loc>
-    <lastmod>2023-10-05T01:54:33.443Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/2.1_rstudio-downstream.html</loc>
-    <lastmod>2023-10-05T01:54:32.463Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/1.2_nfcore-qc.html</loc>
-    <lastmod>2023-10-05T01:54:31.263Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/1.5_outputs.html</loc>
-    <lastmod>2023-10-05T01:54:29.967Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/1.1_rnaseq-experiment.html</loc>
-    <lastmod>2023-10-05T01:54:29.431Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/1.0_casestudy.html</loc>
-    <lastmod>2023-10-05T01:54:30.455Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/1.6_wrapup.html</loc>
-    <lastmod>2023-10-05T01:54:31.591Z</lastmod>
+    <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/2.0_recap_day1.html</loc>
+    <lastmod>2023-10-06T04:56:44.874Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/2.5_wrapup.html</loc>
-    <lastmod>2023-10-05T01:54:32.847Z</lastmod>
+    <lastmod>2023-10-06T04:56:43.898Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/1.6_wrapup.html</loc>
+    <lastmod>2023-10-06T04:56:42.646Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/1.0_casestudy.html</loc>
+    <lastmod>2023-10-06T04:56:41.522Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/1.1_rnaseq-experiment.html</loc>
+    <lastmod>2023-10-06T04:56:40.474Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/2.6_workshop_summary.html</loc>
+    <lastmod>2023-10-06T04:56:39.630Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/1.5_outputs.html</loc>
+    <lastmod>2023-10-06T04:56:41.014Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/1.2_nfcore-qc.html</loc>
+    <lastmod>2023-10-06T04:56:42.310Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/2.1_rstudio-downstream.html</loc>
+    <lastmod>2023-10-06T04:56:43.506Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/1.3_nfcore-run.html</loc>
+    <lastmod>2023-10-06T04:56:44.526Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/2.3_differentialex.html</loc>
-    <lastmod>2023-10-05T01:54:34.591Z</lastmod>
+    <lastmod>2023-10-06T04:56:46.046Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/1.4_alignquant.html</loc>
-    <lastmod>2023-10-05T01:54:36.055Z</lastmod>
+    <lastmod>2023-10-06T04:56:47.574Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/setup.html</loc>
-    <lastmod>2023-10-05T01:54:37.595Z</lastmod>
+    <lastmod>2023-10-06T04:56:49.154Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/tipstricks.html</loc>
-    <lastmod>2023-10-05T01:54:38.391Z</lastmod>
+    <lastmod>2023-10-06T04:56:50.026Z</lastmod>
   </url>
 </urlset>

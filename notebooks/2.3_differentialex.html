@@ -245,6 +245,7 @@ cookieconsent.run({
   <li><a href="#define-a-significance-threshold" id="toc-define-a-significance-threshold" class="nav-link" data-scroll-target="#define-a-significance-threshold"><strong>2.3.6 Define a significance threshold</strong></a></li>
   <li><a href="#subset-the-data-and-write-out-results" id="toc-subset-the-data-and-write-out-results" class="nav-link" data-scroll-target="#subset-the-data-and-write-out-results"><strong>2.3.7 Subset the data and write out results</strong></a></li>
   <li><a href="#visualise-the-results" id="toc-visualise-the-results" class="nav-link" data-scroll-target="#visualise-the-results"><strong>2.3.8 Visualise the results</strong></a></li>
+  <li><a href="#experimental-validation" id="toc-experimental-validation" class="nav-link" data-scroll-target="#experimental-validation"><strong>2.3.9 Experimental validation</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -558,6 +559,12 @@ Solution
 <li>The gene-wise dispersion estimate (black dots) need to be shrunken towards the red line. This helps to reduce false positive results in our differential expression analysis</li>
 </ul>
 <p>There is <strong>a lot</strong> happening here, but the main point is that our dispersion plot looks as expected and plots should generally appear like this. Check this <a href="https://hbctraining.github.io/DGE_workshop/lessons/04_DGE_DESeq2_analysis.html">website</a> for a deeper explanation of this concept, and for examples of what bad dispersion plots look like.</p>
+</section>
+</section>
+</section>
+<section id="experimental-validation" class="level2">
+<h2 class="anchored" data-anchor-id="experimental-validation"><strong>2.3.9 Experimental validation</strong></h2>
+<p>It is generally a good practice to validate differentially expressed genes (DEGs) experimentally after identifying them through high-throughput techniques such as RNAseq. Validating DEGs experimentally helps confirm the reliability of the computational analysis and provides biological context to the results. qPCR is a widely used technique to validate gene expression changes. It allows for the accurate measurement of the expression levels of specific genes and can confirm whether the observed differences in gene expression are consistent with the computational analysis.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -581,8 +588,6 @@ Key takeaways
 </div>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
