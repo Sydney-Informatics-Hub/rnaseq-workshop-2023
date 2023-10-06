@@ -31,6 +31,7 @@ To run RStudio in a web browser, we first need to return to our Nimbus instances
 
 Pawsey have created a 'bio image' specifically for Nimbus that caters to bioinformatics users who prefer to have their instances set up with popular bioinformatic tools. You can learn more about it [here](https://support.pawsey.org.au/documentation/display/US/Nimbus+for+Bioinformatics). We've been using this bio image for the workshop, as it has Nextflow and Singularity pre-installed for us :blush:. 
 
+
 &#x27A4; On your Nimbus instance, create a temporary RStudio server directory by running: 
 
 ```bash
@@ -49,8 +50,8 @@ We're then going to run a Singularity command to execute the prepared RStudio co
 PASSWORD='abc' singularity exec \
     -B /tmp/rstudio-server:/var/lib/rstudio-server \
     -B /tmp/rstudio-server:/var/run/rstudio-server \
-    -B /home/ubuntu/working_directory/Day-2:/home \
-    rstudio_4.1.0.wCP.sif \
+    -B /home/ubuntu/Day-2:/home \
+    ../IntroRNAseq_1023/rstudio_4.1.0.sif \
     rserver --auth-none=0 --auth-pam-helper-path=pam-helper --server-user ubuntu
 ```
 

@@ -37,10 +37,6 @@ Visual Studio Code (VS Code) is a lightweight and powerful source code editor av
 
 ![](https://user-images.githubusercontent.com/73086054/231062539-6a4fc78f-da2e-40a6-9d94-00b702930b67.png)
 
-5. Install the Nextflow extension. Click on the blue `install` button. 
-
-![](https://user-images.githubusercontent.com/73086054/236149551-1703e56c-680b-4733-8613-c3409f43b6f2.png)
-
 #### **Login via Visual Studio Code**
 
 Connect to your instance with VS code by adding the host details to your `.ssh` config file:

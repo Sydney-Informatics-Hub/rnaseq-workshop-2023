@@ -41,7 +41,7 @@ This workshop series is presented across 2 days and will consist of code-along a
 
 ## Course survey!{.unlisted}
 
-Please fill out our course survey before you leave! Help us help you! :smiley:
+Please fill out our [course survey](https://www.surveymonkey.com/r/rnaseq2023) before you leave! Help us help you! :smiley:
 
 ## Credits and acknowledgements{.unlisted}
 

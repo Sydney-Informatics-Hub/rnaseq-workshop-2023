@@ -1,0 +1,37 @@
+---
+title: "**Day 2 summary**"
+output:
+  html_document:
+    toc: false
+    toc_float: false
+from: markdown+emoji
+---
+
+**RNA-seq: reads to differential gene expression**
+![](../Figs/2.5_Day1_Day2.png)
+
+
+**Day 1: Raw sequence to gene counts**
+
+![](../Figs/1.1_nfcore-rnaseq.png)
+
+- RNA sequencing and its main applications
+- Steps in a typical RNA-Seq workflow to process raw RNA-seq data into raw counts.
+- Understanding 
+    - Quality control of reads
+    - Trimming of reads 
+    - Alignment to reference
+    - Quantification
+- Workflow management tools for automated, reproducible, flexible and portable analysis.
+- Run the nf-core/rnaseq pipeline and interpret its outputs.
+
+
+**Day 2: Counts to genes and functional enrichments**
+
+![](../Figs/2.1_Rstudio_chrome_rmd.png)
+
+- Exploratory analysis of the count data for quality control.
+- Analyse count data to identify differentially expressed genes.
+- Identifying functional enrichments from differentially expressed genes.
+- Reproducible analysis using Rstudio with Rmarkdown. 
+- Using Singularity containers for portable and reproducible analysis.

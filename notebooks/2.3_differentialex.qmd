@@ -303,6 +303,9 @@ There are a few things to note:
 
 There is **a lot** happening here, but the main point is that our dispersion plot looks as expected and plots should generally appear like this. Check this [website](https://hbctraining.github.io/DGE_workshop/lessons/04_DGE_DESeq2_analysis.html) for a deeper explanation of this concept, and for examples of what bad dispersion plots look like.
 
+## **2.3.9 Experimental validation**
+It is generally a good practice to validate differentially expressed genes (DEGs) experimentally after identifying them through high-throughput techniques such as RNAseq. Validating DEGs experimentally helps confirm the reliability of the computational analysis and provides biological context to the results. qPCR is a widely used technique to validate gene expression changes. It allows for the accurate measurement of the expression levels of specific genes and can confirm whether the observed differences in gene expression are consistent with the computational analysis.
+
 ::: callout-important
 ### Key takeaways{.unlisted}
 - We need to normalise our DE data to account for differences in sequencing depth between samples. 

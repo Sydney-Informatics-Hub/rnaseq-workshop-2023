@@ -9,6 +9,44 @@ from: markdown+emoji
 
 ## Troubleshooting 
 
+### Error when trying to run rserver on Nimbus
+
+When you run the command
+```
+mkdir -p /tmp/rstudio-server  
+
+PASSWORD='abc' singularity exec \  
+    -B /tmp/rstudio-server:/var/lib/rstudio-server \  
+    -B /tmp/rstudio-server:/var/run/rstudio-server \  
+    -B /home/ubuntu/working_directory/Day-2:/home \   
+    rstudio_4.1.0.sif \  
+    rserver --auth-none=0 --auth-pam-helper-path=pam-helper --server-user ubuntu  
+
+```
+If an error similar to the one below pops up - 
+```
+06 Oct 2023 01:16:34 [rserver] ERROR system error 98 (Address already in use); OCCURRED AT rstudio::core::Error rstudio::core::http::initTcpIpAcceptor(rstudio::core::http::SocketAcceptorService<rstudio_boost::asio::ip::tcp>&, const string&, const string&) src/cpp/server/ServerInit.cpp:103; LOGGED FROM: int main(int, char* const*) src/cpp/server/ServerMain.cpp:704
+```
+
+Do the following
+```
+sudo lsof -i :8787
+```
+
+If you see
+```
+COMMAND PID           USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+rserver 747 rstudio-server    7u  IPv4  19251      0t0  TCP *:8787 (LISTEN)
+```
+
+Run the command 
+
+```
+sudo kill <PID> 
+```
+Here substitute <PID> with the actual PID value e.g. 747
+
+
 ### RStudio not loading in browser
 
 If you need to end your session, exit your browser and on Nimbus, run the following command:
