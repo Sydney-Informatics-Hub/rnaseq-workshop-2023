@@ -41,11 +41,29 @@ The nf-core/rnaseq pipeline offers us various alignment and quantification route
 * STAR – RSEM
 * HISAT2 – no quantification
 
-Aligned sequences for each sample are output in the [bam file format](https://en.wikipedia.org/wiki/BAM_(file_format)). 
+Aligned sequences for each sample are output in the [bam file format](https://en.wikipedia.org/wiki/BAM_(file_format)). STAR (Spliced Transcript Alignment to a Reference) is a very popular RNAseq alignment tool. It has previously been shown to be more accurate and efficient than other popular RNAseq alignment tools. 
 
-The nf-core/rnaseq pipeline has been written in a way where all the files generated from the alignment step onwards (except the summary report) are saved to the same directory as specified by `--aligner`. In our case, you will find these files in `star_salmon`.
+The nf-core/rnaseq pipeline has been written in a way where all the files generated from the alignment step onwards (except the summary report) are saved to the same directory as specified by `--aligner`. In our case, you will find the output alignment files in `star_salmon`:
 
-STAR (Spliced Transcript Alignment to a Reference) is a very popular RNAseq alignment tool. It has previously been shown to be more accurate and efficient than other popular RNAseq alignment tools. 
+```bash
+ls -lah WBS-mouse-results/star_salmon/*.bam*
+```
+```bash
+-rw-rw-r-- 1 ubuntu ubuntu 3.7M Sep 29 03:45 SRR3473984.sorted.bam
+-rw-rw-r-- 1 ubuntu ubuntu  51K Sep 29 03:46 SRR3473984.sorted.bam.bai
+-rw-rw-r-- 1 ubuntu ubuntu 3.4M Sep 29 03:46 SRR3473985.sorted.bam
+-rw-rw-r-- 1 ubuntu ubuntu  50K Sep 29 03:47 SRR3473985.sorted.bam.bai
+-rw-rw-r-- 1 ubuntu ubuntu 3.3M Sep 29 03:46 SRR3473986.sorted.bam
+-rw-rw-r-- 1 ubuntu ubuntu  52K Sep 29 03:47 SRR3473986.sorted.bam.bai
+-rw-rw-r-- 1 ubuntu ubuntu 3.4M Sep 29 03:46 SRR3473987.sorted.bam
+-rw-rw-r-- 1 ubuntu ubuntu  53K Sep 29 03:48 SRR3473987.sorted.bam.bai
+-rw-rw-r-- 1 ubuntu ubuntu 4.3M Sep 29 03:46 SRR3473988.sorted.bam
+-rw-rw-r-- 1 ubuntu ubuntu  53K Sep 29 03:47 SRR3473988.sorted.bam.bai
+-rw-rw-r-- 1 ubuntu ubuntu 3.1M Sep 29 03:46 SRR3473989.sorted.bam
+-rw-rw-r-- 1 ubuntu ubuntu  49K Sep 29 03:48 SRR3473989.sorted.bam.bai
+```
+
+Notice above we have both alignment files (`.bam`) and their index files (`.bam.bai`). Index files are commonly created for large bioinformatics files to allow for rapid querying. These index files are just like the index at the back of a book. They are used by software to quickly find the location of a specific region without having to scan the whole file. 
 
 ::: callout-note 
 
@@ -67,15 +85,25 @@ Recall that we applied the `--skip_markduplicates` parameter. This is because it
 
 As expected, our alignments performed well. Most of the reads in all of our samples were uniquely mapped to the mouse reference genome and only small proportion were unmapped. 
 
-In breakout rooms, your facilitator will demonstrate how we can visualise alignments using a tool called IGV. Guide your instructor on how to solve the challenge exercise below. 
+## **1.4.2 Visualising alignments**
+
+You can visualise alignments with tools like the Integrative Genomics Viewer (IGV). Visualising alignments around genomic regions of interest can be a reliable way to identify potential problems like contamination, biases, or technical artefacts. Let's take a quick look at how alignments work, using the IGV output below. IGV has [helpful documentation](https://igv.org/doc/desktop/#UserGuide/tracks/alignments/rna_seq/) regarding the visualisation of RNAseq alignments. 
+
+![](../Figs/1.4_IGV-explainer.png)
+
+&#x27A4; Take a look at the IGV image below. We have zoomed in to the first three exon in our gene of interest, *Gtf2ird1*. Looking at the read depth track, we can see the vast majority of our reads have aligned to exons (purple), but there are some tiny bumps between exons. This may be an indication of some DNA contamination or misalignment of reads in our samples. Nothing to be concerned about though. 
+
+![](../Figs/1.4_chr5_134409807-134424415_IGV.png)
+
+&#x27A4; Take a look at the IGV image below. It covers one exon of our gene of interest, *Gtf2ird1*. If you compare it to the annotated screenshots above, you can see we have zoomed into the region spanning just the first exon (chr5:134417034-134417200) in the mm10 assembly. We can see both the read depth and alignment tracks much clearer. Note that reads only span the exons, they do not continue into the introns. Ths is because the STAR aligner is splice-aware. This means it recognises and aligns reads across splicing junctions, allowing us to capture exon-exon junctions. 
+
+![](../Figs/1.4_chr5_134417034-134417200_IGV.png)
 
 ::: callout-tip
 ### **Challenge exercise**{.unlisted}
-Oh no! We have forgotten to label the conditional groupings of our samples and we don’t know which samples belong to the wildtype and knockout groups!
+We forgot to label the conditional groupings of our samples and we don’t know which samples belong to the wildtype and knockout groups! Can you use the alignment files above to assign samples to their correct treatment group?
 
-Can we use the alignment files to assign samples to their correct treatment group?
-
-Hint: From the case study, we know a loss of function mutation of *Gtf2ird1* was generated by an insertion of a Myc transgene, resulting in a 40 kb deletion surrounding exon 1.
+Hint: From the case study, we know a loss of function mutation of *Gtf2ird1* was generated by an insertion of a Myc transgene, resulting in a 40 kb deletion surrounding an exon.
 :::
 
 ::: {.callout-caution collapse="true"}
@@ -86,7 +114,7 @@ Hint: From the case study, we know a loss of function mutation of *Gtf2ird1* was
 * Samples SRR3473987, SRR3473988, SRR3473989 DO NOT contain reads covering exon 1. These are knockout samples.
 :::
 
-## **1.4.2 Read quantification**
+## **1.4.3 Read quantification**
 
 Following read alignment, the nf-core/rnaseq pipeline uses the bam files to calculate raw gene-count data for each sample. We can then use these count files (called a gene-count matrix), to identify differentially expressed genes. By default, the nf-core/rnaseq pipeline runs Salmon for transcript quantification, following alignment by STAR.
 

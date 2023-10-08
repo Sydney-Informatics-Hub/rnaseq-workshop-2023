@@ -15,7 +15,7 @@ from: markdown+emoji
 * Comprehend the nf-core/rnaseq pipeline structure and run command
 :::
 
-## **1.1.0 What is RNAseq?** 
+## **1.1.1 What is RNAseq?** 
 
 RNAseq experiments involve the collection of RNA from a tissue of interest, converting this raw biological material to a digitised format using a high-throughput sequencing platform, pre-processing the resulting raw sequence reads so they can then be analysed to identify differentially expressed genes and functional pathways.
 
@@ -28,7 +28,7 @@ Using this technique, we can measure gene expression at the transcriptome level 
 
 This method allows for the identification of upregulated or downregulated genes, giving insights into the biological processes and molecular functions that are active in the tissue being studied. In this workshop, by comparing the expression levels of genes between knock-out and wild type mice, it is possible to identify the molecular mechanisms underlying WBS and potentially discover targets for therapeutic intervention.
 
-## **1.1.1 RNAseq experimental workflow** 
+## **1.1.2 RNAseq experimental workflow** 
 
 The experimental workflow for RNAseq is presented in the image below. It consists of six steps: 
 
@@ -41,7 +41,7 @@ The experimental workflow for RNAseq is presented in the image below. It consist
 
 ![](../Figs/1.1_rnaseq-workflow.png)
 
-## **1.1.2 RNAseq data processing pipelines**
+## **1.1.3 RNAseq data processing pipelines**
 
 In the first session/day of this workshop, we will be performing steps 3 and 4 of the experimental workflow above. We will then analyse our processed data in the second session/day of the workshop, following steps 5 and 6. To process our data on day 1 we will be: 
 
@@ -63,7 +63,7 @@ Here are all the steps that make up a typical differential expression workflow w
 ![](../Figs/1.1_workflow_q_a.png){width=50%}
 :::
 
-## **1.1.3 Introduction to nf-core/rnaseq**
+## **1.1.4 Introduction to nf-core/rnaseq**
 
 nf-core is a community-curated collection of bioinformatics pipelines written in [Nextflow](https://www.nextflow.io). The nf-core community is global, comprising bioinformaticians, computational biologists, software engineers, and biologists. The community works together to develop and maintain best practice bioinformatics pipelines and support others in running them. They’ve also developed a toolkit to assist in pipeline usage and development. Everyone is welcome to join the community! 
 
@@ -96,7 +96,7 @@ Given Nextflow’s focus on portability and reproducibility, the [nf-core/rnaseq
 Keep in mind that each of the tools the [nf-core/rnaseq](https://nf-co.re/rnaseq/3.12.0) pipeline uses has its own minimum compute resource requirements. This means you’ll need to make sure the environment you’re working on has enough RAM and CPUs to process your data and disk space to store your raw data, intermediate files, and final results. Given how greedy these processes can be, we usually recommend you don’t work on your personal computer.
 :::
 
-## **1.1.4 Familiarise yourself with your environment**
+## **1.1.5 Familiarise yourself with your environment**
 
 &#x27A4; Let's take a look at our home directory on the command-line on your Nimbus instance. 
 
