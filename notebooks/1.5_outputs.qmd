@@ -41,12 +41,18 @@ Looking at the table at the top under General Stats, we can see a comparison of 
 
 ::: callout-tip
 ### **Reflection exercise**{.unlisted}
+Please review the MultiQC report and answer the following questions: 
 
+1. What sort of variability, if any, do you observe amongst our samples? 
+2. Where is the nf-core/rnaseq execution command we ran presented in this report? 
+3. What version of STAR did we run?
 :::
 
 ::: {.callout-caution collapse="true"}
 ### Solution
-
+1. Samples varied in number of sequence reads, with SRR3473988 having significantly more reads than all other samples. There was also some variability in the % of reads uniquely aligned for each sample by STAR. Overall, sample performance was comparable and of high quality. 
+2. nf-core/rnaseq Methods Description
+3. 2.7.9a
 :::
 
 ## **1.5.2 Workflow execution performance**
