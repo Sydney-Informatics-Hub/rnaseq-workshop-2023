@@ -242,7 +242,8 @@ cookieconsent.run({
    
   <ul>
   <li><a href="#alignment-of-reads-to-a-reference-genome" id="toc-alignment-of-reads-to-a-reference-genome" class="nav-link active" data-scroll-target="#alignment-of-reads-to-a-reference-genome"><strong>1.4.1 Alignment of reads to a reference genome</strong></a></li>
-  <li><a href="#read-quantification" id="toc-read-quantification" class="nav-link" data-scroll-target="#read-quantification"><strong>1.4.2 Read quantification</strong></a></li>
+  <li><a href="#visualising-alignments" id="toc-visualising-alignments" class="nav-link" data-scroll-target="#visualising-alignments"><strong>1.4.2 Visualising alignments</strong></a></li>
+  <li><a href="#read-quantification" id="toc-read-quantification" class="nav-link" data-scroll-target="#read-quantification"><strong>1.4.3 Read quantification</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -309,9 +310,22 @@ Genetics 101 refresher: mRNA splicing
 <li>STAR – RSEM</li>
 <li>HISAT2 – no quantification</li>
 </ul>
-<p>Aligned sequences for each sample are output in the <a href="https://en.wikipedia.org/wiki/BAM_(file_format)">bam file format</a>.</p>
-<p>The nf-core/rnaseq pipeline has been written in a way where all the files generated from the alignment step onwards (except the summary report) are saved to the same directory as specified by <code>--aligner</code>. In our case, you will find these files in <code>star_salmon</code>.</p>
-<p>STAR (Spliced Transcript Alignment to a Reference) is a very popular RNAseq alignment tool. It has previously been shown to be more accurate and efficient than other popular RNAseq alignment tools.</p>
+<p>Aligned sequences for each sample are output in the <a href="https://en.wikipedia.org/wiki/BAM_(file_format)">bam file format</a>. STAR (Spliced Transcript Alignment to a Reference) is a very popular RNAseq alignment tool. It has previously been shown to be more accurate and efficient than other popular RNAseq alignment tools.</p>
+<p>The nf-core/rnaseq pipeline has been written in a way where all the files generated from the alignment step onwards (except the summary report) are saved to the same directory as specified by <code>--aligner</code>. In our case, you will find the output alignment files in <code>star_salmon</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lah</span> WBS-mouse-results/star_salmon/<span class="pp">*</span>.bam<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span> 1 ubuntu ubuntu 3.7M Sep 29 03:45 SRR3473984.sorted.bam</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span> 1 ubuntu ubuntu  51K Sep 29 03:46 SRR3473984.sorted.bam.bai</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span> 1 ubuntu ubuntu 3.4M Sep 29 03:46 SRR3473985.sorted.bam</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span> 1 ubuntu ubuntu  50K Sep 29 03:47 SRR3473985.sorted.bam.bai</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span> 1 ubuntu ubuntu 3.3M Sep 29 03:46 SRR3473986.sorted.bam</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span> 1 ubuntu ubuntu  52K Sep 29 03:47 SRR3473986.sorted.bam.bai</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span> 1 ubuntu ubuntu 3.4M Sep 29 03:46 SRR3473987.sorted.bam</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span> 1 ubuntu ubuntu  53K Sep 29 03:48 SRR3473987.sorted.bam.bai</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span> 1 ubuntu ubuntu 4.3M Sep 29 03:46 SRR3473988.sorted.bam</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span> 1 ubuntu ubuntu  53K Sep 29 03:47 SRR3473988.sorted.bam.bai</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span> 1 ubuntu ubuntu 3.1M Sep 29 03:46 SRR3473989.sorted.bam</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span> 1 ubuntu ubuntu  49K Sep 29 03:48 SRR3473989.sorted.bam.bai</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice above we have both alignment files (<code>.bam</code>) and their index files (<code>.bam.bai</code>). Index files are commonly created for large bioinformatics files to allow for rapid querying. These index files are just like the index at the back of a book. They are used by software to quickly find the location of a specific region without having to scan the whole file.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -327,11 +341,19 @@ Genetics 101 refresher: mRNA splicing
 </div>
 </div>
 <p>➤ Let’s take a look at how our aligner and quantification tools performed. Take a look at the alignment scores in the MultiQC summary report generated by the pipeline, you’ll find it at:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/training/Day_1/WBS-mouse-results/multiqc/star_salmon/multiqc_report.html</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/training/Day_1/WBS-mouse-results/multiqc/star_salmon/multiqc_report.html</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img src="../Figs/1.4_star-alignment-plot.png" class="img-fluid"></p>
 <p><img src="../Figs/1.4_star-alignment-plot-percent.png" class="img-fluid"></p>
 <p>As expected, our alignments performed well. Most of the reads in all of our samples were uniquely mapped to the mouse reference genome and only small proportion were unmapped.</p>
-<p>In breakout rooms, your facilitator will demonstrate how we can visualise alignments using a tool called IGV. Guide your instructor on how to solve the challenge exercise below.</p>
+</section>
+<section id="visualising-alignments" class="level2">
+<h2 class="anchored" data-anchor-id="visualising-alignments"><strong>1.4.2 Visualising alignments</strong></h2>
+<p>You can visualise alignments with tools like the Integrative Genomics Viewer (IGV). Visualising alignments around genomic regions of interest can be a reliable way to identify potential problems like contamination, biases, or technical artefacts. Let’s take a quick look at how alignments work, using the IGV output below. IGV has <a href="https://igv.org/doc/desktop/#UserGuide/tracks/alignments/rna_seq/">helpful documentation</a> regarding the visualisation of RNAseq alignments.</p>
+<p><img src="../Figs/1.4_IGV-explainer.png" class="img-fluid"></p>
+<p>➤ Take a look at the IGV image below. We have zoomed in to the first three exon in our gene of interest, <em>Gtf2ird1</em>. Looking at the read depth track, we can see the vast majority of our reads have aligned to exons (purple), but there are some tiny bumps between exons. This may be an indication of some DNA contamination or misalignment of reads in our samples. Nothing to be concerned about though.</p>
+<p><img src="../Figs/1.4_chr5_134409807-134424415_IGV.png" class="img-fluid"></p>
+<p>➤ Take a look at the IGV image below. It covers one exon of our gene of interest, <em>Gtf2ird1</em>. If you compare it to the annotated screenshots above, you can see we have zoomed into the region spanning just the first exon (chr5:134417034-134417200) in the mm10 assembly. We can see both the read depth and alignment tracks much clearer. Note that reads only span the exons, they do not continue into the introns. Ths is because the STAR aligner is splice-aware. This means it recognises and aligns reads across splicing junctions, allowing us to capture exon-exon junctions.</p>
+<p><img src="../Figs/1.4_chr5_134417034-134417200_IGV.png" class="img-fluid"></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -342,9 +364,8 @@ Genetics 101 refresher: mRNA splicing
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Oh no! We have forgotten to label the conditional groupings of our samples and we don’t know which samples belong to the wildtype and knockout groups!</p>
-<p>Can we use the alignment files to assign samples to their correct treatment group?</p>
-<p>Hint: From the case study, we know a loss of function mutation of <em>Gtf2ird1</em> was generated by an insertion of a Myc transgene, resulting in a 40 kb deletion surrounding exon 1.</p>
+<p>We forgot to label the conditional groupings of our samples and we don’t know which samples belong to the wildtype and knockout groups! Can you use the alignment files above to assign samples to their correct treatment group?</p>
+<p>Hint: From the case study, we know a loss of function mutation of <em>Gtf2ird1</em> was generated by an insertion of a Myc transgene, resulting in a 40 kb deletion surrounding an exon.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
@@ -369,20 +390,20 @@ Solution
 </div>
 </section>
 <section id="read-quantification" class="level2">
-<h2 class="anchored" data-anchor-id="read-quantification"><strong>1.4.2 Read quantification</strong></h2>
+<h2 class="anchored" data-anchor-id="read-quantification"><strong>1.4.3 Read quantification</strong></h2>
 <p>Following read alignment, the nf-core/rnaseq pipeline uses the bam files to calculate raw gene-count data for each sample. We can then use these count files (called a gene-count matrix), to identify differentially expressed genes. By default, the nf-core/rnaseq pipeline runs Salmon for transcript quantification, following alignment by STAR.</p>
 <p>Salmon is another popular RNAseq tool, it can take a set of target transcripts to perform quantification. The primary output of Salmon is the quantification results, and these results are provided in different formats and levels of aggregation.</p>
 <p>➤ Take a look at the Salmon outputs for a single sample, SRR3473984:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lah</span> /home/training/WBS-mouse-results/star_salmon/SRR3473984</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">total</span> 248K</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span>  5 training training 4.0K Sep 29 03:46 .</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 17 training training 4.0K Sep 29 03:55 ..</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span>  2 training training 4.0K Sep 29 03:46 aux_info</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span>  1 training training  265 Sep 29 03:46 cmd_info.json</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span>  2 training training 4.0K Sep 29 03:46 libParams</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span>  2 training training 4.0K Sep 29 03:46 logs</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span>  1 training training  49K Sep 29 03:46 quant.genes.sf</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span>  1 training training 172K Sep 29 03:46 quant.sf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lah</span> /home/training/WBS-mouse-results/star_salmon/SRR3473984</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">total</span> 248K</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span>  5 training training 4.0K Sep 29 03:46 .</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 17 training training 4.0K Sep 29 03:55 ..</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span>  2 training training 4.0K Sep 29 03:46 aux_info</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span>  1 training training  265 Sep 29 03:46 cmd_info.json</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span>  2 training training 4.0K Sep 29 03:46 libParams</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span>  2 training training 4.0K Sep 29 03:46 logs</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span>  1 training training  49K Sep 29 03:46 quant.genes.sf</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span>  1 training training 172K Sep 29 03:46 quant.sf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note the <code>quant.sf</code> and <code>quant.genes.sf</code> files. <code>quant.sf</code> provides quantification at the <strong>transcript</strong> level. That is, each row in this file corresponds to a specific transcript, and the reported quantities are the estimated abundances of these transcripts.</p>
 <p><code>quant.genes.sf</code> provides quantification at the <strong>gene</strong> level. That is, the abundances of individual transcripts are aggregated to their respective genes, and each row corresponds to a gene. This aggregation is useful for downstream analyses that require gene-level, rather than transcript-level, quantifications.</p>
 <p>Merged, multi-sample count matrix files (tab separated values or TSV format) for both gene and transcript level counts are also produced by the workflow.</p>

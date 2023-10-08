@@ -2,74 +2,74 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/index.html</loc>
-    <lastmod>2023-10-06T05:09:10.048Z</lastmod>
+    <lastmod>2023-10-08T06:34:24.250Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/schedule.html</loc>
-    <lastmod>2023-10-06T05:09:09.224Z</lastmod>
+    <lastmod>2023-10-08T06:34:23.482Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/2.2_exploratory.html</loc>
-    <lastmod>2023-10-06T05:09:08.087Z</lastmod>
+    <lastmod>2023-10-08T06:34:22.358Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/2.4_enrichment.html</loc>
-    <lastmod>2023-10-06T05:09:06.539Z</lastmod>
+    <lastmod>2023-10-08T06:34:20.778Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/2.0_recap_day1.html</loc>
-    <lastmod>2023-10-06T05:09:04.367Z</lastmod>
+    <lastmod>2023-10-08T06:34:18.758Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/2.5_wrapup.html</loc>
-    <lastmod>2023-10-06T05:09:03.359Z</lastmod>
+    <lastmod>2023-10-08T06:34:17.446Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/1.6_wrapup.html</loc>
-    <lastmod>2023-10-06T05:09:02.095Z</lastmod>
+    <lastmod>2023-10-08T06:34:16.194Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/1.0_casestudy.html</loc>
-    <lastmod>2023-10-06T05:09:00.915Z</lastmod>
+    <lastmod>2023-10-08T06:34:15.022Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/1.1_rnaseq-experiment.html</loc>
-    <lastmod>2023-10-06T05:08:59.875Z</lastmod>
+    <lastmod>2023-10-08T06:34:14.006Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/2.6_workshop_summary.html</loc>
-    <lastmod>2023-10-06T05:08:59.027Z</lastmod>
+    <lastmod>2023-10-08T06:34:13.182Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/1.5_outputs.html</loc>
-    <lastmod>2023-10-06T05:09:00.399Z</lastmod>
+    <lastmod>2023-10-08T06:34:14.526Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/1.2_nfcore-qc.html</loc>
-    <lastmod>2023-10-06T05:09:01.763Z</lastmod>
+    <lastmod>2023-10-08T06:34:15.818Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/2.1_rstudio-downstream.html</loc>
-    <lastmod>2023-10-06T05:09:02.971Z</lastmod>
+    <lastmod>2023-10-08T06:34:17.058Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/1.3_nfcore-run.html</loc>
-    <lastmod>2023-10-06T05:09:04.003Z</lastmod>
+    <lastmod>2023-10-08T06:34:18.122Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/2.3_differentialex.html</loc>
-    <lastmod>2023-10-06T05:09:05.611Z</lastmod>
+    <lastmod>2023-10-08T06:34:19.946Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/notebooks/1.4_alignquant.html</loc>
-    <lastmod>2023-10-06T05:09:07.183Z</lastmod>
+    <lastmod>2023-10-08T06:34:21.478Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/setup.html</loc>
-    <lastmod>2023-10-06T05:09:08.740Z</lastmod>
+    <lastmod>2023-10-08T06:34:23.002Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Sydney-Informatics-Hub/rnaseq-workshop-2023/tipstricks.html</loc>
-    <lastmod>2023-10-06T05:09:09.616Z</lastmod>
+    <lastmod>2023-10-08T06:34:23.834Z</lastmod>
   </url>
 </urlset>
