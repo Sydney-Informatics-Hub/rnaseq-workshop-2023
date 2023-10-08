@@ -203,6 +203,13 @@
     "text": "Key takeaways\n\nRaw data quality control is an essential step, it allows you to identify any potential issues that may interfere with analyses.\nThe nf-core/rnaseq pipeline follows community best practices and offers a reproducible, portable, and user friendly method for pre-processing your RNAseq data.\nFastQC is a useful tool for fastq quality inspection, however it was not built for RNAseq data so your RNAseq data will always fail some of their tests.\nRead trimming is not always necessary. Your choice to trim reads will depend on their quality, presence of adapter sequences, and read alignment tool of choice. Over-trimming or unnecessary trimming can sometimes remove valuable sequence information, so it’s essential to strike a balance.\nRNAseq read alignment is splice-aware, meaning that it’s designed to identify and handle reads that span exon-exon junctions. This capability ensures that such reads are accurately mapped, providing a true representation of the transcriptome.\nRead quantification to create a count matrix for your samples is required for differential expression analysis. Proper quantification will ensure that RNA abundance is accurately represented.\nDifferent alignment and quantification tools and methods suit different applications. These tools will have different underlying models and assumptions that will be reflected in their outputs."
   },
   {
+    "objectID": "notebooks/1.6_wrapup.html#useful-resources",
+    "href": "notebooks/1.6_wrapup.html#useful-resources",
+    "title": "Day 1 wrap up",
+    "section": "Useful resources",
+    "text": "Useful resources\n\nnf-core/rnaseq user guide\nFastQC RNAseq example report\nIGV for RNAseq\nRNA-seqlopedia"
+  },
+  {
     "objectID": "notebooks/1.0_casestudy.html",
     "href": "notebooks/1.0_casestudy.html",
     "title": "Intro to the case study",
