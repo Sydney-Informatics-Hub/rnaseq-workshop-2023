@@ -18,3 +18,10 @@ In this session, we performed the necessary data pre-processing steps required f
 * RNAseq read alignment is splice-aware, meaning that it's designed to identify and handle reads that span exon-exon junctions. This capability ensures that such reads are accurately mapped, providing a true representation of the transcriptome.
 * Read quantification to create a count matrix for your samples is required for differential expression analysis. Proper quantification will ensure that RNA abundance is accurately represented. 
 * Different alignment and quantification tools and methods suit different applications. These tools will have different underlying models and assumptions that will be reflected in their outputs. 
+
+## **Useful resources**
+
+* [nf-core/rnaseq user guide](https://nf-co.re/rnaseq/3.12.0)
+* [FastQC RNAseq example report](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/RNA-Seq_fastqc.html)
+* [IGV for RNAseq](https://igv.org/doc/desktop/#UserGuide/tracks/alignments/rna_seq/)
+* [RNA-seqlopedia](https://rnaseq.uoregon.edu/)
