@@ -62,7 +62,7 @@ Nextflow has some inbuilt reporting features that are used by the nf-core/rnaseq
 &#x27A4; nf-core pipelines generate pipeline summary reports by default. View all the outputs in the `pipeline_info` directory: 
 
 ```bash
-ls -lh 
+ls -lh pipeline_info
 ```
 ```bash
 total 3716
