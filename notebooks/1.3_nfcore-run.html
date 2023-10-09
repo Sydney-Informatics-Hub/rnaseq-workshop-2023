@@ -298,7 +298,7 @@ Nextflow resume function explained
 </div>
 <div class="callout-body-container callout-body">
 <p>One of Nextflow’s key features is the ability to resume a workflow from the point of failure, rather than starting over from scratch. When running any Nextflow workflow, you can use the <code>-resume</code> flag to use this feature.</p>
-<p>The reason it can do this is because Nextflow uses a caching system to track the results of each task or process in a workflow. This cache will include both the input files and output files created. If your workflow execution is interrupted for any reason, some tasks may have completed while others have not. Using <code>-resume</code> tells Nextflow to check the cache to see which tasks have already finishe. Notice the appearance of a <code>work</code> directory when you run your Nextflow pipelines. For tasks that were not completed or quit with an error, it will attempt to rerun them.</p>
+<p>Nextflow uses a caching system to track the results of each task in a workflow. This cache will include both the input files and output files created for each task. If your workflow execution is interrupted for any reason, some tasks may have completed while others have not. Using <a href="https://training.nextflow.io/basic_training/cache_and_resume/#how-resume-works"><code>-resume</code></a> tells Nextflow to check the cache to see which tasks have already finishe. Notice the appearance of a <code>work</code> directory when you run your Nextflow pipelines. For tasks that were not completed or quit with an error, it will attempt to rerun them.</p>
 </div>
 </div>
 <p>➤ In your terminal, check where you are by running:</p>
@@ -308,9 +308,9 @@ Nextflow resume function explained
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/training/Day_1 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We are going to adjust our run command slightly from last time, note:</p>
 <ul>
-<li>The <code>-resume</code> flag at the end of the command</li>
-<li>We will output our results in a different directory (<code>--outdir</code>)</li>
-<li>We have added an extra flag to skip duplicate marking (<code>--skip_markduplicates</code>)</li>
+<li>The <a href="https://training.nextflow.io/basic_training/cache_and_resume/#how-resume-works"><code>-resume</code> flag</a> at the end of the command</li>
+<li>We will output our results in a different directory (<a href="(https://nf-co.re/rnaseq/3.12.0/parameters#outdir)"><code>--outdir</code></a>)</li>
+<li>We have added an extra flag to skip duplicate marking (<a href="(https://nf-co.re/rnaseq/3.12.0/parameters#skip_markduplicates)"><code>--skip_markduplicates</code></a>)</li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -356,13 +356,14 @@ A note on reference genome indexing
 </section>
 <section id="customise-the-run-command" class="level2">
 <h2 class="anchored" data-anchor-id="customise-the-run-command"><strong>1.3.2 Customise the run command</strong></h2>
-<p>The nf-core/rnaseq pipeline can be run using a single command with default parameters. The default parameters include:</p>
+<p>The nf-core/rnaseq pipeline can be run using a single command with default parameters. The required parameters outlines a few basic requirements:</p>
 <ul>
 <li>An input sample sheet (<code>--input</code>)</li>
 <li>A reference genome, either one available through Illumina’s iGenomes database (<code>--genome</code>), or a user-specified reference assembly (<code>--fasta</code>) and annotation file (<code>--gtf</code>)</li>
 <li>A configuration profile suitable for the computing environment you’re working on (<code>-profile</code>).</li>
 </ul>
-<p>For example, a user working with human samples, who has Singularity installed and all fastq files stored in a directory would be able to run this command to run the nf-core/rnaseq pipeline:</p>
+<p><img src="../Figs/1.3_default-command.png" class="img-fluid"></p>
+<p>Compared with the run command we executed, a user working with human samples, who has Singularity installed and all fastq files stored in a directory would be able to run this command to run the nf-core/rnaseq pipeline:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run nf-core/rnaseq <span class="dt">\ </span>  </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">--input</span> samplesheet.csv <span class="dt">\ </span> <span class="co"># Samples and their fqs</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">--genome</span> GRCh38 <span class="dt">\ </span>         <span class="co"># Illumina iGenomes database</span></span>
@@ -381,12 +382,12 @@ Hints for running nf-core on your infrastructure
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Nextflow allows us to set our configuration needs within a custom configuration file and apply it to our execution command using the <code>-c</code> flag.</p>
-<p>If you’re lucky, someone may have already built and shared a configuration file specifically for your infrastructure, like <a href="https://nf-co.re/configs/pawsey_nimbus">this config we built for Pawsey’s Nimbus instances</a>. These pre-built, infrastructure specific configs are called Institutional configs and they can be applied to all nf-core pipelines.</p>
+<p>Someone may have already built and shared a configuration file specifically for your infrastructure, like <a href="https://nf-co.re/configs/pawsey_nimbus">this config we built for Pawsey’s Nimbus instances</a>. These pre-built, infrastructure specific configs are called Institutional configs and they can be downloaded with the pipeline code base and applied to all nf-core pipelines.</p>
 <p>Institutional configs help us create efficient workflows that can be shared with others to reproducibly run the workflow in the same computational environment.</p>
 </div>
 </div>
 </div>
-<p>Once the pipeline has successfully completed, you will again see a message printed to your terminal:</p>
+<p>Once the pipeline has successfully completed, you will again see a message printed to your terminal that outlines how long it took your pipeline to run, how many tasks were executed, and how many of those tasks were cached:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">-[nf-core/rnaseq]</span> Pipeline completed successfully <span class="at">-</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Completed</span> at: 29-Sep-2023 03:55:58</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Duration</span>    : 15m 12s</span>
@@ -394,7 +395,7 @@ Hints for running nf-core on your infrastructure
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Succeeded</span>   : 153</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Cached</span>      : 17</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>➤ We will explore the outputs in depth in the next lessons. For now, list out the contents of your output directory:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lah</span> WBS-mouse-results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> WBS-mouse-results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">total</span> 28K</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span>  7 training training 4.0K Sep 29 03:55 .</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span>  9 training training 4.0K Sep 29 03:40 ..</span>
