@@ -25,3 +25,4 @@ In this session, we performed the necessary data pre-processing steps required f
 * [FastQC RNAseq example report](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/RNA-Seq_fastqc.html)
 * [IGV for RNAseq](https://igv.org/doc/desktop/#UserGuide/tracks/alignments/rna_seq/)
 * [RNA-seqlopedia](https://rnaseq.uoregon.edu/)
+* [Customising nf-core workshop materials](https://sydney-informatics-hub.github.io/customising-nfcore-workshop/)

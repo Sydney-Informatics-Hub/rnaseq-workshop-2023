@@ -28,7 +28,7 @@ A nice feature of Nextflow and nf-core pipelines is the ability to resume an inc
 
 One of Nextflow's key features is the ability to resume a workflow from the point of failure, rather than starting over from scratch. When running any Nextflow workflow, you can use the `-resume` flag to use this feature. 
 
-The reason it can do this is because Nextflow uses a caching system to track the results of each task or process in a workflow. This cache will include both the input files and output files created. If your workflow execution is interrupted for any reason, some tasks may have completed while others have not. Using `-resume` tells Nextflow to check the cache to see which tasks have already finishe. Notice the appearance of a `work` directory when you run your Nextflow pipelines. For tasks that were not completed or quit with an error, it will attempt to rerun them. 
+Nextflow uses a caching system to track the results of each task in a workflow. This cache will include both the input files and output files created for each task. If your workflow execution is interrupted for any reason, some tasks may have completed while others have not. Using [`-resume`](https://training.nextflow.io/basic_training/cache_and_resume/#how-resume-works) tells Nextflow to check the cache to see which tasks have already finishe. Notice the appearance of a `work` directory when you run your Nextflow pipelines. For tasks that were not completed or quit with an error, it will attempt to rerun them. 
 :::
 
 &#x27A4; In your terminal, check where you are by running: 
@@ -48,9 +48,9 @@ cd /home/training/Day_1
 
 We are going to adjust our run command slightly from last time, note:
 
-* The `-resume` flag at the end of the command 
-* We will output our results in a different directory (`--outdir`)
-* We have added an extra flag to skip duplicate marking (`--skip_markduplicates`)
+* The [`-resume` flag](https://training.nextflow.io/basic_training/cache_and_resume/#how-resume-works) at the end of the command 
+* We will output our results in a different directory ([`--outdir`]((https://nf-co.re/rnaseq/3.12.0/parameters#outdir)))
+* We have added an extra flag to skip duplicate marking ([`--skip_markduplicates`]((https://nf-co.re/rnaseq/3.12.0/parameters#skip_markduplicates)))
 
 ::: callout-note
 
@@ -90,13 +90,15 @@ The progress of the workflow will be displayed in the terminal and updated in re
 
 ## **1.3.2 Customise the run command**
 
-The nf-core/rnaseq pipeline can be run using a single command with default parameters. The default parameters include:
+The nf-core/rnaseq pipeline can be run using a single command with default parameters. The required parameters outlines a few basic requirements:
 
 * An input sample sheet (`--input`) 
 * A reference genome, either one available through Illumina’s iGenomes database (`--genome`), or a user-specified reference assembly (`--fasta`) and annotation file (`--gtf`)
 * A configuration profile suitable for the computing environment you’re working on (`-profile`).
 
-For example, a user working with human samples, who has Singularity installed and all fastq files stored in a directory would be able to run this command to run the nf-core/rnaseq pipeline:
+![](../Figs/1.3_default-command.png)
+
+Compared with the run command we executed, a user working with human samples, who has Singularity installed and all fastq files stored in a directory would be able to run this command to run the nf-core/rnaseq pipeline:
 
 ```bash
 nextflow run nf-core/rnaseq \   
@@ -113,13 +115,12 @@ Most of us will need to customise the command a little more than this though, de
 
 Nextflow allows us to set our configuration needs within a custom configuration file and apply it to our execution command using the `-c` flag. 
 
-If you're lucky, someone may have already built and shared a configuration file specifically for your infrastructure, like [this config we built for Pawsey's Nimbus instances](https://nf-co.re/configs/pawsey_nimbus). These pre-built, infrastructure specific configs are called Institutional configs and they can be applied to all nf-core pipelines.  
+Someone may have already built and shared a configuration file specifically for your infrastructure, like [this config we built for Pawsey's Nimbus instances](https://nf-co.re/configs/pawsey_nimbus). These pre-built, infrastructure specific configs are called Institutional configs and they can be downloaded with the pipeline code base and applied to all nf-core pipelines.  
 
 Institutional configs help us create efficient workflows that can be shared with others to reproducibly run the workflow in the same computational environment. 
 ::: 
 
-
-Once the pipeline has successfully completed, you will again see a message printed to your terminal:
+Once the pipeline has successfully completed, you will again see a message printed to your terminal that outlines how long it took your pipeline to run, how many tasks were executed, and how many of those tasks were cached:
 
 ```bash
 -[nf-core/rnaseq] Pipeline completed successfully -
@@ -133,7 +134,7 @@ Cached      : 17
 &#x27A4; We will explore the outputs in depth in the next lessons. For now, list out the contents of your output directory: 
 
 ```bash
-ls -lah WBS-mouse-results
+ls -lh WBS-mouse-results
 ```
 ```bash
 total 28K
@@ -145,7 +146,6 @@ drwxrwxr-x  2 training training 4.0K Sep 29 03:55 pipeline_info
 drwxrwxr-x 17 training training 4.0K Sep 29 03:55 star_salmon
 drwxrwxr-x  3 training training 4.0K Sep 29 03:41 trimgalore
 ```
-
 
 ::: callout-important
 ### Key takeaways{.unlisted}

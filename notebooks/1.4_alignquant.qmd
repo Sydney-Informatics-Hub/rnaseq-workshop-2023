@@ -46,7 +46,7 @@ Aligned sequences for each sample are output in the [bam file format](https://en
 The nf-core/rnaseq pipeline has been written in a way where all the files generated from the alignment step onwards (except the summary report) are saved to the same directory as specified by `--aligner`. In our case, you will find the output alignment files in `star_salmon`:
 
 ```bash
-ls -lah WBS-mouse-results/star_salmon/*.bam*
+ls -lh WBS-mouse-results/star_salmon/*.bam*
 ```
 ```bash
 -rw-rw-r-- 1 ubuntu ubuntu 3.7M Sep 29 03:45 SRR3473984.sorted.bam
@@ -123,7 +123,7 @@ Salmon is another popular RNAseq tool, it can take a set of target transcripts t
 &#x27A4; Take a look at the Salmon outputs for a single sample, SRR3473984: 
 
 ```bash
-ls -lah /home/training/WBS-mouse-results/star_salmon/SRR3473984
+ls -lh /home/training/WBS-mouse-results/star_salmon/SRR3473984
 ```
 ```bash
 total 248K

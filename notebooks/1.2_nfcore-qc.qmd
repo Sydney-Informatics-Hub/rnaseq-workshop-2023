@@ -95,7 +95,7 @@ Succeeded   : 19
 &#x27A4; Take a look at the output that is produced by your qc run: 
 
 ```bash
-ls -lah /data/Day_1/WBS-mouse-QC
+ls -lh /data/Day_1/WBS-mouse-QC
 ```
 ```bash
 total 24K

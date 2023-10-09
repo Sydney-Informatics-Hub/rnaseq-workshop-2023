@@ -135,7 +135,7 @@ cd ~
 From your home directory, run the following command: 
 
 ```bash
-ls -lah
+ls -lh
 ```
 
 ```bash
@@ -149,7 +149,7 @@ drwxrwxr-x 3 training training 4.0K Sep 29 03:15 Day_2
 All the files necessary to run today's exercises have already been prepared for you and saved to the `Data` directory. Take a look at its contents by running: 
 
 ```bash
-ls -lah Data
+ls -lh Data
 ```
 
 It contains the following:  
@@ -174,7 +174,7 @@ You will do all your work from here today.
 &#x27A4; Next, take a look at the contents of the `Day_1` directory: 
 
 ```bash
-ls -lah 
+ls -lh 
 ```
 ```bash
 drwxrwxr-x 5 training training 4.0K Sep 29 03:15 .
