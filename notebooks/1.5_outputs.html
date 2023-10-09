@@ -350,7 +350,7 @@ Solution
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span> 1 training training    1478 Sep 29 03:55 software_versions.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="execution-report" class="level3 unlisted">
 <h3 class="unlisted anchored" data-anchor-id="execution-report"><strong>Execution report</strong></h3>
-<p>Nextflow execution reports are broken down into:</p>
+<p>Nextflow <a href="https://www.nextflow.io/docs/latest/tracing.html#execution-report">execution reports</a> are broken down into:</p>
 <ol type="1">
 <li>Summary: execution status, run command, execution time, other workflow metadata.</li>
 <li>Resources: plots of disturbution of CPU, RAM usage for each workflow process.</li>
@@ -361,7 +361,7 @@ Solution
 </section>
 <section id="execution-timeline" class="level3 unlisted">
 <h3 class="unlisted anchored" data-anchor-id="execution-timeline"><strong>Execution timeline</strong></h3>
-<p>Nextflow execution timeline files contain bar plots for each process, how long they took to run and the maximum amount of memory consumed. If we look at the STAR task runtimes for each sample in the plot below, we can confirm that the time taken to align reads for each sample ranged from 35 seconds to over a minute. These tasks all also consumed significantly more RAM, than all other processes.</p>
+<p>Nextflow <a href="https://www.nextflow.io/docs/latest/tracing.html#timeline-report">execution timeline</a> files contain bar plots for each process, how long they took to run and the maximum amount of memory consumed. If we look at the STAR task runtimes for each sample in the plot below, we can confirm that the time taken to align reads for each sample ranged from 35 seconds to over a minute. These tasks all also consumed significantly more RAM, than all other processes.</p>
 <p><img src="../Figs/1.5_execution-timeline.png" class="img-fluid"></p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
