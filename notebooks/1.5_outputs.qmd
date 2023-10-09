@@ -76,7 +76,7 @@ total 3716
 
 ### **Execution report**{.unlisted}
 
-Nextflow execution reports are broken down into:
+Nextflow [execution reports](https://www.nextflow.io/docs/latest/tracing.html#execution-report) are broken down into:
 
 1. Summary: execution status, run command, execution time, other workflow metadata.
 2. Resources: plots of disturbution of CPU, RAM usage for each workflow process.
@@ -88,7 +88,7 @@ As an example, looking at the job duration plot below, it appears STAR was the l
 
 ### **Execution timeline**{.unlisted}
 
-Nextflow execution timeline files contain bar plots for each process, how long they took to run and the maximum amount of memory consumed. If we look at the STAR task runtimes for each sample in the plot below, we can confirm that the time taken to align reads for each sample ranged from 35 seconds to over a minute. These tasks all also consumed significantly more RAM, than all other processes.  
+Nextflow [execution timeline](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) files contain bar plots for each process, how long they took to run and the maximum amount of memory consumed. If we look at the STAR task runtimes for each sample in the plot below, we can confirm that the time taken to align reads for each sample ranged from 35 seconds to over a minute. These tasks all also consumed significantly more RAM, than all other processes.  
 
 ![](../Figs/1.5_execution-timeline.png)
 
