@@ -37,7 +37,7 @@ Functional enrichment analysis revealed enrichment of multiple Gene Ontology (GO
 The most significantly enriched GO terms captured high-level biological functions that were not directly related to our phenotypes of interest. To make sense of these results, we need to examine the biological assumptions of our experiment. We identified a number of relevant GO terms relevant to this case study: 
 
 1. Craniofacial development and distinctive facial features​ in WBS patients
-    * GO:GO:0016055 Wnt signaling pathway (involved in cytoskeletal dynamics, cell adhesion, differentiation of skin epithelial cells and the development of hair follicles).  
+    * GO:0016055 Wnt signaling pathway (involved in cytoskeletal dynamics, cell adhesion, differentiation of skin epithelial cells and the development of hair follicles).  
     * GO:0043588 skin development. 
     * GO:0008544 epidermis development. 
 

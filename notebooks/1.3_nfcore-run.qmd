@@ -52,6 +52,8 @@ We are going to adjust our run command slightly from last time, note:
 * We will output our results in a different directory ([`--outdir`]((https://nf-co.re/rnaseq/3.12.0/parameters#outdir)))
 * We have added an extra flag to skip duplicate marking ([`--skip_markduplicates`]((https://nf-co.re/rnaseq/3.12.0/parameters#skip_markduplicates)))
 
+Note that we have not specified a read alignment or quantification tool. We will be running the default setting which runs [STAR]() to map the raw fastq reads to the reference genome and perform the read quantification using the alignment files with Salmon. You can specify which [alignment method](https://nf-co.re/rnaseq/3.12.0/docs/usage#alignment-options) you'd like to use with `--aligner`. 
+
 ::: callout-note
 
 ### A note on duplicate marking in RNAseq data{.unlisted}

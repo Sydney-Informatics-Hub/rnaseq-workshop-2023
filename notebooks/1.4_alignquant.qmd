@@ -24,9 +24,9 @@ The output we will be examining in this lesson is output by the second stage of 
 
 ![](../Figs/1.4_nfcore-rnaseq-align-quant.png)
 
-After read trimming, the nf-core/rnaseq pipeline maps reads to a reference genome specified by the user. Keep in mind that RNAseq specific alignment tools are different from whole genome alignment tools. They are designed to be ‘splice aware’, meaning they are capable of differentiating intronic from exonic regions in the alignment process.
+After read trimming, the nf-core/rnaseq pipeline maps reads to a reference genome specified by the user using STAR. Keep in mind that RNAseq specific alignment tools are different from whole genome alignment tools. They are designed to be ‘splice aware’, meaning they are capable of differentiating intronic from exonic regions in the alignment process.
 
-Bulk RNA-seq reads are derived from mature mRNA and contain only exons (and no introns). This means a sequence read can span 2 exons. Splice-aware aligners use a reference genome, not a transcriptome to perform read alignment, which contain intergenic, intronic and exonic sequences. This means that when they’re aligned to the reference genome, RNA-seq reads might span large introns. Splice aware aligners know not to align the RNA-seq reads to introns and can align a read across exons.
+Bulk RNA-seq reads are derived from mature mRNA and contain only exons (and no introns). This means a sequence read can span 2 exons. Splice-aware aligners use a reference genome, not a transcriptome to perform read alignment, which contain intergenic, intronic and exonic sequences. This means that when they’re aligned to the reference genome, RNA-seq reads might span large introns. Splice aware aligners, like STAR know not to align the RNA-seq reads to introns and can align a read across exons.
 
 ::: callout-note
 
@@ -35,7 +35,7 @@ Bulk RNA-seq reads are derived from mature mRNA and contain only exons (and no i
 mRNA splicing is the process by which an mRNA transcript prepares to be translated into an amino acid sequence. It works by removing introns and splicing all exons back together to create a mature mRNA that is transported from the nucleus to the cytoplasm, ready to undergo translation.
 :::
 
-The nf-core/rnaseq pipeline offers us various alignment and quantification routes:
+The nf-core/rnaseq pipeline offers us various [alignment and quantification routes](https://nf-co.re/rnaseq/3.12.0/docs/usage#alignment-options):
 
 * STAR – Salmon
 * STAR – RSEM
@@ -116,9 +116,9 @@ Hint: From the case study, we know a loss of function mutation of *Gtf2ird1* was
 
 ## **1.4.3 Read quantification**
 
-Following read alignment, the nf-core/rnaseq pipeline uses the bam files to calculate raw gene-count data for each sample. We can then use these count files (called a gene-count matrix), to identify differentially expressed genes. By default, the nf-core/rnaseq pipeline runs Salmon for transcript quantification, following alignment by STAR.
+Following read alignment, the nf-core/rnaseq pipeline uses the bam files to calculate raw gene-count data for each sample. We can then use these count files (called a gene-count matrix), to identify differentially expressed genes. By default, the nf-core/rnaseq pipeline runs Salmon for transcript quantification, but users have other [quantification options](https://nf-co.re/rnaseq/3.12.0/docs/usage#quantification-options).
 
-Salmon is another popular RNAseq tool, it can take a set of target transcripts to perform quantification. The primary output of Salmon is the quantification results, and these results are provided in different formats and levels of aggregation.
+[Salmon](https://salmon.readthedocs.io/en/latest/index.html) is another popular RNAseq tool, it can take a set of target transcripts to perform quantification. The primary output of Salmon is the [quantification results](https://salmon.readthedocs.io/en/latest/file_formats.html#quantification-file), and these results are provided in different formats and levels of aggregation.
 
 &#x27A4; Take a look at the Salmon outputs for a single sample, SRR3473984: 
 
@@ -143,13 +143,21 @@ Note the `quant.sf` and `quant.genes.sf` files. `quant.sf` provides quantificati
 
 Merged, multi-sample count matrix files (tab separated values or TSV format) for both gene and transcript level counts are also produced by the workflow. 
 
-These raw counts are not a simple count of depth of reads, there is a lot more to consider and each tool does this slightly differently (e.g. how do you count reads spanning overlapping exons across two different genes?). See the [Salmon documentation](https://salmon.readthedocs.io/en/latest/file_formats.html) for how Salmon does it - this count is an estimation.
+These raw counts are not a simple count of depth of reads, there is a lot more to consider and each tool does this slightly differently (e.g. how do you count reads spanning overlapping exons across two different genes?). See the [Salmon documentation](https://salmon.readthedocs.io/en/latest/file_formats.html) for an explanation of how Salmon does it - this count is an estimation.
 
 ### **When to use `quant.sf` vs `quant.genes.sf`**{.unlisted}
 
 If you are interested in differential transcript usage, alternative splicing, or transcript-level analyses, you would use the `quant.sf` file.
 
 If you are performing gene-level differential expression analysis, pathway analysis, or other analyses that operate on a gene-centric level, the `quant.genes.sf` would be more appropriate. 
+
+We'll be working with the `quant.genes.sf` file. It is a tab-separated file containing the read counts for genes. Columns in this file are: 
+
+* Gene name 
+* Gene length
+* Effective length after adjusting for biases
+* Transcripts per million
+* Estimated number of reads
 
 ::: callout-tip
 ### **Challenge exercise**{.unlisted}
