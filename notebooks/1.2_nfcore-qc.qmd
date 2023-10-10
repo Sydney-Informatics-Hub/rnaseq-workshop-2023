@@ -107,7 +107,19 @@ drwxrwxr-x  2 training training 4.0K Sep 29 09:38 pipeline_info
 drwxrwxr-x  3 training training 4.0K Sep 29 09:37 trimgalore
 ```
 
-We have 4 directories within our output directory. Using the File Explorer on VS code, open the `WBS-mouse-QC` directory and download the multiqc report `multiqc/multiqc_report.html` to your computer. This MultiQC report aggregates raw and trimmed data FastQC reports for each sample. Open this file in your web browser and answer the questions below.
+We have 4 directories within our output directory. Using the File Explorer on VS code, open the `WBS-mouse-QC` directory and download the multiqc report `multiqc/multiqc_report.html` to your computer. This MultiQC report aggregates raw and trimmed data FastQC reports for each sample. Open this file in your web browser using Live Server and answer the questions below.
+
+::: callout-note
+### **Opening HTML files with Live Server in VS Code**{.unlisted}
+
+1. Open your file explorer panel in VS Code 
+2. Open the WBS-mouse-QC directory 
+3. Open the multiqc directory 
+4. Right click on multiqc_report.html 
+5. Select open with live server
+
+If Live Server doesn’t work, right click on multiqc_report.html and select download.  
+:::
 
 ::: callout-tip
 ### **Reflection exercise**{.unlisted}
@@ -168,10 +180,10 @@ While the trimming adapter sequences has been shown to increase the quality of R
 
 When making the decision to trim your reads for differential expression RNAseq studies, we suggest following the recommendations of the read alignment tool you’ll be using. We will explore trimming outcomes. 
 
-&#x27A4; Open your Nimbus terminal again to do the challenge exercise below. Navigate to the results directory `~/Day1/WBS-mouse-QC` either on the command line or using your VS Code File Explorer and answer the following questions:
+&#x27A4; Open your Nimbus terminal again to do the challenge exercise below. Navigate to the results directory either on the command line or using your VS Code File Explorer and answer the following questions:
 
 ```bash
-cd ~/Day1/WBS-mouse-QC
+cd ~/Day-1/WBS-mouse-QC
 ```
 
 ::: callout-tip
