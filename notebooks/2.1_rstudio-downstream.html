@@ -300,7 +300,7 @@ Learning objectives
 <p>To run RStudio in a web browser, we first need to return to our Nimbus instances and run the RStudio server command. <a href="https://sydney-informatics-hub.github.io/rnaseq-workshop-2023/setup.html">Log into Nimbus</a>, same as you did for Day 1.</p>
 <p>Pawsey have created a ‘bio image’ specifically for Nimbus that caters to bioinformatics users who prefer to have their instances set up with popular bioinformatic tools. You can learn more about it <a href="https://support.pawsey.org.au/documentation/display/US/Nimbus+for+Bioinformatics">here</a>. We’ve been using this bio image for the workshop, as it has Nextflow and Singularity pre-installed for us <span class="emoji" data-emoji="blush">😊</span>.</p>
 <p>➤ On your Nimbus instance, create a rstudio-server folder on your instance:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mkdir ~/Day-2/rstudio-server</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mkdir -p /tmp/rstudio-server</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Set a password for your RStudio server:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>RSERVER_PASSWORD=$(openssl rand -base64 15)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>echo $RSERVER_PASSWORD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -315,11 +315,11 @@ Learning objectives
 </ul>
 <p>➤ To start the Rserver, run:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>PASSWORD=$RSERVER_PASSWORD singularity exec \</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>        -B ~/Day-2/rstudio-server:/var/lib/rstudio-server \</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        -B ~/Day-2/rstudio-server:/var/run/rstudio-server \</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        -B ~/Day-2:/home \</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        ~/Data/rstudio_4.1.0.sif \</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        rserver --auth-none=0 --auth-pam-helper-path=pam-helper --server-user ubuntu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    -B /tmp/rstudio-server:/var/lib/rstudio-server \</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    -B /tmp/rstudio-server:/var/run/rstudio-server \</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    -B /home/training:/home/training/R \</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    ~/Data/rstudio_4.1.0.sif \</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    rserver --auth-none=0 --auth-pam-helper-path=pam-helper --server-user training</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
