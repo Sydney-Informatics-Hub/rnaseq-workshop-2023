@@ -52,6 +52,11 @@ The most significantly enriched GO terms captured high-level biological function
 
 We were unable to reliably comment on phenotypic changes relating to cognitive traits observed in patients with WBS. There were some other potentially limiting factors in our case study's experimental design including: 
 
-* The choice of lip epidermal tissue: this tissue cannot reflect cognitive and neurological traits.  
-* The number of replicates To improve statistical power and overcome any problems due to outliers.       
-* Realistic interpretation of the results.    
+* The choice of tissue: The lip epidermal tissue cannot reflect cognitive and neurological traits and is thus is a big limitation.
+* The number of replicates: To improve statistical power and overcome any problems due to outliers, it is necessary to include more replicates per condition.           
+
+
+## 2.5.5 Useful resources
+* [R](https://www.r-project.org/about.html)
+* [RStudio](https://posit.co/download/rstudio-desktop/)
+* [GO enrichment analysis](https://geneontology.org/docs/go-enrichment-analysis/)
