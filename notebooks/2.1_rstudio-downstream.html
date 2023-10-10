@@ -304,13 +304,13 @@ Learning objectives
 <p>Set a password for your RStudio server:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>RSERVER_PASSWORD=$(openssl rand -base64 15)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>echo $RSERVER_PASSWORD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Please NOTE down this PASSWORD</strong> as you will need it after a few steps.</p>
+<p>Please NOTE down this <strong>PASSWORD</strong> as you will need when you log on to RStudio from a browser.</p>
 <p>Change into your working directory</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>cd ~/Day-2/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We’re then going to run a Singularity command to execute the prepared RStudio container containing all the libraries. This command looks a bit intimidating, but all you really need to know to get it working is:</p>
 <ul>
 <li>We’ve <strong>set a unique password</strong> (<code>PASSWORD</code>) that we’ll use to log into the RStudio server on our web browsers</li>
-<li>We are <strong>using Singularity to execute</strong> (<code>singularity exec</code>) the prepared RStudio container (<code>/cvmfs/containers.biocommons.aarnet.edu.au/r/n/rnaseq_rstudio.sif</code>)</li>
+<li>We are <strong>using Singularity to execute</strong> (<code>singularity exec</code>) the prepared RStudio container (<code>/cvmfs/data.biocommons.aarnet.edu.au/training_materials/SIH_training/IntroRNAseq_1023/rstudio_4.1.0.sif</code>)</li>
 <li><strong>Containers are closed environments</strong>, so we have to explicitly bind (<code>-B</code>) or expose directories that we want it to access on our machine.</li>
 </ul>
 <p>➤ To start the Rserver, run:</p>
