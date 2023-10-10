@@ -65,12 +65,12 @@ Given our data hasn't been tagged with UMIs, we won't be able to accurately remo
 
 ```bash
 nextflow run nf-core-rnaseq_3.12.0/3_12_0/main.nf \
-    --input samplesheet.csv \
+    --input ~/Data/samplesheet.csv \
     --outdir WBS-mouse-results \
-    --fasta /Data/mm10_reference/mm10_chr18.fa \
-    --gtf /Data/mm10_reference/mm10_chr18.gtf \
-    --star_index /Data/mm10_reference/STAR \
-    --salmon_index /Data/mm10_reference/salmon-index \
+    --fasta ~/Data/mm10_reference/mm10_chr18.fa \
+    --gtf ~/Data/mm10_reference/mm10_chr18.gtf \
+    --star_index ~/Data/mm10_reference/STAR \
+    --salmon_index ~/Data/mm10_reference/salmon-index \
     -profile singularity \
     --skip_markduplicates \
     --max_memory '6.GB' \
