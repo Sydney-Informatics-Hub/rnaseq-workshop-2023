@@ -284,26 +284,28 @@ Learning objectives
 <ul>
 <li>Understand and apply functional enrichment analysis in the context of RNAseq DE experiments.</li>
 <li>Define gene ontologies.</li>
+<li>Perform functional enrichment analysis on a set of differentially expressed genes.</li>
 </ul>
 </div>
 </div>
-<p>We now have a list of significant DE genes. To gain greater biological insights on the DE genes we can determine if there is enrichment of known biological functions, pathways or interactions.</p>
+<p>We now have a list of significant DE genes. To gain greater biological insights on the DE genes we can determine if there is enrichment of known biological functions, pathways or interactions. We are at the final stage of our RNA experimental workflow:</p>
+<p><img src="../Figs//2.4_rnaseq_workflow_enrich.png" class="img-fluid"></p>
 <p>There are different methods for identifying functional enrichments, e.g.:</p>
 <ul>
-<li><strong>Over representation analysis (ORA)</strong>: These methods typically categorize genes into groups based on shared function, involvement in a biological pathway, presence in a specific cellular location, or other categorizations, e.g.&nbsp;functional pathways, etc.</li>
-<li><strong>Functional class scoring (FCS)</strong> e.g.&nbsp;Gene set enrichment analysis (GSEA).</li>
-<li>Enrichment analysis can be done using some of the freely available web- and R-based tools. Today we will use a R-package “clusterprofiler” to perform Over representation analysis. You can read more about the GSEA method at https://www.gsea-msigdb.org/gsea/index.jsp</li>
+<li><strong>Over representation analysis (ORA)</strong>: These methods group genes based on shared function, involvement in a biological pathway, presence in a specific cellular location, or other categories like functional pathways.</li>
+<li><strong>Functional class scoring (FCS)</strong>: This method considers the full list of genes and their associated metrics, rather than just a pre-defined threshold for determining which genes are significant. It includes gene set enrichment analysis (GSEA).</li>
 </ul>
-<p>In this workshop, we will learn how to perform “Over representation analysis (ORA)” using gene ontology databases.</p>
+<p>Enrichment analysis can be done using some of the freely available web- and R-based tools. Today we will use a R-package <a href="https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html">clusterProfiler</a> to perform Over representation analysis. You can read more about the GSEA method <a href="https://www.gsea-msigdb.org/gsea/index.jsp">here</a></p>
+<p>In this lesson, we will perform over representation analysis (ORA) using gene ontology databases.</p>
 <section id="over-representation-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="over-representation-analysis"><strong>2.4.1 Over-representation analysis</strong></h2>
-<p>There are a range of functional enrichment tools that perform some type of “over-representation” analysis by querying databases containing information about gene function and interactions. These databases typically categorize genes into groups based on shared function, or involvement in a pathway, or presence in a specific cellular location, or other categorizations, e.g.&nbsp;functional pathways, etc. Essentially, known genes are binned into categories that have been consistently named based on how the gene has been annotated functionally. These categories are independent of any organism, however each organism has distinct categories available.</p>
+<p>There are many functional enrichment tools that perform over-representation analysis using curated databases that categorise genes into groups based on shared function, or involvement in a pathway, or presence in a specific cellular location. These categories are independent of any organism, however each organism has distinct categories available.</p>
 <p><img src="../Figs/2.4_overrepresentation_analysis.png" class="img-fluid"></p>
-<p>To determine whether any categories are over-represented, you can determine the probability of having the observed proportion of genes associated with a specific category in your gene list based on the proportion of genes associated with the same category in the background set (gene categorizations for the appropriate organism).</p>
+<p>To determine whether any categories are over-represented, you can determine the probability of having the observed proportion of genes associated with a specific category in your gene list based on the proportion of genes associated with the same category in the background gene set (gene category for the appropriate organism).</p>
 </section>
 <section id="gene-ontologies" class="level2">
 <h2 class="anchored" data-anchor-id="gene-ontologies"><strong>2.4.2 Gene Ontologies</strong></h2>
-<p>One of the most widely-used categorizations is Gene Ontology (GO) established by the Gene Ontology project. To describe the functional roles of genes and gene products, they are categorized into GO terms. GO terms are organized into three independent controlled vocabularies (ontologies) in a species-independent manner:</p>
+<p>One of the most widely-used categorisation databases is the <a href="https://geneontology.org/">Gene Ontology</a> (GO) resource. To describe the functional roles of genes and gene products, they are grouped into GO terms. GO terms are organised into three independent controlled vocabularies (ontologies) in a species-independent manner:</p>
 <ul>
 <li><strong>Biological process</strong>: Refers to the biological role involving the gene or gene product, and could include “transcription”, “signal transduction”, and “apoptosis”. A biological process generally involves a chemical or physical change of the starting material or input.</li>
 <li><strong>Molecular function</strong>: Represents the biochemical activity of the gene product, such activities could include “ligand”, “GTPase”, and “transporter”.</li>
@@ -313,7 +315,7 @@ Learning objectives
 </section>
 <section id="visualise-functional-profiles-of-genes" class="level2">
 <h2 class="anchored" data-anchor-id="visualise-functional-profiles-of-genes"><strong>2.4.3 Visualise functional profiles of genes</strong></h2>
-<p>The clusterProfiler R package implements methods to analyze and visualise functional profiles of genes. The clusterProfiler R-library supports functional characteristics of both coding and non-coding genomics data for thousands of species with up-to-date gene annotation. It provides a tidy interface to access, manipulate, and visualize enrichment results to help users achieve efficient data interpretation.</p>
+<p>The clusterProfiler R package implements methods to analyse and visualise functional profiles of genes. The clusterProfiler R-library supports functional characteristics of both coding and non-coding genomics data for thousands of species with up-to-date gene annotation. It provides a tidy interface to access, manipulate, and visualise enrichment results to help users achieve efficient data interpretation.</p>
 </section>
 <section id="prepare-de-genes-for-enrichment-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="prepare-de-genes-for-enrichment-analysis"><strong>2.4.4 Prepare DE genes for enrichment analysis</strong></h2>
@@ -355,7 +357,7 @@ Learning objectives
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">qvalueCutoff =</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="bar-plot-of-upregulated-enriched-go-terms" class="level3 unlisted">
 <h3 class="unlisted anchored" data-anchor-id="bar-plot-of-upregulated-enriched-go-terms"><strong>Bar plot of upregulated enriched GO terms</strong></h3>
-<p>The bar plot is a commonly used method to visualize enriched terms. It depicts the enrichment scores (e.g.&nbsp;p-adj values) and gene count or ratio as bar height and colour.</p>
+<p>The bar plot is a commonly used method to visualise enriched terms. It depicts the enrichment scores (e.g.&nbsp;p-adj values) and gene count or ratio as bar height and colour.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ego.up, </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">showCategory =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>

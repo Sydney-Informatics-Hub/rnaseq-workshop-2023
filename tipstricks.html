@@ -241,7 +241,10 @@ cookieconsent.run({
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link active" data-scroll-target="#troubleshooting">Troubleshooting</a>
+  <li><a href="#nf-corernaseq" id="toc-nf-corernaseq" class="nav-link active" data-scroll-target="#nf-corernaseq">nf-core/rnaseq</a></li>
+  <li><a href="#r-container-and-notebook" id="toc-r-container-and-notebook" class="nav-link" data-scroll-target="#r-container-and-notebook">R container and notebook</a></li>
+  <li><a href="#additional-training" id="toc-additional-training" class="nav-link" data-scroll-target="#additional-training">Additional training</a></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">Troubleshooting</a>
   <ul class="collapse">
   <li><a href="#error-when-trying-to-run-rserver-on-nimbus" id="toc-error-when-trying-to-run-rserver-on-nimbus" class="nav-link" data-scroll-target="#error-when-trying-to-run-rserver-on-nimbus">Error when trying to run rserver on Nimbus</a></li>
   <li><a href="#rstudio-not-loading-in-browser" id="toc-rstudio-not-loading-in-browser" class="nav-link" data-scroll-target="#rstudio-not-loading-in-browser">RStudio not loading in browser</a></li>
@@ -270,46 +273,73 @@ cookieconsent.run({
 
 </header>
 
+<section id="nf-corernaseq" class="level2">
+<h2 class="anchored" data-anchor-id="nf-corernaseq">nf-core/rnaseq</h2>
+<ul>
+<li><a href="https://nf-co.re/rnaseq/3.12.0">nf-core/rnaseq user guide</a></li>
+<li><a href="https://nf-co.re/tools">nf-core tools utility</a></li>
+<li><a href="https://nf-co.re/tools#downloading-pipelines-for-offline-use">nf-core download instructions</a></li>
+<li><a href="https://nf-co.re/configs">nf-core institutional configs</a></li>
+<li><a href="https://nf-co.re/join/slack/">nf-core Slack channel</a></li>
+</ul>
+</section>
+<section id="r-container-and-notebook" class="level2">
+<h2 class="anchored" data-anchor-id="r-container-and-notebook">R container and notebook</h2>
+<p>This workshop is designed to be portable and reproducible. We have provided the Rmd file and RStudio/4.0.1 container for you to use:</p>
+<ul>
+<li><a href="https://github.com/Sydney-Informatics-Hub/rna-differential-expression-Rnotebook">RNA differential expression notebook</a></li>
+<li><a href="https://github.com/Sydney-Informatics-Hub/Rstudio-rnaseq-contained">RStudio/4.0.1 for RNAseq container</a></li>
+</ul>
+</section>
+<section id="additional-training" class="level2">
+<h2 class="anchored" data-anchor-id="additional-training">Additional training</h2>
+<ul>
+<li><a href="https://nf-co.re/events/training">nf-core training calendar</a></li>
+<li><a href="https://nf-co.re/docs/usage/tutorials">nf-core tutorials</a></li>
+<li><a href="https://sydney-informatics-hub.github.io/customising-nfcore-workshop/">Customising nf-core workshop</a></li>
+<li><a href="https://linuxjourney.com/lesson/the-shell">Intro to the shell exercises</a></li>
+<li><a href="https://swcarpentry.github.io/r-novice-gapminder/index.html">R for reproducible science workshop</a></li>
+</ul>
+</section>
 <section id="troubleshooting" class="level2">
 <h2 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h2>
 <section id="error-when-trying-to-run-rserver-on-nimbus" class="level3">
 <h3 class="anchored" data-anchor-id="error-when-trying-to-run-rserver-on-nimbus">Error when trying to run rserver on Nimbus</h3>
 <p>When you run the command</p>
-<pre><code>mkdir -p /tmp/rstudio-server  
-
-PASSWORD='abc' singularity exec \  
-    -B /tmp/rstudio-server:/var/lib/rstudio-server \  
-    -B /tmp/rstudio-server:/var/run/rstudio-server \  
-    -B /home/ubuntu/working_directory/Day-2:/home \   
-    rstudio_4.1.0.sif \  
-    rserver --auth-none=0 --auth-pam-helper-path=pam-helper --server-user ubuntu  
-</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mkdir -p /tmp/rstudio-server  </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>PASSWORD='abc' singularity exec \  </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    -B /tmp/rstudio-server:/var/lib/rstudio-server \  </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    -B /tmp/rstudio-server:/var/run/rstudio-server \  </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    -B /home/ubuntu/working_directory/Day-2:/home \   </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    rstudio_4.1.0.sif \  </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    rserver --auth-none=0 --auth-pam-helper-path=pam-helper --server-user ubuntu  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If an error similar to the one below pops up -</p>
-<pre><code>06 Oct 2023 01:16:34 [rserver] ERROR system error 98 (Address already in use); OCCURRED AT rstudio::core::Error rstudio::core::http::initTcpIpAcceptor(rstudio::core::http::SocketAcceptorService&lt;rstudio_boost::asio::ip::tcp&gt;&amp;, const string&amp;, const string&amp;) src/cpp/server/ServerInit.cpp:103; LOGGED FROM: int main(int, char* const*) src/cpp/server/ServerMain.cpp:704</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>06 Oct 2023 01:16:34 [rserver] ERROR system error 98 (Address already in use); OCCURRED AT rstudio::core::Error rstudio::core::http::initTcpIpAcceptor(rstudio::core::http::SocketAcceptorService&lt;rstudio_boost::asio::ip::tcp&gt;&amp;, const string&amp;, const string&amp;) src/cpp/server/ServerInit.cpp:103; LOGGED FROM: int main(int, char* const*) src/cpp/server/ServerMain.cpp:704</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Do the following</p>
-<pre><code>sudo lsof -i :8787</code></pre>
-<p>If you see</p>
-<pre><code>COMMAND PID           USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
-rserver 747 rstudio-server    7u  IPv4  19251      0t0  TCP *:8787 (LISTEN)</code></pre>
-<p>Run the command</p>
-<pre><code>sudo kill &lt;PID&gt; </code></pre>
-<p>Here substitute <pid> with the actual PID value e.g.&nbsp;747 <code>sudo kill 747</code></pid></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sudo lsof -i :8787</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you see:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>COMMAND PID           USER   FD   TYPE DEVICE SIZE/OFF NODE NAME</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>rserver 747 rstudio-server    7u  IPv4  19251      0t0  TCP *:8787 (LISTEN)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Run the command:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sudo kill &lt;PID&gt; </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here substitute <pid> with the corresponding PID value e.g.&nbsp;747 above</pid></p>
 </section>
 <section id="rstudio-not-loading-in-browser" class="level3">
 <h3 class="anchored" data-anchor-id="rstudio-not-loading-in-browser">RStudio not loading in browser</h3>
 <p>If you need to end your session, exit your browser and on Nimbus, run the following command:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">lsof</span> <span class="at">-ti:8787</span> <span class="kw">|</span> <span class="fu">xargs</span> kill <span class="at">-9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>lsof -ti:8787 | xargs kill -9</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="loop-device-error-on-nimbus" class="level3">
 <h3 class="anchored" data-anchor-id="loop-device-error-on-nimbus">Loop device error on Nimbus</h3>
-<p>When running Sisngularity containers on Nimbus you may come across an error:</p>
+<p>When running Singularity containers on Nimbus you may come across an error:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>FATAL:   container creation failed: mount /proc/self/fd/3-&gt;/usr/local/var/singularity/mnt/session/rootfs </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>error: while mounting image /proc/self/fd/3: failed to find loop device: could not attach image file to loop device: no loop devices available</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Run the following commands to resolve this issue:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lsmod</span> <span class="kw">|</span> <span class="fu">grep</span> loop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> modprobe loop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> losetup <span class="at">-f</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/loop9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>lsmod | grep loop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sudo modprobe loop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sudo losetup -f</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>/dev/loop9</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction to RNAseq workshop - RNAseq data pre-processing workflow</title>
+<title>Introduction to RNAseq workshop - RNAseq data pre-processing on the command-line</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -254,7 +254,7 @@ cookieconsent.run({
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><strong>RNAseq data pre-processing workflow</strong></h1>
+<h1 class="title"><strong>RNAseq data pre-processing on the command-line</strong></h1>
 </div>
 
 
@@ -427,11 +427,9 @@ Why are we running a pipeline?
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>From your home directory, run the following command:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 5 training training 4.0K Sep 29 03:15 .</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 6 training training 4.0K Sep 19 03:27 ..</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 2 training training 4.0K Sep 29 02:14 Data</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 2 training training 4.0K Sep 29 02:14 Day-1</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 3 training training 4.0K Sep 29 03:15 Day-2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 2 training training 4.0K Sep 29 02:14 Data</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 2 training training 4.0K Sep 29 02:14 Day-1</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 3 training training 4.0K Sep 29 03:15 Day-2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>All the files necessary to run today’s exercises have already been prepared for you and saved to the <code>Data</code> directory. Take a look at its contents by running:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> Data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>It contains the following:</p>
@@ -450,9 +448,7 @@ Why are we running a pipeline?
 <p>You will do all your work from here today.</p>
 <p>➤ Next, take a look at the contents of the <code>Day-1</code> directory:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 5 training training 4.0K Sep 29 03:15 .</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 6 training training 4.0K Sep 19 03:27 ..</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 3 training training 4.0K Sep 29 03:15 nf-core-rnaseq_3.12.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 3 training training 4.0K Sep 29 03:15 nf-core-rnaseq_3.12.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We have predownloaded the code-base for the nf-core/rnaseq pipeline. For the sake of responsible research and reproducibility, we recommend always downloading a copy of the code base when working with nf-core pipelines.</p>
 <section id="get-familiar-with-the-nf-corernaseq-run-command" class="level3 unlisted">
 <h3 class="unlisted anchored" data-anchor-id="get-familiar-with-the-nf-corernaseq-run-command"><strong>Get familiar with the nf-core/rnaseq run command</strong></h3>
@@ -478,7 +474,7 @@ Why are we running a pipeline?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Take a look at the <a href="https://nf-co.re/rnaseq/3.12.0/docs/usage#samplesheet-input">nf-core/rnaseq instructions</a> on building a samplesheet. Compare our samplesheet to the example provided in their documentation, what differences do you notice?</p>
+<p>Take a look at the <a href="https://nf-co.re/rnaseq/3.12.0/docs/usage#samplesheet-input">nf-core/rnaseq instructions</a> on building a samplesheet. Compare our samplesheet to the nf-core example, what differences do you notice?</p>
 <p>View our prepared <code>samplesheet.csv</code> by running:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ~/Data/samplesheet.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -496,7 +492,7 @@ Solution
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Both sample sheets contain 6 samples. However, the example samplesheet consists of both single- and paired-end data for the control samples and TREATMENT_REP3 has been sequenced twice.</p>
-<p>Our sample sheet is a lot simpler, with only single-end reads. Note that the column for the reverse-reads is empty in our sample sheet.</p>
+<p>Our sample sheet is more simple, with only single-end reads. Note that the column for the reverse-reads is empty in our sample sheet.</p>
 </div>
 </div>
 </div>
