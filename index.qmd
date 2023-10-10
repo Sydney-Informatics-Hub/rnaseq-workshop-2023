@@ -15,8 +15,8 @@ This workshop series is suitable for people who are familiar with working at com
 
 ## Prerequisites{.unlisted}
 
-* Familiarity with Unix/Linux command line
-* Familiarity with R/RStudio
+* [Familiarity with Unix/Linux command line](https://linuxjourney.com/lesson/the-shell)
+* [Familiarity with R/RStudio](https://swcarpentry.github.io/r-novice-gapminder/index.html)
 * [Introduction to RNAseq webinar](https://www.youtube.com/watch?v=tITR3WR_jWI) ([slides](https://doi.org/10.5281/zenodo.8323207))
 
 ## Get the most out of this workshop{.unlisted}
@@ -34,10 +34,9 @@ This workshop series is presented across 2 days and will consist of code-along a
 
 |Lesson               |Overview                                                                                                                                                                                    |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|Set up | Follow these instructions to install a terminal application and web browser to be used in the workshop.                                                                                     |
-|Day 1                | Participants will use nf-core’s rnaseq pipeline to transform raw sequencing data into analysis ready count data.                                               |
-|Day 2                | Participants will use RStudio to perform differential expression and enrichment analysis on count matrix.|
-
+|[Set up](https://sydney-informatics-hub.github.io/rnaseq-workshop-2023/setup.html) | Follow these instructions to install a terminal application and web browser to be used in the workshop.                                                                                     |
+|[Day 1](https://sydney-informatics-hub.github.io/rnaseq-workshop-2023/notebooks/1.1_rnaseq-experiment.html)                | Participants will use nf-core’s rnaseq pipeline to transform raw sequencing data into analysis ready count data.                                               |
+|[Day 2](https://sydney-informatics-hub.github.io/rnaseq-workshop-2023/notebooks/2.1_rstudio-downstream.html)                | Participants will use RStudio to perform differential expression and enrichment analysis on count matrix.|
 
 ## Course survey!{.unlisted}
 
@@ -50,6 +49,6 @@ Lead trainers:
 * Dr Nandan Deshpande 
 * Dr Georgie Samaha 
 
-This training was developed under the Australian BioCommons ‘Bring Your Own Data’ - Command Line Interface (CLI) Platform Expansion Project by the Sydney Informatics Hub, in partnership with Pawsey Supercomputing Centre, Queensland Cyberinfrastructure Foundation (QCIF), and Australian Academic Research Network (AARNet). This project aims to create highly accessible, highly available, highly scalable analysis and data sharing capabilities for the benefit of life science researchers nationally.
+This training was developed under the Australian BioCommons ‘Bring Your Own Data’ - Command Line Interface (CLI) Platform Expansion Project by the Sydney Informatics Hub, in partnership with Pawsey Supercomputing Centre and Australian Academic Research Network (AARNet). This project aims to create highly accessible, highly available, highly scalable analysis and data sharing capabilities for the benefit of life science researchers nationally.
 
 ![](./Figs/0.0_logos.png)
