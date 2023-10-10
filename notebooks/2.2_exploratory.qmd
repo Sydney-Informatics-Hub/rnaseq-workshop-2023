@@ -10,9 +10,14 @@ from: markdown+emoji
 ::: callout-important
 ### Learning objectives{.unlisted}
 
+* Perform exploratory analysis of a count matrix using DESeq2
+* Perform principal component analysis using gene counts to capture sample distribution
+* Evaluate the quality of the data and experimental design
 :::
 
-Before performing any DE analysis, it is good to explore and visualise our data. This helps us get a sense of the quality of our data at this stage of the analysis. We'll be performing the following techniques in order to evaluate the quality of our raw counts data. 
+Before performing any DE analysis, it is good to explore and visualise our data. This helps us get a sense of the quality of our data at this stage of the analysis. We'll be performing the following techniques in order to evaluate the quality of our raw counts data. We have proceeded to the next step of our RNAseq experimental workflow and will be preparing our data for differential expression analysis in this lesson: 
+
+![](../Figs/2.2_rnaseq_workflow_de.png)
 
 ## **2.2.1 Examine the total library size**
 
