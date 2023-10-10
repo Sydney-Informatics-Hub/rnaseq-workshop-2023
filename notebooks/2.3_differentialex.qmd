@@ -14,7 +14,9 @@ from: markdown+emoji
 * Visualise differential expression results in R.  
 :::
 
-We are happy with what we have observed in our exploratory analysis and are finally ready to start differential expression (DE) analysis.
+We are happy with what we have observed in our exploratory analysis and are finally ready to start differential expression (DE) analysis. We are still at the differential expression analysis stage of our RNAseq experimental workflow:
+
+![](../Figs/2.2_rnaseq_workflow_de.png)
 
 ## **2.3.1 Differential expression experimental design**
 

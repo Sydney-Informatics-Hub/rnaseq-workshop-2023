@@ -11,29 +11,33 @@ from: markdown+emoji
 ### Learning objectives{.unlisted}
 * Understand and apply functional enrichment analysis in the context of RNAseq DE experiments.
 * Define gene ontologies. 
+* Perform functional enrichment analysis on a set of differentially expressed genes. 
 :::
 
-We now have a list of significant DE genes. To gain greater biological insights on the DE genes we can determine if there is enrichment of known biological functions, pathways or interactions.
+We now have a list of significant DE genes. To gain greater biological insights on the DE genes we can determine if there is enrichment of known biological functions, pathways or interactions. We are at the final stage of our RNA experimental workflow: 
+
+![](../Figs//2.4_rnaseq_workflow_enrich.png)
 
 There are different methods for identifying functional enrichments, e.g.:
 
-* **Over representation analysis (ORA)**: These methods typically categorize genes into groups based on shared function, involvement in a biological pathway, presence in a specific cellular location, or other categorizations, e.g. functional pathways, etc.
-* **Functional class scoring (FCS)** e.g. Gene set enrichment analysis (GSEA). 
-* Enrichment analysis can be done using some of the freely available web- and R-based tools. Today we will use a R-package "clusterprofiler" to perform Over representation analysis. You can read more about the GSEA method at https://www.gsea-msigdb.org/gsea/index.jsp
+* **Over representation analysis (ORA)**: These methods group genes based on shared function, involvement in a biological pathway, presence in a specific cellular location, or other categories like functional pathways.
+* **Functional class scoring (FCS)**: This method considers the full list of genes and their associated metrics, rather than just a pre-defined threshold for determining which genes are significant. It includes gene set enrichment analysis (GSEA). 
 
-In this workshop, we will learn how to perform "Over representation analysis (ORA)" using gene ontology databases.
+Enrichment analysis can be done using some of the freely available web- and R-based tools. Today we will use a R-package [clusterProfiler](https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html) to perform Over representation analysis. You can read more about the GSEA method [here](https://www.gsea-msigdb.org/gsea/index.jsp)
+
+In this lesson, we will perform over representation analysis (ORA) using gene ontology databases.
 
 ## **2.4.1 Over-representation analysis**
 
-There are a range of functional enrichment tools that perform some type of "over-representation" analysis by querying databases containing information about gene function and interactions. These databases typically categorize genes into groups based on shared function, or involvement in a pathway, or presence in a specific cellular location, or other categorizations, e.g. functional pathways, etc. Essentially, known genes are binned into categories that have been consistently named based on how the gene has been annotated functionally. These categories are independent of any organism, however each organism has distinct categories available.
+There are many functional enrichment tools that perform over-representation analysis using curated databases that categorise genes into groups based on shared function, or involvement in a pathway, or presence in a specific cellular location. These categories are independent of any organism, however each organism has distinct categories available.
 
 ![](../Figs/2.4_overrepresentation_analysis.png) 
 
-To determine whether any categories are over-represented, you can determine the probability of having the observed proportion of genes associated with a specific category in your gene list based on the proportion of genes associated with the same category in the background set (gene categorizations for the appropriate organism).
+To determine whether any categories are over-represented, you can determine the probability of having the observed proportion of genes associated with a specific category in your gene list based on the proportion of genes associated with the same category in the background gene set (gene category for the appropriate organism).
 
 ## **2.4.2 Gene Ontologies**
 
-One of the most widely-used categorizations is Gene Ontology (GO) established by the Gene Ontology project. To describe the functional roles of genes and gene products, they are categorized into GO terms. GO terms are organized into three independent controlled vocabularies (ontologies) in a species-independent manner:
+One of the most widely-used categorisation databases is the [Gene Ontology](https://geneontology.org/) (GO) resource. To describe the functional roles of genes and gene products, they are grouped into GO terms. GO terms are organised into three independent controlled vocabularies (ontologies) in a species-independent manner:
 
   - __Biological process__: Refers to the biological role involving the gene or gene product, and could include “transcription”, “signal transduction”, and “apoptosis”. A biological process generally involves a chemical or physical change of the starting material or input.
   - __Molecular function__: Represents the biochemical activity of the gene product, such activities could include “ligand”, “GTPase”, and “transporter”.
@@ -43,7 +47,7 @@ GO enrichment analysis tools will determine GO terms that are enriched when you 
 
 ## **2.4.3 Visualise functional profiles of genes**
 
-The clusterProfiler R package implements methods to analyze and visualise functional profiles of genes. The clusterProfiler R-library supports functional characteristics of both coding and non-coding genomics data for thousands of species with up-to-date gene annotation. It provides a tidy interface to access, manipulate, and visualize enrichment results to help users achieve efficient data interpretation.
+The clusterProfiler R package implements methods to analyse and visualise functional profiles of genes. The clusterProfiler R-library supports functional characteristics of both coding and non-coding genomics data for thousands of species with up-to-date gene annotation. It provides a tidy interface to access, manipulate, and visualise enrichment results to help users achieve efficient data interpretation.
 
 ## **2.4.4 Prepare DE genes for enrichment analysis**
 
@@ -95,7 +99,7 @@ ego.up <- enrichGO(gene = names(sig.up.LFC),
 
 ### **Bar plot of upregulated enriched GO terms**{.unlisted}
 
-The bar plot is a commonly used method to visualize enriched terms. It depicts the enrichment scores (e.g. p-adj values) and gene count or ratio as bar height and colour.
+The bar plot is a commonly used method to visualise enriched terms. It depicts the enrichment scores (e.g. p-adj values) and gene count or ratio as bar height and colour.
 
 ```r
 barplot(ego.up, 

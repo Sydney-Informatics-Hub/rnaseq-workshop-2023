@@ -1,5 +1,5 @@
 ---
-title: "**Explore alignment and quantification outputs**"
+title: "**Explore read alignment and quantification outputs**"
 output:
   html_document:
     toc: false

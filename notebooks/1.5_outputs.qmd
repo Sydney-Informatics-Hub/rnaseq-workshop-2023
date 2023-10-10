@@ -1,5 +1,5 @@
 ---
-title: "**Evaluating nf-core/rnaseq run performance**"
+title: "**Evaluate data pre-processing pipeline performance**"
 output:
   html_document:
     toc: false

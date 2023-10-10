@@ -1,5 +1,5 @@
 ---
-title: "**RNAseq data pre-processing workflow**"
+title: "**RNAseq data pre-processing on the command-line**"
 output:
   html_document:
     toc: false
@@ -139,8 +139,6 @@ ls -lh
 ```
 
 ```bash
-drwxrwxr-x 5 training training 4.0K Sep 29 03:15 .
-drwxrwxr-x 6 training training 4.0K Sep 19 03:27 ..
 drwxrwxr-x 2 training training 4.0K Sep 29 02:14 Data
 drwxrwxr-x 2 training training 4.0K Sep 29 02:14 Day-1
 drwxrwxr-x 3 training training 4.0K Sep 29 03:15 Day-2
@@ -177,8 +175,6 @@ You will do all your work from here today.
 ls -lh 
 ```
 ```bash
-drwxrwxr-x 5 training training 4.0K Sep 29 03:15 .
-drwxrwxr-x 6 training training 4.0K Sep 19 03:27 ..
 drwxrwxr-x 3 training training 4.0K Sep 29 03:15 nf-core-rnaseq_3.12.0
 ```
 
@@ -208,7 +204,7 @@ As you can see from the typical run command printed when you ran the help comman
 ::: callout-tip
 ### **Reflection exercise**{.unlisted}
 
-Take a look at the [nf-core/rnaseq instructions](https://nf-co.re/rnaseq/3.12.0/docs/usage#samplesheet-input) on building a samplesheet. Compare our samplesheet to the example provided in their documentation, what differences do you notice?
+Take a look at the [nf-core/rnaseq instructions](https://nf-co.re/rnaseq/3.12.0/docs/usage#samplesheet-input) on building a samplesheet. Compare our samplesheet to the nf-core example, what differences do you notice?
 
 View our prepared `samplesheet.csv` by running:
 ```bash
@@ -220,7 +216,7 @@ cat ~/Data/samplesheet.csv
 ### Solution
 Both sample sheets contain 6 samples. However, the example samplesheet consists of both single- and paired-end data for the control samples and TREATMENT_REP3 has been sequenced twice.
 
-Our sample sheet is a lot simpler, with only single-end reads. Note that the column for the reverse-reads is empty in our sample sheet.
+Our sample sheet is more simple, with only single-end reads. Note that the column for the reverse-reads is empty in our sample sheet.
 
 :::
 

@@ -1,5 +1,5 @@
 ---
-title: "**Data quality control with nf-core/rnaseq**"
+title: "**Raw read quality control with nf-core/rnaseq**"
 output:
   html_document:
     toc: false
