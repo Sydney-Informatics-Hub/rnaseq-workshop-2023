@@ -44,7 +44,7 @@ Run the command
 ```
 sudo kill <PID> 
 ```
-Here substitute <PID> with the actual PID value e.g. 747
+Here substitute <PID> with the actual PID value e.g. 747 `sudo kill 747`
 
 
 ### RStudio not loading in browser
