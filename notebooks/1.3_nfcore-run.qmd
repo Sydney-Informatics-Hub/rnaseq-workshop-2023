@@ -37,13 +37,13 @@ Nextflow uses a caching system to track the results of each task in a workflow. 
 pwd
 ```
 ```bash
-/home/training/Day_1
+/home/training/Day-1
 ```
 
-If you are not in the `Day_1` directory, move into it by running:
+If you are not in the `Day-1` directory, move into it by running:
 
 ```bash
-cd /home/training/Day_1 
+cd /home/training/Day-1 
 ```
 
 We are going to adjust our run command slightly from last time, note:

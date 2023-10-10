@@ -142,7 +142,7 @@ ls -lh
 drwxrwxr-x 5 training training 4.0K Sep 29 03:15 .
 drwxrwxr-x 6 training training 4.0K Sep 19 03:27 ..
 drwxrwxr-x 2 training training 4.0K Sep 29 02:14 Data
-drwxrwxr-x 2 training training 4.0K Sep 29 02:14 Day_1
+drwxrwxr-x 2 training training 4.0K Sep 29 02:14 Day-1
 drwxrwxr-x 3 training training 4.0K Sep 29 03:15 Day_2
 ```
 
@@ -163,15 +163,15 @@ It contains the following:
 * The dowstream analysis R notebook to be used on Day 2 
 * The downstream analysis RStudio Singularity file to be used on Day 2 
 
-Now, move into the `Day_1` directory: 
+Now, move into the `Day-1` directory: 
 
 ```bash
-cd /home/training/Day_1
+cd /home/training/Day-1
 ```
 
 You will do all your work from here today.  
 
-&#x27A4; Next, take a look at the contents of the `Day_1` directory: 
+&#x27A4; Next, take a look at the contents of the `Day-1` directory: 
 
 ```bash
 ls -lh 
