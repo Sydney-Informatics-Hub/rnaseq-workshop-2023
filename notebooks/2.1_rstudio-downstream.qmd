@@ -35,7 +35,7 @@ Pawsey have created a 'bio image' specifically for Nimbus that caters to bioinfo
 &#x27A4; On your Nimbus instance, create a rstudio-server  folder on your instance: 
 
 ```default
-mkdir ~/Day-2/rstudio-server
+mkdir -p /tmp/rstudio-server
 ```
 
 Set a password for your RStudio server:
@@ -51,7 +51,6 @@ Change into your working directory
 cd ~/Day-2/
 ```
 
-
 We're then going to run a Singularity command to execute the prepared RStudio container containing all the libraries. This command looks a bit intimidating, but all you really need to know to get it working is: 
 
 * We've **set a unique password** (`PASSWORD`) that we'll use to log into the RStudio server on our web browsers
@@ -62,11 +61,11 @@ We're then going to run a Singularity command to execute the prepared RStudio co
 
 ```default
 PASSWORD=$RSERVER_PASSWORD singularity exec \
-        -B ~/Day-2/rstudio-server:/var/lib/rstudio-server \
-        -B ~/Day-2/rstudio-server:/var/run/rstudio-server \
-        -B ~/Day-2:/home \
-        ~/Data/rstudio_4.1.0.sif \
-        rserver --auth-none=0 --auth-pam-helper-path=pam-helper --server-user ubuntu
+    -B /tmp/rstudio-server:/var/lib/rstudio-server \
+    -B /tmp/rstudio-server:/var/run/rstudio-server \
+    -B /home/training:/home/training/R \
+    ~/Data/rstudio_4.1.0.sif \
+    rserver --auth-none=0 --auth-pam-helper-path=pam-helper --server-user training
 ```
 
 ::: {.callout-note appearance="simple"}
