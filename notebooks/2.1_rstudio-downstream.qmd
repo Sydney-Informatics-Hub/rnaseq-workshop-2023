@@ -44,7 +44,7 @@ Set a password for your RStudio server:
 RSERVER_PASSWORD=$(openssl rand -base64 15)
 echo $RSERVER_PASSWORD
 ```
-**Please NOTE down this PASSWORD** as you will need it after a few steps.
+Please NOTE down this **PASSWORD** as you will need when you log on to RStudio from a browser.
 
 Change into your working directory
 ```default
@@ -55,7 +55,7 @@ cd ~/Day-2/
 We're then going to run a Singularity command to execute the prepared RStudio container containing all the libraries. This command looks a bit intimidating, but all you really need to know to get it working is: 
 
 * We've **set a unique password** (`PASSWORD`) that we'll use to log into the RStudio server on our web browsers
-* We are **using Singularity to execute** (`singularity exec`) the prepared RStudio container (`/cvmfs/containers.biocommons.aarnet.edu.au/r/n/rnaseq_rstudio.sif`) 
+* We are **using Singularity to execute** (`singularity exec`) the prepared RStudio container (`/cvmfs/data.biocommons.aarnet.edu.au/training_materials/SIH_training/IntroRNAseq_1023/rstudio_4.1.0.sif`) 
 * **Containers are closed environments**, so we have to explicitly bind (`-B`) or expose directories that we want it to access on our machine. 
 
 &#x27A4; To start the Rserver, run: 
