@@ -312,6 +312,7 @@ Nextflow resume function explained
 <li>We will output our results in a different directory (<a href="(https://nf-co.re/rnaseq/3.12.0/parameters#outdir)"><code>--outdir</code></a>)</li>
 <li>We have added an extra flag to skip duplicate marking (<a href="(https://nf-co.re/rnaseq/3.12.0/parameters#skip_markduplicates)"><code>--skip_markduplicates</code></a>)</li>
 </ul>
+<p>Note that we have not specified a read alignment or quantification tool. We will be running the default setting which runs <a href="">STAR</a> to map the raw fastq reads to the reference genome and perform the read quantification using the alignment files with Salmon. You can specify which <a href="https://nf-co.re/rnaseq/3.12.0/docs/usage#alignment-options">alignment method</a> you’d like to use with <code>--aligner</code>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
