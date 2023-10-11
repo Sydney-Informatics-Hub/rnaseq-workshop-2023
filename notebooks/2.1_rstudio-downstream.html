@@ -303,14 +303,14 @@ Learning objectives
 </ul>
 <p>To run RStudio in a web browser, we first need to return to our Nimbus instances and run the RStudio server command. <a href="https://sydney-informatics-hub.github.io/rnaseq-workshop-2023/setup.html">Log into Nimbus</a>, same as you did for Day 1.</p>
 <p>Pawsey have created a ‘bio image’ specifically for Nimbus that caters to bioinformatics users who prefer to have their instances set up with popular bioinformatic tools. You can learn more about it <a href="https://support.pawsey.org.au/documentation/display/US/Nimbus+for+Bioinformatics">here</a>. We’ve been using this bio image for the workshop, as it has Nextflow and Singularity pre-installed for us <span class="emoji" data-emoji="blush">😊</span>.</p>
-<p>➤ On your Nimbus instance, create a rstudio-server folder on your instance:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mkdir -p /tmp/rstudio-server</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Set a password for your RStudio server:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>RSERVER_PASSWORD=$(openssl rand -base64 15)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>echo $RSERVER_PASSWORD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Please notedown this <strong>PASSWORD</strong> as you will need when you log on to RStudio from a browser.</p>
 <p>Change into your working directory</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>cd ~/Day-2/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>cd ~/Day-2/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>➤ On your Nimbus instance, create a rstudio-server folder on your instance:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mkdir -p /tmp/rstudio-server</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Set a password for your RStudio server:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>RSERVER_PASSWORD=$(openssl rand -base64 15)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>echo $RSERVER_PASSWORD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Please notedown this <strong>PASSWORD</strong> as you will need when you log on to RStudio from a browser.</p>
 <p>We’re then going to run a Singularity command to execute the prepared RStudio container containing all the libraries. This command looks a bit intimidating, but all you really need to know to get it working is:</p>
 <ul>
 <li>We’ve <strong>set a unique password</strong> (<code>PASSWORD</code>) that we’ll use to log into the RStudio server on our web browsers</li>
@@ -359,7 +359,7 @@ For experienced CLI users
 <p><img src="../Figs/2.1_Rstudio_chrome_rserver.png" class="img-fluid"></p>
 <p>If you forgot to note down your password, you can retreive it by running the command: <code>echo $RSERVER_PASSWORD</code></p>
 <p>If you need to end your session, exit your browser and on Nimbus, run the following command:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">lsof</span> <span class="at">-ti:8787</span> <span class="kw">|</span> <span class="fu">xargs</span> kill <span class="at">-9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">kill</span> <span class="at">-9</span> <span class="va">$(</span><span class="ex">lsof</span> <span class="at">-t</span> <span class="at">-c</span> rsession<span class="va">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="working-in-rstudio" class="level2">
