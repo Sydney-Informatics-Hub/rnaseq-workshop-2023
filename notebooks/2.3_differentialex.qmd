@@ -86,12 +86,13 @@ Before we commence with DE, there are some key concepts that you should know:
 
 All DE methods account for the above in their own way. In this workshop, we will use and explore DESeq2’s method.
 
+::: {.callout-note appearance="simple"}
 #### **Various Normalization Methods**  
 - **DESeq2**: Size Factor Normalization - Estimates size factors to account for library size and sequencing depth.
 - **edgeR**: Trimmed Mean of M-values (TMM)  - Estimates normalization factors based on the most stably expressed genes.
 - **limma-voom**: Voom Transformation - Transforms count data to log2 counts per million (logCPM) and applies linear modeling.
 - **Cuffdiff/Cufflinks**: Quartile Normalization - Scales data based on upper quartile normalization to correct for library size differences.
-
+:::
 
 
 ## **2.3.4 The `DESeq()` function** 
