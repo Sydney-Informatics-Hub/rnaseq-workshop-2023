@@ -413,18 +413,25 @@
     "text": "2.5.3 Functional enrichment analysis\nFunctional enrichment analysis revealed enrichment of multiple Gene Ontology (GO) categories:\n\nGO categories enriched in up-regulated genes: 823\n\nGO categories enriched in down-regulated genes: 255\n\n\nThe most significantly enriched GO terms captured high-level biological functions that were not directly related to our phenotypes of interest. To make sense of these results, we need to examine the biological assumptions of our experiment. We identified a number of relevant GO terms relevant to this case study:\n\nCraniofacial development and distinctive facial features​ in WBS patients\n\nGO:0016055 Wnt signaling pathway (involved in cytoskeletal dynamics, cell adhesion, differentiation of skin epithelial cells and the development of hair follicles).\n\nGO:0043588 skin development.\nGO:0008544 epidermis development.\n\nCardiovascular abnormalities in WBS patients\n\nGO:0014706 striated muscle tissue development.\n\nGO:0003012 muscle system process,\nGO:0055001 muscle cell development\nGO:0042692 muscle cell differentiation.\n\nGO:0045214 sarcomere organisation."
   },
   {
+    "objectID": "notebooks/2.5_wrapup.html#results-from-high-throughput-experiments",
+    "href": "notebooks/2.5_wrapup.html#results-from-high-throughput-experiments",
+    "title": "Day 2 wrap up",
+    "section": "2.5.4 Results from high-throughput experiments",
+    "text": "2.5.4 Results from high-throughput experiments\nWhat we have -\n1. List of differentially expressed genes.\n2. List of enriched functional categories (gene ontologies, pathways etc).\nHow to interpret the results?\n1. Expectations : Based on your previous work, you might expect to see a few genes changing.\n2. Discovery: Some of the cascading effects which were previously unknown.\n3. A combination of expectations plus discovery (1+2)."
+  },
+  {
     "objectID": "notebooks/2.5_wrapup.html#experimental-design-limitations",
     "href": "notebooks/2.5_wrapup.html#experimental-design-limitations",
     "title": "Day 2 wrap up",
-    "section": "2.5.4 Experimental design limitations",
-    "text": "2.5.4 Experimental design limitations\nWe were unable to reliably comment on phenotypic changes relating to cognitive traits observed in patients with WBS. There were some other potentially limiting factors in our case study’s experimental design including:\n\nThe choice of tissue: The lip epidermal tissue cannot reflect cognitive and neurological traits and is thus is a big limitation.\nThe number of replicates: To improve statistical power and overcome any problems due to outliers, it is necessary to include more replicates per condition."
+    "section": "2.5.5 Experimental design limitations",
+    "text": "2.5.5 Experimental design limitations\nIn this experiment, we were unable to reliably comment on phenotypic changes relating to cognitive traits observed in patients with WBS. There were some other potentially limiting factors in our case study’s experimental design including:\n\nThe choice of tissue: The lip epidermal tissue cannot reflect cognitive and neurological traits and is thus is a big limitation.\nThe number of replicates: To improve statistical power and overcome any problems due to outliers, it is necessary to include more replicates per condition."
   },
   {
     "objectID": "notebooks/2.5_wrapup.html#useful-resources",
     "href": "notebooks/2.5_wrapup.html#useful-resources",
     "title": "Day 2 wrap up",
-    "section": "2.5.5 Useful resources",
-    "text": "2.5.5 Useful resources\n\nR\nRStudio\nGO enrichment analysis"
+    "section": "2.5.6 Useful resources",
+    "text": "2.5.6 Useful resources\n\nR\nRStudio\nGO enrichment analysis"
   },
   {
     "objectID": "notebooks/2.3_differentialex.html",

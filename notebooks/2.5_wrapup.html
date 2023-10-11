@@ -210,8 +210,9 @@ cookieconsent.run({
   <li><a href="#exploratory-analysis" id="toc-exploratory-analysis" class="nav-link active" data-scroll-target="#exploratory-analysis">2.5.1 Exploratory analysis</a></li>
   <li><a href="#differential-expression-analysis" id="toc-differential-expression-analysis" class="nav-link" data-scroll-target="#differential-expression-analysis">2.5.2 Differential expression analysis</a></li>
   <li><a href="#functional-enrichment-analysis" id="toc-functional-enrichment-analysis" class="nav-link" data-scroll-target="#functional-enrichment-analysis">2.5.3 Functional enrichment analysis</a></li>
-  <li><a href="#experimental-design-limitations" id="toc-experimental-design-limitations" class="nav-link" data-scroll-target="#experimental-design-limitations">2.5.4 Experimental design limitations</a></li>
-  <li><a href="#useful-resources" id="toc-useful-resources" class="nav-link" data-scroll-target="#useful-resources">2.5.5 Useful resources</a></li>
+  <li><a href="#results-from-high-throughput-experiments" id="toc-results-from-high-throughput-experiments" class="nav-link" data-scroll-target="#results-from-high-throughput-experiments">2.5.4 Results from high-throughput experiments</a></li>
+  <li><a href="#experimental-design-limitations" id="toc-experimental-design-limitations" class="nav-link" data-scroll-target="#experimental-design-limitations">2.5.5 Experimental design limitations</a></li>
+  <li><a href="#useful-resources" id="toc-useful-resources" class="nav-link" data-scroll-target="#useful-resources">2.5.6 Useful resources</a></li>
   </ul>
 </nav>
     </div>
@@ -239,7 +240,7 @@ cookieconsent.run({
 <section id="exploratory-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="exploratory-analysis">2.5.1 Exploratory analysis</h2>
 <p>The principle component analysis shows a good separation of the sample across conditions on PC2 which accounts for the majority (80%) of variance. A clear separation of samples across conditions indicates differences in gene expression profiles between our samples are substantial and suggests the biological conditions we are comparing have a strong effect at the transcriptome level.</p>
-<p><img src="../Figs/2.5_PCA.png" class="img-fluid"></p>
+<p><img src="../Figs/2.5_PCA.png" alt="Your Alt Text" style="width: 70%;"></p>
 </section>
 <section id="differential-expression-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="differential-expression-analysis">2.5.2 Differential expression analysis</h2>
@@ -249,7 +250,7 @@ cookieconsent.run({
 <li>984 DE genes (5%) with a LFC &lt;0 were downregulated</li>
 </ul>
 <p>This suggests that <em>Gtf2ird1</em> plays a regulatory role on many genes in the mouse genome. The elevated number of upregulated genes may suggest that <em>Gtf2ird1</em> function acts as a repressor for many genes or is involved in pathways that have a net repressive effect. These changes may result in observable phenotypic effects.</p>
-<p><img src="../Figs/2.5_Volcano_plot.png" class="img-fluid"></p>
+<p><img src="../Figs/2.5_Volcano_plot.png" alt="Your Alt Text" style="width: 70%;"></p>
 </section>
 <section id="functional-enrichment-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="functional-enrichment-analysis">2.5.3 Functional enrichment analysis</h2>
@@ -259,7 +260,7 @@ cookieconsent.run({
 </li>
 <li>GO categories enriched in down-regulated genes: 255</li>
 </ul>
-<p><img src="../Figs/2.5_GO.png" class="img-fluid"></p>
+<p><img src="../Figs/2.5_GO.png" alt="Your Alt Text" style="width: 80%;"></p>
 <p>The most significantly enriched GO terms captured high-level biological functions that were not directly related to our phenotypes of interest. To make sense of these results, we need to examine the biological assumptions of our experiment. We identified a number of relevant GO terms relevant to this case study:</p>
 <ol type="1">
 <li>Craniofacial development and distinctive facial features​ in WBS patients
@@ -281,16 +282,26 @@ cookieconsent.run({
 </ul></li>
 </ol>
 </section>
+<section id="results-from-high-throughput-experiments" class="level2">
+<h2 class="anchored" data-anchor-id="results-from-high-throughput-experiments">2.5.4 Results from high-throughput experiments</h2>
+<p>What we have -<br>
+1. List of differentially expressed genes.<br>
+2. List of enriched functional categories (gene ontologies, pathways etc).</p>
+<p>How to interpret the results?<br>
+1. <strong>Expectations</strong> : Based on your previous work, you might expect to see a few genes changing.<br>
+2. <strong>Discovery</strong>: Some of the cascading effects which were previously unknown.<br>
+3. <strong>A combination</strong> of expectations plus discovery (1+2).</p>
+</section>
 <section id="experimental-design-limitations" class="level2">
-<h2 class="anchored" data-anchor-id="experimental-design-limitations">2.5.4 Experimental design limitations</h2>
-<p>We were unable to reliably comment on phenotypic changes relating to cognitive traits observed in patients with WBS. There were some other potentially limiting factors in our case study’s experimental design including:</p>
+<h2 class="anchored" data-anchor-id="experimental-design-limitations">2.5.5 Experimental design limitations</h2>
+<p>In this experiment, we were unable to reliably comment on phenotypic changes relating to cognitive traits observed in patients with WBS. There were some other potentially limiting factors in our case study’s experimental design including:</p>
 <ul>
 <li>The choice of tissue: The lip epidermal tissue cannot reflect cognitive and neurological traits and is thus is a big limitation.</li>
 <li>The number of replicates: To improve statistical power and overcome any problems due to outliers, it is necessary to include more replicates per condition.</li>
 </ul>
 </section>
 <section id="useful-resources" class="level2">
-<h2 class="anchored" data-anchor-id="useful-resources">2.5.5 Useful resources</h2>
+<h2 class="anchored" data-anchor-id="useful-resources">2.5.6 Useful resources</h2>
 <ul>
 <li><a href="https://www.r-project.org/about.html">R</a></li>
 <li><a href="https://posit.co/download/rstudio-desktop/">RStudio</a></li>
