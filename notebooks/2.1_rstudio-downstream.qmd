@@ -19,13 +19,16 @@ R is a programming language for statistical computing and graphics. It is one of
 
 ### **Using R/RStudio for differential expression analysis**{.unlisted}
 
-We'll be using the raw gene count matrix output by the nf-core/rnaseq pipline to perform statistical analyses and determine differentially expressed (DE) genes and pathways. As we're working with R/RStudio, we'll be using a number of different R packages to evaluate, analyse and visualise our data. A number of R packages have been developed specifically to identify differencially expressed (DE) genes, today we're using the [DESeq2](https://bioconductor.org/packages/release/bioc/html/DESeq2.html) package. 
+We'll be using the raw gene count matrix output by the nf-core/rnaseq pipeline to perform statistical analyses and determine differentially expressed (DE) genes and pathways. As we're working with R/RStudio, we'll be using a number of different R packages to evaluate, analyse and visualise our data. A number of R packages have been developed specifically to identify differencially expressed (DE) genes, today we're using the [DESeq2](https://bioconductor.org/packages/release/bioc/html/DESeq2.html) package. 
 
 We've created a Singularity container that houses R/Rstudio with all the libraries we'll be using today already pre-installed. We'll be using that container to run RStudio on Nimbus. 
 
 ## **2.1.2 Run the RStudio container on Nimbus**
 
-While you may be familiar with RStudio as a desktop application, it also available as a remote server on Nimbus. Launching an RStudio server from Nimbus allows us to run RStudio from a web browser and it means we don't have to download the desktop application to our own computers. 
+While you may be familiar with RStudio as a desktop application, it also available as a remote server on Nimbus. Launching an RStudio server from Nimbus allows us to run RStudio from a web browser and this has a few advantages.  
+
+- We don't have to download the RStudio desktop application to our own computer.
+- We don't need to switch between machines and continue working on the Nimbus VM instance.
 
 To run RStudio in a web browser, we first need to return to our Nimbus instances and run the RStudio server command. [Log into Nimbus](https://sydney-informatics-hub.github.io/rnaseq-workshop-2023/setup.html), same as you did for Day 1. 
 
@@ -44,7 +47,7 @@ Set a password for your RStudio server:
 RSERVER_PASSWORD=$(openssl rand -base64 15)
 echo $RSERVER_PASSWORD
 ```
-Please NOTE down this **PASSWORD** as you will need when you log on to RStudio from a browser.
+Please notedown this **PASSWORD** as you will need when you log on to RStudio from a browser.
 
 Change into your working directory
 ```default
@@ -54,7 +57,7 @@ cd ~/Day-2/
 We're then going to run a Singularity command to execute the prepared RStudio container containing all the libraries. This command looks a bit intimidating, but all you really need to know to get it working is: 
 
 * We've **set a unique password** (`PASSWORD`) that we'll use to log into the RStudio server on our web browsers
-* We are **using Singularity to execute** (`singularity exec`) the prepared RStudio container (`/cvmfs/data.biocommons.aarnet.edu.au/training_materials/SIH_training/IntroRNAseq_1023/rstudio_4.1.0.sif`) 
+* We are **using Singularity to execute** (`singularity exec`) the a RStudio container (`/cvmfs/data.biocommons.aarnet.edu.au/training_materials/SIH_training/IntroRNAseq_1023/rstudio_4.1.0.sif`) 
 * **Containers are closed environments**, so we have to explicitly bind (`-B`) or expose directories that we want it to access on our machine. 
 
 &#x27A4; To start the Rserver, run: 
@@ -63,7 +66,7 @@ We're then going to run a Singularity command to execute the prepared RStudio co
 PASSWORD=$RSERVER_PASSWORD singularity exec \
     -B /tmp/rstudio-server:/var/lib/rstudio-server \
     -B /tmp/rstudio-server:/var/run/rstudio-server \
-    -B /home/training:/home/training/R \
+     -B /home/training/Day-2:/home/training/ \
     ~/Data/rstudio_4.1.0.sif \
     rserver --auth-none=0 --auth-pam-helper-path=pam-helper --server-user training
 ```

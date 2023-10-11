@@ -86,6 +86,14 @@ Before we commence with DE, there are some key concepts that you should know:
 
 All DE methods account for the above in their own way. In this workshop, we will use and explore DESeq2’s method.
 
+#### **Various Normalization Methods**  
+- **DESeq2**: Size Factor Normalization - Estimates size factors to account for library size and sequencing depth.
+- **edgeR**: Trimmed Mean of M-values (TMM)  - Estimates normalization factors based on the most stably expressed genes.
+- **limma-voom**: Voom Transformation - Transforms count data to log2 counts per million (logCPM) and applies linear modeling.
+- **Cuffdiff/Cufflinks**: Quartile Normalization - Scales data based on upper quartile normalization to correct for library size differences.
+
+
+
 ## **2.3.4 The `DESeq()` function** 
 
 We are finally ready to perform DE analysis with DESeq2’s DESeq() function. This performs a number of steps required to perform DE - the console output gives you a clue as to what these steps are doing.
@@ -103,6 +111,8 @@ In brief, by default, DESeq2 is:
 * Estimating size factors, required to normalise data. DESEq2 uses the median of ratios method. There are many other normalisation methods, each with their pros and cons.
 * **Transforming the data** by estimating dispersion (DESeq2’s way of quantifying within group variability). DESeq2 uses a negative binomial distribution model.
 * Performing **independent filtering** to reduce the number of statistical tests to perform. DESeq2 will automatically do this. A common method to do this is by removing lowly expressed genes as these don’t have enough data confidently test for DE (DESeq2 actually recommends this to also reduce the size and memory required by DESeq())
+
+
 
 ## **2.3.5 Inspect the results** 
 
