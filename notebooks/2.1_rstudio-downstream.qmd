@@ -82,6 +82,15 @@ Once you paste the above command in the terminal and press `Enter`, the terminal
 You can also run the above command using the `screen` utility, as we did yesterday.  
 :::
 
+
+If an error similar to the one below pops up - 
+```default
+06 Oct 2023 01:16:34 [rserver] ERROR system error 98 (Address already in use); OCCURRED AT rstudio::core::Error rstudio::core::http::initTcpIpAcceptor(rstudio::core::http::SocketAcceptorService<rstudio_boost::asio::ip::tcp>&, const string&, const string&) src/cpp/server/ServerInit.cpp:103; LOGGED FROM: int main(int, char* const*) src/cpp/server/ServerMain.cpp:704
+```
+Please refer to the solution [here](https://sydney-informatics-hub.github.io/rnaseq-workshop-2023/tipstricks.html#error-when-trying-to-run-rserver-on-nimbus)
+
+
+
 #### **Open RStudio in a web browser**{.unlisted}
 
 &#x27A4; Open up a web browser on your local machine. Remember, you will need to **use Chrome or Safari** for this. Participants using Firefox may experience technical issues. 
