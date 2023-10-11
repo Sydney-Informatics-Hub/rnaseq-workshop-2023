@@ -355,15 +355,24 @@ Markdown vs R code writing
 <li>Differential expression tests are performed for every single gene. If we use a simple P &lt; 0.05 cut-off value, 1,000 genes will be defined as DE by chance for a species with ~20,000 genes (humans and mice). Therefore, we need to <strong>reduce and adjust for multiple testing</strong>.</li>
 </ul>
 <p>All DE methods account for the above in their own way. In this workshop, we will use and explore DESeq2’s method.</p>
-<section id="various-normalization-methods" class="level4">
-<h4 class="anchored" data-anchor-id="various-normalization-methods"><strong>Various Normalization Methods</strong></h4>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>Various Normalization Methods</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
 <li><strong>DESeq2</strong>: Size Factor Normalization - Estimates size factors to account for library size and sequencing depth.</li>
 <li><strong>edgeR</strong>: Trimmed Mean of M-values (TMM) - Estimates normalization factors based on the most stably expressed genes.</li>
 <li><strong>limma-voom</strong>: Voom Transformation - Transforms count data to log2 counts per million (logCPM) and applies linear modeling.</li>
 <li><strong>Cuffdiff/Cufflinks</strong>: Quartile Normalization - Scales data based on upper quartile normalization to correct for library size differences.</li>
 </ul>
-</section>
+</div>
+</div>
 </section>
 <section id="the-deseq-function" class="level2">
 <h2 class="anchored" data-anchor-id="the-deseq-function"><strong>2.3.4 The <code>DESeq()</code> function</strong></h2>
@@ -502,7 +511,7 @@ Markdown vs R code writing
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -511,7 +520,7 @@ Solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>Big fold changes (and high significance - indicated by low Padj) can be of importance</li>
