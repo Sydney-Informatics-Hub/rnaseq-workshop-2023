@@ -290,13 +290,17 @@ Learning objectives
 <p>R is a programming language for statistical computing and graphics. It is one of the most widely-used programming languages used in data science. R is a particularly great option when we’re working with a variety of statistical tools (e.g.&nbsp;RNA-Seq, population genomics, etc.) and want to create publication-quality graphs and figures. Multiple independant packages/libraries have been developed in <a href="https://www.r-project.org/">R-programming</a>, which can be used for performing various kinds of ‘omics’ analysis. RStudio is a development environment which can be used to write and excecute R code.</p>
 <section id="using-rrstudio-for-differential-expression-analysis" class="level3 unlisted">
 <h3 class="unlisted anchored" data-anchor-id="using-rrstudio-for-differential-expression-analysis"><strong>Using R/RStudio for differential expression analysis</strong></h3>
-<p>We’ll be using the raw gene count matrix output by the nf-core/rnaseq pipline to perform statistical analyses and determine differentially expressed (DE) genes and pathways. As we’re working with R/RStudio, we’ll be using a number of different R packages to evaluate, analyse and visualise our data. A number of R packages have been developed specifically to identify differencially expressed (DE) genes, today we’re using the <a href="https://bioconductor.org/packages/release/bioc/html/DESeq2.html">DESeq2</a> package.</p>
+<p>We’ll be using the raw gene count matrix output by the nf-core/rnaseq pipeline to perform statistical analyses and determine differentially expressed (DE) genes and pathways. As we’re working with R/RStudio, we’ll be using a number of different R packages to evaluate, analyse and visualise our data. A number of R packages have been developed specifically to identify differencially expressed (DE) genes, today we’re using the <a href="https://bioconductor.org/packages/release/bioc/html/DESeq2.html">DESeq2</a> package.</p>
 <p>We’ve created a Singularity container that houses R/Rstudio with all the libraries we’ll be using today already pre-installed. We’ll be using that container to run RStudio on Nimbus.</p>
 </section>
 </section>
 <section id="run-the-rstudio-container-on-nimbus" class="level2">
 <h2 class="anchored" data-anchor-id="run-the-rstudio-container-on-nimbus"><strong>2.1.2 Run the RStudio container on Nimbus</strong></h2>
-<p>While you may be familiar with RStudio as a desktop application, it also available as a remote server on Nimbus. Launching an RStudio server from Nimbus allows us to run RStudio from a web browser and it means we don’t have to download the desktop application to our own computers.</p>
+<p>While you may be familiar with RStudio as a desktop application, it also available as a remote server on Nimbus. Launching an RStudio server from Nimbus allows us to run RStudio from a web browser and this has a few advantages.</p>
+<ul>
+<li>We don’t have to download the RStudio desktop application to our own computer.</li>
+<li>We don’t need to switch between machines and continue working on the Nimbus VM instance.</li>
+</ul>
 <p>To run RStudio in a web browser, we first need to return to our Nimbus instances and run the RStudio server command. <a href="https://sydney-informatics-hub.github.io/rnaseq-workshop-2023/setup.html">Log into Nimbus</a>, same as you did for Day 1.</p>
 <p>Pawsey have created a ‘bio image’ specifically for Nimbus that caters to bioinformatics users who prefer to have their instances set up with popular bioinformatic tools. You can learn more about it <a href="https://support.pawsey.org.au/documentation/display/US/Nimbus+for+Bioinformatics">here</a>. We’ve been using this bio image for the workshop, as it has Nextflow and Singularity pre-installed for us <span class="emoji" data-emoji="blush">😊</span>.</p>
 <p>➤ On your Nimbus instance, create a rstudio-server folder on your instance:</p>
@@ -304,20 +308,20 @@ Learning objectives
 <p>Set a password for your RStudio server:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>RSERVER_PASSWORD=$(openssl rand -base64 15)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>echo $RSERVER_PASSWORD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Please NOTE down this <strong>PASSWORD</strong> as you will need when you log on to RStudio from a browser.</p>
+<p>Please notedown this <strong>PASSWORD</strong> as you will need when you log on to RStudio from a browser.</p>
 <p>Change into your working directory</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>cd ~/Day-2/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We’re then going to run a Singularity command to execute the prepared RStudio container containing all the libraries. This command looks a bit intimidating, but all you really need to know to get it working is:</p>
 <ul>
 <li>We’ve <strong>set a unique password</strong> (<code>PASSWORD</code>) that we’ll use to log into the RStudio server on our web browsers</li>
-<li>We are <strong>using Singularity to execute</strong> (<code>singularity exec</code>) the prepared RStudio container (<code>/cvmfs/data.biocommons.aarnet.edu.au/training_materials/SIH_training/IntroRNAseq_1023/rstudio_4.1.0.sif</code>)</li>
+<li>We are <strong>using Singularity to execute</strong> (<code>singularity exec</code>) the a RStudio container (<code>/cvmfs/data.biocommons.aarnet.edu.au/training_materials/SIH_training/IntroRNAseq_1023/rstudio_4.1.0.sif</code>)</li>
 <li><strong>Containers are closed environments</strong>, so we have to explicitly bind (<code>-B</code>) or expose directories that we want it to access on our machine.</li>
 </ul>
 <p>➤ To start the Rserver, run:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>PASSWORD=$RSERVER_PASSWORD singularity exec \</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    -B /tmp/rstudio-server:/var/lib/rstudio-server \</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    -B /tmp/rstudio-server:/var/run/rstudio-server \</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    -B /home/training:/home/training/R \</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>     -B /home/training/Day-2:/home/training/ \</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    ~/Data/rstudio_4.1.0.sif \</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    rserver --auth-none=0 --auth-pam-helper-path=pam-helper --server-user training</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-simple callout-note callout-titled">
