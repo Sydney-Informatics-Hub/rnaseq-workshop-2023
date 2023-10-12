@@ -337,7 +337,7 @@ cookieconsent.run({
 <section id="rstudio-not-loading-in-browser" class="level3">
 <h3 class="anchored" data-anchor-id="rstudio-not-loading-in-browser">RStudio not loading in browser</h3>
 <p>If you need to end your session, exit your browser and on Nimbus, run the following command:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>lsof -ti:8787 | xargs kill -9</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>kill -9 $(lsof -t -c rsession)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="loop-device-error-on-nimbus" class="level3">
 <h3 class="anchored" data-anchor-id="loop-device-error-on-nimbus">Loop device error on Nimbus</h3>
