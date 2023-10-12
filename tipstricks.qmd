@@ -74,7 +74,7 @@ Here substitute <PID> with the corresponding PID value e.g. 747 above
 If you need to end your session, exit your browser and on Nimbus, run the following command:
 
 ```default
-lsof -ti:8787 | xargs kill -9
+kill -9 $(lsof -t -c rsession)
 ```
 
 ### Loop device error on Nimbus
