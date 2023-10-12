@@ -188,13 +188,6 @@ write.table(normalised_counts,
             quote = F)
 ```
 
-Normalised count data can be used for visualisation/other analyses, so it is also handy to save these results.
-
-```r
-normalised_counts <- counts(dds,normalized = TRUE)
-write.table(normalised_counts, "normalised_all_samples_DeSeq2_FUllMatrix.tab", sep = "\t", col.names = NA, quote = F)
-```
-
 ## **2.3.8 Visualise the results**
 
 ### **Volcano plot**{.unlisted}

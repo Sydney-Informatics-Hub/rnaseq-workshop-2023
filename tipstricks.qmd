@@ -47,9 +47,10 @@ PASSWORD='abc' singularity exec \
 
 ```
 If an error similar to the one below pops up - 
-```default
-06 Oct 2023 01:16:34 [rserver] ERROR system error 98 (Address already in use); OCCURRED AT rstudio::core::Error rstudio::core::http::initTcpIpAcceptor(rstudio::core::http::SocketAcceptorService<rstudio_boost::asio::ip::tcp>&, const string&, const string&) src/cpp/server/ServerInit.cpp:103; LOGGED FROM: int main(int, char* const*) src/cpp/server/ServerMain.cpp:704
-```
+
+::: {.callout-note appearance="simple"}
+11 Oct 2023 23:14:42 [rserver] ERROR system error 98 (Address already in use); OCCURRED AT   rstudio::core::Error rstudio::core::http::initTcpIpAcceptor (rstudio::core::http::SocketAcceptorService<rstudio_boost::asio::ip::tcp>&, const string&, const string&) src/cpp/server/ServerInit.cpp:103; LOGGED FROM: int main(int, char* const*) src/cpp/server/ServerMain.cpp:704
+:::
 
 Do the following
 ```default
