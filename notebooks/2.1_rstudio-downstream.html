@@ -351,7 +351,16 @@ For experienced CLI users
 </div>
 </div>
 <p>If an error similar to the one below pops up -</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>06 Oct 2023 01:16:34 [rserver] ERROR system error 98 (Address already in use); OCCURRED AT rstudio::core::Error rstudio::core::http::initTcpIpAcceptor(rstudio::core::http::SocketAcceptorService&lt;rstudio_boost::asio::ip::tcp&gt;&amp;, const string&amp;, const string&amp;) src/cpp/server/ServerInit.cpp:103; LOGGED FROM: int main(int, char* const*) src/cpp/server/ServerMain.cpp:704</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>11 Oct 2023 23:14:42 [rserver] ERROR system error 98 (Address already in use); OCCURRED AT rstudio::core::Error rstudio::core::http::initTcpIpAcceptor (rstudio::core::http::SocketAcceptorService<rstudio_boost::asio::ip::tcp>&amp;, const string&amp;, const string&amp;) src/cpp/server/ServerInit.cpp:103; LOGGED FROM: int main(int, char* const*) src/cpp/server/ServerMain.cpp:704</rstudio_boost::asio::ip::tcp></p>
+</div>
+</div>
+</div>
 <p>Please refer to the solution <a href="https://sydney-informatics-hub.github.io/rnaseq-workshop-2023/tipstricks.html#error-when-trying-to-run-rserver-on-nimbus">here</a></p>
 <section id="open-rstudio-in-a-web-browser" class="level4 unlisted">
 <h4 class="unlisted anchored" data-anchor-id="open-rstudio-in-a-web-browser"><strong>Open RStudio in a web browser</strong></h4>
@@ -362,7 +371,7 @@ For experienced CLI users
 <p><img src="../Figs/2.1_Rstudio_chrome_rserver.png" class="img-fluid"></p>
 <p>If you forgot to note down your password, you can retreive it by running the command: <code>echo $RSERVER_PASSWORD</code></p>
 <p>If you need to end your session, exit your browser and on Nimbus, run the following command:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">kill</span> <span class="at">-9</span> <span class="va">$(</span><span class="ex">lsof</span> <span class="at">-t</span> <span class="at">-c</span> rsession<span class="va">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">kill</span> <span class="at">-9</span> <span class="va">$(</span><span class="ex">lsof</span> <span class="at">-t</span> <span class="at">-c</span> rsession<span class="va">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="working-in-rstudio" class="level2">
@@ -410,53 +419,53 @@ We are only working from the .Rmd!!
 <section id="load-libraries" class="level3 unlisted">
 <h3 class="unlisted anchored" data-anchor-id="load-libraries"><strong>Load libraries</strong></h3>
 <p>➤ Click the green arrow in the top right of the R grey code box to run the code chunk. This will load libraries required for this analysis.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>({</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"DESeq2"</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"edgeR"</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"limma"</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"RColorBrewer"</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"gplots"</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"factoextra"</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"devtools"</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"rstudioapi"</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tibble"</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"pheatmap"</span>)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"biomaRt"</span>)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"annotables"</span>)</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"org.Mm.eg.db"</span>)</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"biobroom"</span>)</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"clusterProfiler"</span>)</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggnewscale"</span>)</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>({</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"DESeq2"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"edgeR"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"limma"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"RColorBrewer"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"gplots"</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"factoextra"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"devtools"</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"rstudioapi"</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tibble"</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"pheatmap"</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"biomaRt"</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"annotables"</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"org.Mm.eg.db"</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"biobroom"</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"clusterProfiler"</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggnewscale"</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="import-the-count-matrix-file" class="level3 unlisted">
 <h3 class="unlisted anchored" data-anchor-id="import-the-count-matrix-file"><strong>Import the count matrix file</strong></h3>
 <p>The count matrix file contains raw (un-normalized) counts for every gene (rows) in mm10 and every sample (columns). The value in the i-th row and the j-th column of the matrix tells how many raw reads were assigned to gene i in sample j.</p>
 <p>We created a count matrix file with subset data in Part 1 of this workshop (salmon.merged.gene_counts.tsv). In Part 2, we will use a count matrix file produced from the full dataset, in order to have enough data to generate differential pathways.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the full count matrix file</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>counttable_original<span class="ot">&lt;-</span><span class="fu">read.delim</span>(<span class="st">"FULL_count_matrix.txt"</span>, </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">header=</span>T, </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">row.names=</span><span class="dv">1</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Data format is very important to ensure that functions read and analyse data correctly!</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># The loaded count matrix is not in the exact format as required by the functions used later in the analysis</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># So we perform the following steps</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Put gene symbol in the first column</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>counttable <span class="ot">&lt;-</span> counttable_original[,<span class="fu">c</span>(<span class="st">"Symbol"</span>,<span class="st">"WT1"</span>,<span class="st">"WT2"</span>,<span class="st">"WT3"</span>,<span class="st">"KO1"</span>,<span class="st">"KO2"</span>,<span class="st">"KO3"</span>)]</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># We don't need the ensembl IDs - get rid of the rownames</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(counttable) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the gene symbol column rownames instead</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(counttable) <span class="ot">&lt;-</span> counttable<span class="sc">$</span>Symbol</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>counttable <span class="ot">&lt;-</span> counttable[,<span class="fu">c</span>(<span class="st">"WT1"</span>,<span class="st">"WT2"</span>,<span class="st">"WT3"</span>,<span class="st">"KO1"</span>,<span class="st">"KO2"</span>,<span class="st">"KO3"</span>)]</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co">#  View the count table with the code below</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(counttable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the full count matrix file</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>counttable_original<span class="ot">&lt;-</span><span class="fu">read.delim</span>(<span class="st">"FULL_count_matrix.txt"</span>, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">header=</span>T, </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">row.names=</span><span class="dv">1</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Data format is very important to ensure that functions read and analyse data correctly!</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># The loaded count matrix is not in the exact format as required by the functions used later in the analysis</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># So we perform the following steps</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Put gene symbol in the first column</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>counttable <span class="ot">&lt;-</span> counttable_original[,<span class="fu">c</span>(<span class="st">"Symbol"</span>,<span class="st">"WT1"</span>,<span class="st">"WT2"</span>,<span class="st">"WT3"</span>,<span class="st">"KO1"</span>,<span class="st">"KO2"</span>,<span class="st">"KO3"</span>)]</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># We don't need the ensembl IDs - get rid of the rownames</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(counttable) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the gene symbol column rownames instead</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(counttable) <span class="ot">&lt;-</span> counttable<span class="sc">$</span>Symbol</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>counttable <span class="ot">&lt;-</span> counttable[,<span class="fu">c</span>(<span class="st">"WT1"</span>,<span class="st">"WT2"</span>,<span class="st">"WT3"</span>,<span class="st">"KO1"</span>,<span class="st">"KO2"</span>,<span class="st">"KO3"</span>)]</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">#  View the count table with the code below</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(counttable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We now have our count matrix file (genes - rows, samples - columns) ready for analysis.</p>
 </section>
 </section>
@@ -464,14 +473,14 @@ We are only working from the .Rmd!!
 <h2 class="anchored" data-anchor-id="experimental-design-metadata"><strong>2.1.5 Experimental design metadata</strong></h2>
 <p>DE requires some metadata that tells our R libraries about the experimental design of the study, so that it knows how to handle the data. In this analysis, we have two experimental groups, the wildtype (“Wild”) and the knockout (“KO”) groups.</p>
 <p>We will create and store this metadata in a specific format required by the R libraries that we will use later. The samples are in rows (sample IDs as rownames), and columns are the experimental groupings. You can have more than one column, but need a minimum of one that describes your experimental groups.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a condition variable, ensuring they match the order of sample IDs in counttable</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>condition <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Wild"</span>,<span class="st">"Wild"</span>,<span class="st">"Wild"</span>,<span class="st">"KO"</span>,<span class="st">"KO"</span>,<span class="st">"KO"</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a dataframe called meta with condition and sample IDs as rownames (taken from counttable)</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>meta <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">row.names =</span> <span class="fu">colnames</span>(counttable), condition)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># View the meta dataframe with the code below</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(meta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a condition variable, ensuring they match the order of sample IDs in counttable</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>condition <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Wild"</span>,<span class="st">"Wild"</span>,<span class="st">"Wild"</span>,<span class="st">"KO"</span>,<span class="st">"KO"</span>,<span class="st">"KO"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a dataframe called meta with condition and sample IDs as rownames (taken from counttable)</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>meta <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">row.names =</span> <span class="fu">colnames</span>(counttable), condition)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># View the meta dataframe with the code below</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(meta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

@@ -448,42 +448,39 @@ Markdown vs R code writing
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">sep =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, </span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">col.names =</span> <span class="cn">NA</span>, </span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">quote =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Normalised count data can be used for visualisation/other analyses, so it is also handy to save these results.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>normalised_counts <span class="ot">&lt;-</span> <span class="fu">counts</span>(dds,<span class="at">normalized =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(normalised_counts, <span class="st">"normalised_all_samples_DeSeq2_FUllMatrix.tab"</span>, <span class="at">sep =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">col.names =</span> <span class="cn">NA</span>, <span class="at">quote =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="visualise-the-results" class="level2">
 <h2 class="anchored" data-anchor-id="visualise-the-results"><strong>2.3.8 Visualise the results</strong></h2>
 <section id="volcano-plot" class="level3 unlisted">
 <h3 class="unlisted anchored" data-anchor-id="volcano-plot"><strong>Volcano plot</strong></h3>
 <p>The volcano plot is a scatterplot that shows magnitude of change (fold change, x axis) against statistical significance (p-value, y axis). It provides an overall visual snapshot of the number of up and downregulated genes that are statistically significant.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a basic volcano plot (scatter plot) with x axis = LogFC, y axis = -log10(pvalue)</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>resdata <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(res)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define whether genes are significantly DE or not and store this in a new column called DE</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>resdata<span class="sc">$</span>Significant <span class="ot">&lt;-</span> <span class="st">"No"</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>resdata<span class="sc">$</span>Significant[resdata<span class="sc">$</span>log2FoldChange <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> resdata<span class="sc">$</span>pvalue <span class="sc">&lt;</span> <span class="fl">0.05</span> ] <span class="ot">&lt;-</span> <span class="st">"Upregulated"</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>resdata<span class="sc">$</span>Significant[resdata<span class="sc">$</span>log2FoldChange <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">&amp;</span> resdata<span class="sc">$</span>pvalue <span class="sc">&lt;</span> <span class="fl">0.05</span> ] <span class="ot">&lt;-</span> <span class="st">"Downregulated"</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the volcano plot</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>resdata,</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>log2FoldChange, <span class="at">y=</span><span class="sc">-</span><span class="fu">log10</span>(pvalue), <span class="at">col=</span>Significant)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add significance lines at log2FoldChange -1, 1 and pvalue 0.05</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="at">col =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span>), <span class="at">col =</span> <span class="st">"red"</span>)</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the plot</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a basic volcano plot (scatter plot) with x axis = LogFC, y axis = -log10(pvalue)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>resdata <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(res)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define whether genes are significantly DE or not and store this in a new column called DE</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>resdata<span class="sc">$</span>Significant <span class="ot">&lt;-</span> <span class="st">"No"</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>resdata<span class="sc">$</span>Significant[resdata<span class="sc">$</span>log2FoldChange <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> resdata<span class="sc">$</span>pvalue <span class="sc">&lt;</span> <span class="fl">0.05</span> ] <span class="ot">&lt;-</span> <span class="st">"Upregulated"</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>resdata<span class="sc">$</span>Significant[resdata<span class="sc">$</span>log2FoldChange <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">&amp;</span> resdata<span class="sc">$</span>pvalue <span class="sc">&lt;</span> <span class="fl">0.05</span> ] <span class="ot">&lt;-</span> <span class="st">"Downregulated"</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the volcano plot</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>resdata,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>log2FoldChange, <span class="at">y=</span><span class="sc">-</span><span class="fu">log10</span>(pvalue), <span class="at">col=</span>Significant)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add significance lines at log2FoldChange -1, 1 and pvalue 0.05</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="at">col =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span>), <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the plot</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="visualise-some-de-genes" class="level3 unlisted">
 <h3 class="unlisted anchored" data-anchor-id="visualise-some-de-genes"><strong>Visualise some DE genes</strong></h3>
 <p>We have applied low read-count filtering followed by appropriate statistical tests using the DESeq2 package for identification of the differentially expressed geens across our conditions of interest.</p>
 <p>However we recommend that you visualise a few genes (of specific interest or otherwise) to check if the identification of these genes is supported by sufficient read-counts.</p>
 <p>Use plotCounts function to plot normalized counts for a single gene of interest. Here we plot</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotCounts</span>(dds, </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">gene =</span> <span class="st">"Dip2b"</span>, </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">intgroup =</span> <span class="st">"condition"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotCounts</span>(dds, </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">gene =</span> <span class="st">"Dip2b"</span>, </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">intgroup =</span> <span class="st">"condition"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -537,8 +534,8 @@ Solution
 <section id="ma-plot" class="level4">
 <h4 class="anchored" data-anchor-id="ma-plot"><strong>MA plot</strong></h4>
 <p>The MA plot provides an overview of the relationship between significantly differentially expressed genes, gene expression and log fold change in the form of a scatter plot. Each dot on the plot represents a single gene, significant genes are coloured as a blue dot. The average gene expression is on the x axis (expressed as a mean of normalized counts) and the log fold change is on the Y axis.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There is another R function called plotMA, so we need to specify to use DESeq2's plotMA</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>DESeq2<span class="sc">::</span><span class="fu">plotMA</span>(res, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">12</span>, <span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There is another R function called plotMA, so we need to specify to use DESeq2's plotMA</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>DESeq2<span class="sc">::</span><span class="fu">plotMA</span>(res, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">12</span>, <span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>There are a few things we notice:</p>
 <ul>
 <li>Genes that are differentially expressed will appear as points deviating significantly from the centerline, with those above the line indicating upregulated genes and those below indicating downregulated genes.</li>
@@ -549,10 +546,10 @@ Solution
 <section id="histogram-of-p-values" class="level4">
 <h4 class="anchored" data-anchor-id="histogram-of-p-values"><strong>Histogram of P-values</strong></h4>
 <p>Remember that for every gene, we perform a statistical test to determine whether gene expression is significantly different in the knockout samples, compared to the wildtype. This results in thousands (~20,000 genes in the mouse genome) of p-values. We can look at the histogram of p-values to see how our well our statistical test behaves before we apply correction for multiple testing.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bin frequency of p-value counts by 0.05 incremets (i.e plot 20 columns from p-value of 0 to 1)</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(res<span class="sc">$</span>pvalue, </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">20</span>, </span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"grey"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bin frequency of p-value counts by 0.05 incremets (i.e plot 20 columns from p-value of 0 to 1)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(res<span class="sc">$</span>pvalue, </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">20</span>, </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"grey"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A nice histogram of p-values will have a peak at the 0.05 end, and a uniform frequency at all other p-value bins. Think back to your null and alternate hypothesis. Under the null hypothesis, there is a 5% chance of genes will fall under p-value 0.05, 10 % for p-value under 0.1, etc. The high peak at the first bin (p-value 0 - 0.5) represents genes that reject the null hypothesis (in addition to all the false discoveries - hence our need to adjust for multiple testing!).</p>
 <p>A histogram of p-values that looks anything other than what is described above means that something weird has happened and you may need to contact your local statistician/bioinformatician.</p>
 <p>This <a href="http://varianceexplained.org/statistics/interpreting-pvalue-histogram/">blog post</a> has a nice explanation of each scenario if you want to explore this further.</p>
@@ -564,9 +561,9 @@ Solution
 <h4 class="anchored" data-anchor-id="dispersion-estimates"><strong>Dispersion estimates</strong></h4>
 <p>The dispersion plot is useful to examine whether your data is meeting DESeq2’s assumptions around heteroskedasticity and that the data fits DESeq2’s model well. Dispersion is how DESeq2 quantifies variability in the data. It considers variance and mean expression within each experimental group.</p>
 <p>Let’s use plotDispEsts() to generate the dispersion plot and discuss what this means.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot dispersion estimates using dds</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note - we have set our experimental design to ~ condition and it is using this to estimate dispersion</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDispEsts</span>( dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot dispersion estimates using dds</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note - we have set our experimental design to ~ condition and it is using this to estimate dispersion</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDispEsts</span>( dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>There are a few things to note:</p>
 <ul>
 <li>Dispersion is higher for genes with small mean of normalized counts, and lower for genes with high mean of normalized counts.
