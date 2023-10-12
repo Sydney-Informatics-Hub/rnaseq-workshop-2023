@@ -54,6 +54,7 @@ If an error similar to the one below pops up -
 
 Do the following
 ```default
+rm -r  /tmp/rstudio-server
 sudo lsof -i :8787
 ```
 
