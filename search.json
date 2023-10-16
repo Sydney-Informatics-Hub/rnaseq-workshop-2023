@@ -417,7 +417,7 @@
     "href": "notebooks/2.5_wrapup.html#results-from-high-throughput-experiments",
     "title": "Day 2 wrap up",
     "section": "2.5.4 Results from high-throughput experiments",
-    "text": "2.5.4 Results from high-throughput experiments\nWhat we have -\n1. List of differentially expressed genes.\n2. List of enriched functional categories (gene ontologies, pathways etc).\nHow to interpret the results?\n1. Expectations : Based on your previous work, you might expect to see a few genes changing.\n2. Discovery: Some of the cascading effects which were previously unknown.\n3. A combination of expectations plus discovery (1+2)."
+    "text": "2.5.4 Results from high-throughput experiments\nWe have the following two sets of results -\n1. A list of differentially expressed (DE) genes.\n2. A list of enriched functional categories (gene ontologies, pathways etc) which are derived from DE genes.\nThe results can be interpreted:\n1. Based on prior expectations : You might expect to see a few genes changing as per your domain knowledge.\n2. New discovery: Some results can be completely new and a result of changes related to cascading/compensating effects of the knockout, etc.\n3. A combination of expectations plus discovery (1+2)."
   },
   {
     "objectID": "notebooks/2.5_wrapup.html#experimental-design-limitations",
