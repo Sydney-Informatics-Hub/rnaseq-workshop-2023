@@ -53,13 +53,13 @@ The most significantly enriched GO terms captured high-level biological function
 
 ## 2.5.4 Results from high-throughput experiments  
 
-What we have -    
-    1. List of differentially expressed genes.  
-    2. List of enriched functional categories (gene ontologies, pathways etc).  
+We have the following two sets of results -    
+    1. A list of differentially expressed (DE) genes.  
+    2. A list of enriched functional categories (gene ontologies, pathways etc) which are derived from DE genes.
 
-How to interpret the results?  
-1.	**Expectations** : Based on your previous work, you might expect to see a few genes changing.    
-2.	**Discovery**: Some of the cascading effects which were previously unknown.   
+The results can be interpreted:   
+1.	**Based on prior expectations** : You might expect to see a few genes changing as per your domain knowledge.    
+2.	**New discovery**: Some results can be completely new and a result of changes related to cascading/compensating effects of the knockout, etc.   
 3.	**A combination** of expectations plus discovery (1+2).    
 
 
