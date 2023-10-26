@@ -34,8 +34,8 @@ This workshop series is presented across 2 days and will consist of code-along a
 
 You can find a copy of the materials used in day 2 at: 
 
-* [RStudio-rnaseq container]() for a containerised environment with all R packages preinstalled 
-* [Differential expression R notebook]() for all code run on day 2 to perform differential expression analysis
+* [RStudio-rnaseq container](https://github.com/Sydney-Informatics-Hub/Rstudio-rnaseq-contained) for a containerised environment with all R packages preinstalled 
+* [Differential expression R notebook](https://github.com/Sydney-Informatics-Hub/rna-differential-expression-Rnotebook) for all code run on day 2 to perform differential expression analysis
 
 ## Workshop schedule{.unlisted}
 
