@@ -30,6 +30,13 @@ This workshop series is presented across 2 days and will consist of code-along a
 * Use the Slack channel to ask questions and engage in discussions during the workshop
 * Do the provided exercises during the workshop
 
+## Resources{.unlisted} 
+
+You can find a copy of the materials used in day 2 at: 
+
+* [RStudio-rnaseq container]() for a containerised environment with all R packages preinstalled 
+* [Differential expression R notebook]() for all code run on day 2 to perform differential expression analysis
+
 ## Workshop schedule{.unlisted}
 
 |Lesson               |Overview                                                                                                                                                                                    |
